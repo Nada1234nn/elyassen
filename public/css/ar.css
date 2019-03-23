@@ -1,0 +1,408 @@
+body {
+    direction: rtl;
+}
+
+
+
+.intl-tel-input.allow-dropdown .flag-container,
+.intl-tel-input.separate-dial-code .flag-container {
+    right: 0
+}
+
+.intl-tel-input .country-list {
+    text-align: right
+}
+
+.intl-tel-input .country-list .country-name,
+.intl-tel-input .country-list .flag-box {
+    margin-right: auto;
+    margin-left: 6px;
+}
+
+.intl-tel-input .selected-flag {
+    padding: 0 8px 0 0;
+}
+
+.H_ib_body {
+    padding: 0 5px 0 1.2em !important;
+    margin-left: -1em !important;
+    margin-right: auto !important;
+}
+
+.H_ib_close {
+    left: .2em;
+    right: auto !important
+}
+
+.intl-tel-input.allow-dropdown input,
+.intl-tel-input.allow-dropdown input[type=tel],
+.intl-tel-input.allow-dropdown input[type=text],
+.intl-tel-input.separate-dial-code input,
+.intl-tel-input.separate-dial-code input[type=tel],
+.intl-tel-input.separate-dial-code input[type=text] {
+    padding-left: 6px;
+    padding-right: 52px;
+    margin-right: 0;
+}
+
+.intl-tel-input .country-list .country {
+    direction: ltr
+}
+
+.intl-tel-input .selected-flag .iti-arrow {
+    left: 5px;
+    right: auto
+}
+
+
+
+.forget-link,
+.social-icons,
+.copy-left,
+.login-div,
+.left-btn,
+.social-icons-pro.news-social,
+.reg-form-group {
+    text-align: left
+}
+
+.form-control,
+.top-text,
+.animation_menu li,
+label,
+.logo-grid,
+.dropmenu-list,
+.social-icons-pro.news-social.news-details-soc,
+.pro-title,
+.pro-price,
+.inner-pro-descripe,
+.slider-caption,
+.side-tabs,
+.news,
+footer,
+.copy-right,
+.about-descripe,
+.products-filter,
+.btn-link,
+.holder_pager,
+.product-carousel,
+.main-product-details,
+.side-cart,
+.total,
+.news-filter,
+.news-filter .custom-control-label,
+.pro-quantity,
+.caret-btns,
+#datepicker,
+#datepicker2,
+.show_consult .contact-information,
+.ui-widget.ui-widget-content.ui-corner-all,
+.gallery-itemm,
+.product-details .pro-title,
+.products-btns,
+.gallery-item.worker .worker-list {
+    text-align: right
+}
+
+.login-div ul {
+    left: 0;
+}
+
+.main-menu > li > a::before,
+.slider-caption,
+.border-title::before,
+.side-tabs li:before,
+.img-effect,
+.caret-list,
+.gallery-main-link::before {
+    right: 0;
+}
+
+
+.dropmenu-list img,
+.slider-caption .custom_btn,
+.crt-icon {
+    margin-left: 10px;
+}
+
+
+i,
+.side-tabs li a img,
+.dropmenu-list h3,
+.year-name::before,
+.month-name::before,
+.year-news-list a:before,
+.news-title:before,
+.twitter-bird-animation,
+.arrow-title:before {
+    margin-left: 5px;
+}
+
+
+.more_btn i {
+    margin-right: 5px;
+}
+
+.search-form2 .form-control,
+.search-form3 .form-control {
+    padding-left: 65px;
+}
+
+.search-btn2 {
+    left: 0;
+    border-radius: 2px 0 0 2px;
+}
+
+.dropmenu-list::before {
+    right: 10px;
+}
+
+.dropmenu-list a:hover img {
+    margin-left: 15px;
+}
+
+.new-content {
+    padding-left: 15px
+}
+
+.news-div {
+    margin-left: 15px;
+    padding-left: 0
+}
+
+.more_btn:after {
+    left: -5px;
+}
+
+.side-tw {
+    padding-right: 35px;
+    padding-left: 20px;
+}
+
+.twiter-content p {
+    padding-left: 20%;
+}
+
+.twiter-content {
+    padding-left: 20px;
+}
+
+.twi-div {
+    margin-left: 20px;
+}
+
+.nav-icon {
+    left: 0;
+}
+
+.holder_pager {
+    direction: rtl;
+}
+
+.holder_pager a.jp-previous,
+.holder_pager a.jp-next {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg)
+}
+
+.worker:hover .worker-img {
+    right: 20px;
+}
+
+.img-effect {
+    left: auto
+}
+
+.filter-search input {
+    padding-left: 45px;
+}
+
+
+.card-header .btn-link:after {
+    left: 20px;
+}
+
+.pro-plus {
+    left: 10px;
+}
+
+.pro-title span,
+.inner-pro-descripe .custom_btn,
+.social-icons-pro a,
+.search-form3 .form-control,
+.caret-sec .pro-gram span,
+.show_requests .order-counter {
+    margin-right: 10px;
+}
+
+.left-product-details {
+    border-right: 1px solid #f0f0f0
+}
+
+.inner-product-pro {
+    margin-left: 0
+}
+
+.pro-list span:first-of-type {
+    padding-left: 10px;
+}
+
+.pro-list span:last-of-type,
+.side-cart {
+    padding-right: 10px;
+}
+
+.icons-form .form-control {
+    padding-right: 30px;
+}
+
+.icons-form .file-upload .form-control {
+    padding-right: 0
+}
+
+.file-upload .file-select .file-select-name {
+    padding-right: 20px;
+}
+
+.main-form-icon {
+    right: 25px;
+}
+
+.icons-form .file-upload .main-form-icon {
+    right: 10px;
+}
+
+.icons-form .file-upload input {
+    padding-left: 60px;
+}
+
+.cart-num {
+    right: -15px;
+}
+
+.file-select .invalid-feedback {
+    margin-right: -10px
+}
+
+.lang-div a i {
+    margin-right: 2px;
+}
+
+.year-news-list,
+.months-list {
+    margin-right: 20px;
+}
+
+.custom-control-label {
+    padding-right: 5px;
+}
+
+.custom-control-label::before,
+.custom-control-label::after {
+    left: auto;
+    right: -1rem;
+}
+
+.custom-control-label {
+    margin-right: 1rem
+}
+
+.slide-icon:before {
+    left: -20px;
+}
+
+.left-cus-btn {
+    float: left;
+}
+
+.form-group.form-group-pos input:first-of-type {
+    margin-left: 5px;
+}
+
+.availabel-jobs .job-desciption:before {
+    left: 20px;
+}
+
+.availabel-jobs .job-desciption > h2 {
+    padding-left: 20px;
+}
+
+/*start responsive*/
+@media only screen and (max-width: 1200px) {
+    .pro-soc {
+        text-align: right
+    }
+
+    .lan-soc-grid i {
+        margin-left: 0
+    }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {}
+
+@media only screen and (max-width: 992px) {}
+
+@media only screen and (max-width: 768px) {
+
+
+
+
+    .twiter-content p {
+        padding-left: 20px
+    }
+
+    .nav-grid {
+        right: 0
+    }
+
+    .main-menu > li {
+        text-align: right
+    }
+
+    .main-menu > li::before {
+        margin-left: 5px;
+    }
+
+    .main-menu > li:hover > a {
+        transform: translateX(-5px);
+        -webkit-transform: translateX(-5px);
+    }
+
+    .nav-grid {
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%)
+    }
+
+    .news-div {
+        padding-left: 15px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+
+    .pro-gram span {
+        margin-right: 20px;
+    }
+
+    .side-tw {
+        padding-right: 10px;
+        padding-left: 20px;
+    }
+
+    .search-form3 .form-control {
+        margin-right: 0;
+    }
+
+    .show_requests .pro-quantity {
+        text-align: right;
+    }
+}
+
+@media only screen and (max-width: 410px) {
+    .left-cus-btn {
+        float: none;
+    }
+
+}
+
+/*end responsive*/

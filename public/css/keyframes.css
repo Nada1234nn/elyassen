@@ -1,0 +1,49 @@
+
+
+@keyframes lang-effect{
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+
+    };
+    
+ }
+
+ 
+ 
+@keyframes more-effect{
+    0% {
+        transform: translateX(0px);
+        -webkit-transform:  translateX(0px);
+
+    }
+
+    100% {
+        transform: translateX(2px);
+        -webkit-transform: translateX(2px);
+
+    };
+    
+ }
+
+ @keyframes fly {
+    0% {
+      background-position: 0 0;
+    }
+    33% {
+      background-position: -200px 0;
+    }
+    66% {
+      background-position: -402px 0;
+    }
+  }
+
+
+
+ 
