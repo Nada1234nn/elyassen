@@ -15,7 +15,7 @@ class SettingsTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('settings', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('title');
@@ -37,8 +37,7 @@ class SettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('settings');
+
     }
 }

@@ -34,8 +34,7 @@ class SystemsTable extends Migration
      */
     public function down()
     {
-        Schema::table('systems', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('systems');
+
     }
 }

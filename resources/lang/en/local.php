@@ -19,5 +19,15 @@ return [
     'logout'=>'Logout ',
     'login_nn'=>'Login',
     'register_n'=>'Register',
+    'contact_us'=>'Contact us',
+    'contact_elyassen'=>'Contact with elyassen',
+    'name'=>'Name',
+    'title_message'=>'Title message',
+    'message'=>'Message',
+    'send'=>'Send',
+    'mailing_list'=>'Mailing list',
+    'input_email'=>'please,input your email',
+    'success_message'=>'Congratulation,Message has been sent',
+    'message_mailinglist'=>'Congratulation,you are subscriptionin mailing list',
 ]
 ?>

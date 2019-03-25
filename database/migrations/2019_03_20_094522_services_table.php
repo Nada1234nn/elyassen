@@ -15,7 +15,7 @@ class ServicesTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('services', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             //
             $table->increments('id');
 
@@ -34,8 +34,7 @@ class ServicesTable extends Migration
      */
     public function down()
     {
-        Schema::table('services', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('services');
+
     }
 }

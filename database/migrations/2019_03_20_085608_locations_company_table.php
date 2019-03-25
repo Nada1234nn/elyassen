@@ -15,7 +15,7 @@ class LocationsCompanyTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('locations_company', function (Blueprint $table) {
+        Schema::create('locations_company', function (Blueprint $table) {
             //
             $table->increments('id');
 $table->string('name');
@@ -41,8 +41,7 @@ $table->text('descr');
      */
     public function down()
     {
-        Schema::table('locations_company', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('locations_company');
+
     }
 }

@@ -15,7 +15,7 @@ class ProductsAttributeTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('products_attribute', function (Blueprint $table) {
+        Schema::create('products_attribute', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('attribute_value');
@@ -40,8 +40,7 @@ $table->timestamps();
      */
     public function down()
     {
-        Schema::table('products_attribute', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('products_attribute');
+
     }
 }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact_us;
+use App\Emails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         return view('website.home');
     }
 
@@ -42,5 +46,24 @@ class HomeController extends Controller
         return  redirect()->back();
     }
 
+    public function contact(){
+        return view('website.contact_us');
+    }
 
+    public function contactUs(Request $request){
+$contact=new Contact_us();
+$contact->name=$request->name;
+$contact->email=$request->email;
+$contact->title=$request->title_message;
+$contact->descr=$request->message;
+$contact->save();
+return response()->json(['success'=>'true']);
+    }
+
+    public function malingList(Request $request){
+        $email=new Emails();
+        $email->emails=$request->email;
+        $email->save();
+        return response()->json(['success','true']);
+    }
 }

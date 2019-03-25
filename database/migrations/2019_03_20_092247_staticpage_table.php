@@ -15,7 +15,7 @@ class StaticpageTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('staticpage', function (Blueprint $table) {
+        Schema::create('staticpage', function (Blueprint $table) {
             //
 
             $table->increments('id');
@@ -32,8 +32,6 @@ $table->timestamps();
      */
     public function down()
     {
-        Schema::table('staticpage', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('staticpage');
     }
 }

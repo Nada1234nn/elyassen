@@ -26,7 +26,7 @@ class CheckPermission
         if ($request->user()->hasAnyRole($permissions)||!$permissions){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/access_denied');
 
 
 

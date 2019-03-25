@@ -22,19 +22,42 @@ Route::group(['middleware' => 'lang'], function () {
 
     });
 
- Route::group(['middleware' => 'web'], function () {
+    Route::group(['middleware' => 'web'], function () {
 
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social','twitter|facebook|google');
-    Route::get('/login/{social/callback}', 'Auth\LoginController@handleprovidercallback')->where('social','twitter|facebook|google');
-
-});
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social', 'twitter|facebook|google');
+        Route::get('/login/{social/callback}', 'Auth\LoginController@handleprovidercallback')->where('social', 'twitter|facebook|google');
+        Route::get('/contact', [
+            "uses" => "HomeController@contact",
+            "as" => "website.contact"
+        ]);
+    });
 
     Route::group(['middleware' => ['web', 'auth'], 'perfix' => ''], function () {
         Route::get('/logout', 'Auth\LoginController@logout');
 
     });
 
+    Route::group(['middleware' => ['web','permission'], 'permission' => ['admin']], function () {
+        Route::get('/dashboard', 'admin\HomeController@index');
+
+    });
+    Route::group(['middleware' => 'permission', 'permission' => ['visitor']], function () {
+
     });
 
+    Route::group(['middleware' => 'permission', 'permission' => ['customer']], function () {
+
+    });
+
+    Route::group(['middleware'=>'permission','permission'=>['suppliers']],function () {
+
+    });
+
+    Route::group(['middleware'=>'permission','permission'=>['employees']],function () {
+
+    });
+    });
 //add permission to role in route
+Route::post('/contactUs', 'HomeController@contactUs');
+Route::post('/malingList', 'HomeController@malingList');

@@ -15,7 +15,7 @@ class MembersManagementTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('members_management', function (Blueprint $table) {
+        Schema::create('members_management', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('title');
@@ -32,8 +32,9 @@ class MembersManagementTable extends Migration
      */
     public function down()
     {
-        Schema::table('members_management', function (Blueprint $table) {
-            //
-        });
+
+
+        Schema::dropIfExists('members_management');
+
     }
 }

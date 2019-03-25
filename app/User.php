@@ -59,7 +59,8 @@ class User extends Authenticatable
     }
 
     public function hasRole($permission){
-if ($this->permissions()->where('name',$permission)->first()){
+//        dd($this->permissions->contains('name',$permission));
+if ($this->permissions->contains('name',$permission)){
     return true;
 }
 return false;

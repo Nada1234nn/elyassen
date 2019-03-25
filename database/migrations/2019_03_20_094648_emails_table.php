@@ -15,7 +15,7 @@ class EmailsTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('emails', function (Blueprint $table) {
+        Schema::create('emails', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('emails');
@@ -30,8 +30,7 @@ class EmailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('emails', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('emails');
+
     }
 }

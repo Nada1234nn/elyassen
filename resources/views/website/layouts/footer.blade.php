@@ -12,3 +12,4 @@
 <script src="js/snake.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/html5lightbox.js"></script>
 <script src="js/custom.js" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>

@@ -15,7 +15,7 @@ class ImagesVideosTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('images_videos', function (Blueprint $table) {
+        Schema::create('images_videos', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('title');
@@ -32,8 +32,7 @@ class ImagesVideosTable extends Migration
      */
     public function down()
     {
-        Schema::table('images_videos', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('images_videos');
+
     }
 }

@@ -15,7 +15,7 @@ class ContactUsTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('contact_us', function (Blueprint $table) {
+        Schema::create('contact_us', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('name');
@@ -33,8 +33,7 @@ class ContactUsTable extends Migration
      */
     public function down()
     {
-        Schema::table('contact_us', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('contact_us');
+
     }
 }

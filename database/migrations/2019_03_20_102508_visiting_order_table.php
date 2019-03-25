@@ -15,7 +15,7 @@ class VisitingOrderTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('visiting_order', function (Blueprint $table) {
+        Schema::create('visiting_order', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('name');
@@ -42,8 +42,7 @@ class VisitingOrderTable extends Migration
      */
     public function down()
     {
-        Schema::table('visiting_order', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('visiting_order');
+
     }
 }

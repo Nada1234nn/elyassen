@@ -4,7 +4,7 @@ new WOW().init();
 
 //responsive nav
 $(".nav-icon").click(function () {
-    $(".nav-grid").toggleClass("open-nav");
+    $(".nav-grid,.fixed-dash-menu").toggleClass("open-nav");
     $(this).toggleClass("active-bar");
     $(".top-pg").addClass("hide-top-pg");
 });
@@ -15,14 +15,14 @@ $(".nav-icon").click(function () {
 
 $(function () {
     var $win = $(window); // or $box parent container
-    var $box = $(".nav-icon,.nav-grid");
+    var $box = $(".nav-icon,.nav-grid,.fixed-dash-menu");
     $win.on("click.Bst", function (event) {
         if (
             $box.has(event.target).length === 0 && //checks if descendants of $box was clicked
             !$box.is(event.target) //checks if the $box itself was clicked
         ) {
 
-            $(".nav-grid").removeClass("open-nav");
+            $(".nav-grid,.fixed-dash-menu").removeClass("open-nav");
             $(".nav-icon").removeClass("active-bar");
             $(".top-pg").removeClass("hide-top-pg");
 
@@ -238,6 +238,12 @@ $(".slide-icon").click(function () {
     
 });
 
+//slide orders
+$(".orders-div .contact-information").click(function () {
+    $(this).find("li").slideToggle();
+    $(this).toggleClass("contact-active");  
+    
+});
 
 //slide jobs
 $(".availabel-jobs .job-desciption > h2").click(function () {
@@ -268,8 +274,34 @@ $(".month-name").click(function () {
 });
 
 
+//slide dash links
+$(".main-menu-dash > li > a").click(function () {
+    $(this).parent().toggleClass("active-slide-dash-menu").find(".slide-dash-menu").slideToggle();
+    $(this).parent().siblings().removeClass("active-slide-dash-menu").find(".slide-dash-menu").slideUp()
+    
+});
 
 
+//messages-div
+$(".ms-text").click(function(){
+    $(this).parent(".dash-messages").toggleClass("active-messages").find(".msg-list").slideToggle();
+
+});
+$(function () {
+    var $wine = $(window); // or $box parent container
+    var $boxe = $(".dash-messages");
+    $wine.on("click.Bst", function (event) {
+        if (
+            $boxe.has(event.target).length === 0 && //checks if descendants of $box was clicked
+            !$boxe.is(event.target) //checks if the $box itself was clicked
+        ) {
+
+            $(".dash-messages").removeClass("active-messages");
+            $(".msg-list").slideUp();
+
+        }
+    });
+});
 //owl-carousel
 
 $(".first-owl.owl-carousel").owlCarousel({
@@ -354,8 +386,11 @@ $(document).ready(function () {
     });
 });
 
+//data-tables
 
-
+$(document).ready(function() {
+    $('#ex').DataTable();
+} );
 
 //form validtion
 (function () {

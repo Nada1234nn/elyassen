@@ -77,9 +77,9 @@
     }
 
     .left-product-details {
-        position: static;
         border: none;
-        border-top: 1px solid #f0f0f0
+        border-top: 1px solid #f0f0f0;
+        min-height: inherit
     }
 
 }
@@ -117,7 +117,29 @@
         height: 300px;
     }
 
+    .top-text,
+    .login-div {
+        text-align: center
+    }
 
+    .top-text {
+        margin-bottom: 5px;
+    }
+
+    .login-div ul {
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    .top-text {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .top-div-grid {
+        text-align: center
+    }
 }
 
 @media only screen and (max-width: 992px) and (min-width:576px) {
@@ -317,14 +339,7 @@
         margin-bottom: -50px
     }
 
-    .top-text {
-        text-align: center;
-        margin-bottom: 10px;
-    }
 
-    .top-div-grid {
-        text-align: center
-    }
 
     .location-slider .full-width-img {
         height: 300px;
@@ -369,24 +384,11 @@
     .jobs-title {
         margin-top: 30px
     }
+
 }
 
 @media only screen and (max-width: 576px) {
 
-    .top-text,
-    .login-div {
-        text-align: center
-    }
-
-    .top-text {
-        margin-bottom: 5px;
-    }
-
-    .login-div ul {
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
 
     .slider .full-width-img {
         height: 300px;
@@ -538,7 +540,39 @@
 
     }
 
+    .documentaion-center .products-btns li span {
+        display: block;
+        width: 100%;
+    }
 
+    .single-branch-form .form-control {
+        width: 100%;
+        margin: auto
+    }
+
+    .login-pg-soc a {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .four-tabs .nav-item {
+        max-width: 50%;
+        flex: 0 0 50%;
+        padding-bottom: 15px;
+    }
+    
+.dash-three-one h3 {
+    font-size: 14px;
+}
+
+.dash-three-one {
+    padding: 20px;
+}
+
+.dash-title{
+    display: none
+}
 }
 
 
@@ -566,5 +600,11 @@
         font-size: 12px;
         max-height: 18px;
 
+    }
+
+    .crt-icon,
+    .login-head,
+    .document-link {
+        font-size: 14px;
     }
 }

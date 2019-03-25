@@ -15,7 +15,7 @@ class SuppliersTable extends Migration
     {
 
         Schema::defaultStringLength(191);
-        Schema::table('suppliers', function (Blueprint $table) {
+        Schema::create('suppliers', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('name');
@@ -34,8 +34,7 @@ class SuppliersTable extends Migration
      */
     public function down()
     {
-        Schema::table('suppliers', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('suppliers');
+
     }
 }

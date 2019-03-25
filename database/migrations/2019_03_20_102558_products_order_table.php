@@ -15,7 +15,7 @@ class ProductsOrderTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('products_order', function (Blueprint $table) {
+        Schema::create('products_order', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('name');
@@ -49,8 +49,7 @@ class ProductsOrderTable extends Migration
      */
     public function down()
     {
-        Schema::table('products_order', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('products_order');
+
     }
 }

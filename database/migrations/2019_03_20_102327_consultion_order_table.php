@@ -15,7 +15,7 @@ class ConsultionOrderTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('consultion_order', function (Blueprint $table) {
+        Schema::create('consultion_order', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('name');
@@ -38,8 +38,7 @@ class ConsultionOrderTable extends Migration
      */
     public function down()
     {
-        Schema::table('consultion_order', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('consultion_order');
+
     }
 }

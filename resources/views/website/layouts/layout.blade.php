@@ -11,6 +11,8 @@ To change this license header, choose License Headers in Project Properties.  To
       Meta tags
       ================
     -->
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}" />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
@@ -284,10 +286,11 @@ To change this license header, choose License Headers in Project Properties.  To
                             <div class="login-div">
                                 <div class="login-head"><i class="fa fa-user"></i> {{Auth::User()->username}}</div>
                                 <ul class="list-unstyled animation_menu">
+                                    @if(Auth::User()->hasRole('admin'))
                                     <li>
-                                        <a ><i class="fa fa-user-o main-login-icon"></i>{{trans('local.dashboard')}} </a>
+                                        <a href="/dashboard" style="color:white;"><i class="fa fa-user-o main-login-icon"></i>{{trans('local.dashboard')}} </a>
                                     </li>
-
+@endif
                                     <li>
                                         <a ><i class="fa fa-user-o main-login-icon"></i>{{trans('local.profile')}} </a>
                                     </li>
@@ -383,7 +386,8 @@ To change this license header, choose License Headers in Project Properties.  To
                                 <li><a href="suppliers.html">الموردون</a></li>
                                 <li><a href="jobs.html">التوظيف</a></li>
                                 <li><a href="about.html">من نحن</a></li>
-                                <li><a href="contact.html"> تواصل معنا</a></li>
+
+                                <li><a href="{{route('website.contact')}}">{{trans('local.contact_us')}}</a></li>
 
 
                             </ul>
@@ -442,6 +446,62 @@ To change this license header, choose License Headers in Project Properties.  To
 
 </header>
 
+<!--start model -->
+<div class="modal fade" id="success-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="remove-form">
+                    <div class="inner-modal">
+                        <form class="needs-validation row" novalidate>
+                            <h3 class="col-12">
+                                {{trans('local.success_message')}}
+                            </h3>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- end model -->
+<!--start model -->
+
+<div class="modal fade" id="malinglist_modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="remove-form">
+                    <div class="inner-modal">
+                        <form class="needs-validation row" novalidate>
+                            <h3 class="col-12">
+                                {{trans('local.message_mailinglist')}}
+                            </h3>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- end model -->
+
 <!--end header-->
 @yield('content')
 
@@ -478,10 +538,10 @@ To change this license header, choose License Headers in Project Properties.  To
 
             <!--start footer-form-->
             <div class="col-lg-4 col-md-6 footer-form wow fadeIn">
-                <h3 class="white-title">القائمة البريدية </h3>
-                <form class="needs-validation search-form2" novalidate>
+                <h3 class="white-title">{{trans('local.mailing_list')}} </h3>
+                <form class="needs-validation search-form2 maling_list" onsubmit="return false;" novalidate>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="search_input2" placeholder="ادخل البريد الالكترونى " required>
+                        <input type="text" class="form-control" id="search_input2" placeholder="{{trans('local.input_email')}} " required>
                         <div class="invalid-feedback">
                             من فضلك أدخل اسم صحيح
                         </div>

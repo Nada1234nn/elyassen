@@ -15,7 +15,7 @@ class ImagesTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('images', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('title');
@@ -70,8 +70,7 @@ class ImagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('images', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('images');
+
     }
 }

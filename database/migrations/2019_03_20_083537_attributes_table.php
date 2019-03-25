@@ -15,7 +15,7 @@ class AttributesTable extends Migration
     {
         Schema::defaultStringLength(191);
 
-        Schema::table('attributes', function (Blueprint $table) {
+        Schema::create('attributes', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('name');
@@ -37,8 +37,7 @@ class AttributesTable extends Migration
      */
     public function down()
     {
-        Schema::table('attributes', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('attributes');
+
     }
 }
