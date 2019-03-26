@@ -20,13 +20,14 @@
 
             <div class="side-dash-menu">
                 <ul class="list-unstyled main-menu-dash">
-                    <li class="active"><a href="dashboard.html"><i class="fa  fa-clipboard"></i>لوحة التحكم</a></li>
+                    <li class="active"><a href="{{route('dashboard')}}"><i class="fa  fa-clipboard"></i>{{trans('local.dashboard')}}</a></li>
                     <li class="list-item-has-child">
                         <a href="#"><i class="fa fa-files-o"></i>
-                            الأقسام
+                            {{trans('local.categories')}}
                         </a>
                         <div class="slide-dash-menu">
-                            <a href="main-cat.html">أقسام رئيسية</a>
+{{--                            {{dd(Route::current()->getName()=='categories.index')}}--}}
+                            <a href="{{route('categories.index')}}" class="{{ url()->current() == route('categories.index') ? 'active' : '' }}">{{trans('local.main_categories')}}</a>
                             <a href="secondary-cat.html">أقسام فرعية</a>
                         </div>
                     </li>
@@ -69,7 +70,7 @@
                     <li><a href="users.html"><i class="fa fa-users"></i> المستخدمين</a></li>
                     <li><a href="edit-site.html"><i class="fa fa-edit"></i> تعديل محتوي الموقع</a></li>
 
-                    <li><a href="#"><i class="fa fa-power-off"></i> خروج</a></li>
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> {{trans('local.logout_n')}}</a></li>
 
 
 

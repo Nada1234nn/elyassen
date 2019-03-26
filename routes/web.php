@@ -18,13 +18,14 @@ Auth::routes();
 Route::get('lang/{lang}', 'HomeController@showLang');
 Route::group(['middleware' => 'lang'], function () {
 
-    Route::group(['middleware' => ['web', 'guest'], 'perfix' => ''], function () {
 
-    });
 
-    Route::group(['middleware' => 'web'], function () {
+    Route::group(['middleware' => 'web', 'guest'], function () {
 
         Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/admin/login', 'Auth\LoginController@showLoginAdmin');
+
+        Route::post('/loginAdmin', 'Auth\LoginController@loginAdmin');
         Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social', 'twitter|facebook|google');
         Route::get('/login/{social/callback}', 'Auth\LoginController@handleprovidercallback')->where('social', 'twitter|facebook|google');
         Route::get('/contact', [
@@ -39,7 +40,11 @@ Route::group(['middleware' => 'lang'], function () {
     });
 
     Route::group(['middleware' => ['web','permission'], 'permission' => ['admin']], function () {
-        Route::get('/dashboard', 'admin\HomeController@index');
+        Route::get('/dashboard', [
+            "uses" => "admin\HomeController@index",
+            "as" => "dashboard"
+        ]);
+        Route::resource('categories','admin\CategoriesController');
 
     });
     Route::group(['middleware' => 'permission', 'permission' => ['visitor']], function () {

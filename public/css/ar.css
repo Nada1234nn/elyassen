@@ -54,7 +54,18 @@ body {
     right: auto
 }
 
+div.dataTables_wrapper div.dataTables_length label,.dataTables_length {
+    text-align: right ;
+}
 
+div.dataTables_wrapper div.dataTables_filter input{
+    margin-left: auto;
+    margin-right: .5em 
+}
+table.table-bordered.dataTable th, table.table-bordered.dataTable td{
+    border-right-width: 0;
+    border-left-width: 1px;
+}
 
 .forget-link,
 .social-icons,
@@ -63,7 +74,7 @@ body {
 .left-btn,
 .social-icons-pro.news-social,
 .reg-form-group,
-.documentaion-center .products-btns li {
+.documentaion-center .products-btns li{
     text-align: left
 }
 
@@ -72,7 +83,7 @@ body {
 .animation_menu li,
 label,
 .logo-grid,
-.dropmenu-list,
+.dropmenu-list,.add-product-form,
 .social-icons-pro.news-social.news-details-soc,
 .pro-title,
 .pro-price,
@@ -137,7 +148,7 @@ i,
 .year-news-list a:before,
 .news-title:before,
 .twitter-bird-animation,
-.arrow-title:before,.slide-dash-menu a:before {
+.arrow-title:before,.slide-dash-menu a:before,.t-pro-img {
     margin-left: 5px;
 }
 

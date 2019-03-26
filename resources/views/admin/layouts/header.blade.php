@@ -7,7 +7,8 @@
             </div>
 
             <div class="dash-details-grid col-sm-9">
-                <a href="index.html" class="visit-sitelink wow fadeIn"><i class="fa fa-globe"></i>زياره الموقع</a>
+
+                <a href="/" class="visit-sitelink wow fadeIn"><i class="fa fa-globe"></i>زياره الموقع</a>
 
                 <div class="dash-messages">
                     <span class="ms-text wow fadeIn" data-wow-delay=".3s"><i class="fa fa-envelope"></i> الرسائل <span class="notify-num">3</span></span>
@@ -58,6 +59,8 @@
                         </div>
                     </div>
                 </div>
+                <a href="/logout" style="color: white;"><i class="fa fa-power-off main-login-icon"></i> {{trans('local.logout')}} </a>
+
                 <div class="nav-icon dash-nav wow fadeIn" data-wow-delay=".5s"><span></span><span></span> <span></span></div>
 
 

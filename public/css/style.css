@@ -2158,6 +2158,9 @@ a.ui-button:active,
 .ui-datepicker-calendar td {
     text-align: center
 }
+.ui-state-default{
+    display: block
+}
 
 .form-group-pos {
     position: relative;
@@ -2821,9 +2824,11 @@ input.qty {
 /*start dashboard*/
 
 
-.dash-sec {
+.pg-height{
     min-height: 935px;
 }
+
+
 
 .fixed-dash-menu {
     width: 250px;
@@ -3115,8 +3120,10 @@ display: none;
     margin: auto 5px;
 }
 
-.dash-main-title{
 
+.dash-main-title i{
+    font-size: 14px;
+    vertical-align: middle
 }
 .dash-title-span{
     color: #167442
@@ -3184,4 +3191,229 @@ display: none;
 
 /*end dashboard*/
 
+/*start main-cat*/
+.table{
+    width: 100%
+}
+#example_wrapper {
+    text-align: right;
+    margin: 30px auto
+}
+
+#example{
+    text-align: center;
+}
+#example_wrapper select.form-control:not([size]):not([multiple]) {
+    height: 30px;
+    text-align: center
+}
+
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    font-family: "light";
+}
+
+table.table-bordered.dataTable tbody th a, table.table-bordered.dataTable tbody td a {
+    color: #000
+}
+table.table-bordered.dataTable tbody th a:hover, table.table-bordered.dataTable tbody td a:hover {
+    color: #167442
+}
+   
+.page-item.active .page-link {
+    background-color: #167442;
+    border-color: #167442;
+}
+.page-link{
+    color: #222;
+}
+.page-link:hover{
+    color: #167442
+}
+.page-item:first-child .page-link,.page-item:last-child .page-link  {
+  border-radius: 0 !important
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f6f6f6;
+}
+table.table-bordered.dataTable th, table.table-bordered.dataTable td{
+    text-align: center;
+
+}
+.edit-btn-table {
+    display: inline-block;
+    margin: 3px;
+    background: #167442 !important;
+    color: #fff !important;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 20px;
+    border: none;
+padding: 0;
+}
+.edit-btn-table i{
+    margin: auto
+
+}
+.edit-btn-table.remove-btn{
+    background: red !important;
+    color: #fff !important;
+}
+
+.edit-btn-table:hover{
+    color: #fff !important;
+    background: #000
+}
+
+.sweet-alert .text-muted {
+    font-size: 14px;
+    text-align: center
+}
+.sweet-alert  .btn-lg {
+    padding: 0.3rem 1.5rem;
+    font-size: 1rem;
+}
+.sweet-alert .btn-default {
+    background: #ccc;
+    margin: 10px;
+}
+.sweet-alert .btn-primary {
+    background: #167442;
+    border-color: #167442;
+}
+
+.sweet-alert button:hover,
+.sweet-alert button.active,
+.sweet-alert button:focus{
+background: #000;
+border-color: transparent !important;
+color: #fff;
+box-shadow: none !important;
+}
+.sweet-alert h2{
+    padding: 10px;
+
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before{
+    background: #167442
+}
+
+
+.button-switch {
+    height: 30px;
+    position: relative;
+    width: 100px;
+    margin-top: 15px;
+}
+
+.button-switch .lbl-off,
+.button-switch .lbl-on {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 0.5em;
+    transition: opacity 0.25s ease-out 0.1s;
+    text-transform: uppercase;
+}
+
+.button-switch .lbl-off {
+    right: 0;
+}
+
+.button-switch .lbl-on {
+    color: #fefefe;
+    opacity: 0;
+    left: 0;
+}
+
+.button-switch .switch {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 0;
+    font-size: 1em;
+    right: 0;
+    line-height: 0;
+    outline: none;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+
+.button-switch .switch:before,
+.button-switch .switch:after {
+    content: '';
+    font-size: 1em;
+    position: absolute;
+    right: 44px;
+}
+
+.button-switch .switch:before {
+    border-radius: 1.25em;
+    background: #bdc3c7;
+    height: 1.875em;
+    right: 0;
+    top: -0.1875em;
+    transition: background-color 0.25s ease-out 0.1s;
+    width: 4.5em;
+}
+
+.button-switch .switch:after {
+    box-shadow: 0 .0625em .375em 0 #666;
+    border-radius: 50%;
+    background: #fefefe;
+    height: 1.5em;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    transition: -webkit-transform 0.25s ease-out 0.1s;
+    transition: transform 0.25s ease-out 0.1s;
+    transition: transform 0.25s ease-out 0.1s, -webkit-transform 0.25s ease-out 0.1s;
+    width: 1.5em;
+}
+
+.button-switch .switch:checked:after {
+    -webkit-transform: translate(2.5em, 0);
+    transform: translate(2.5em, 0);
+}
+
+.button-switch .switch:checked ~ .lbl-off {
+    opacity: 0;
+}
+
+.button-switch .switch:checked ~ .lbl-on {
+    opacity: 1;
+}
+
+.button-switch .switch#switch-blue:checked:before {
+    background: #167442;
+}
+
+.add-product-form .form-check  span{
+    display: block
+}
+
+.add-product-form .row:first-of-type{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    text-align: center
+}
+.add-product-form .row:not(:first-of-type) > div:last-of-type{
+    margin-top: 40px;
+    text-align: center
+}
+
+.t-pro-img{
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+}
+.colored-title-pro{
+    color: #167442;
+    margin: 20px auto 30px;
+}
+/*end main-cat*/
 /*----------------------------------end pages----------------------------------*/

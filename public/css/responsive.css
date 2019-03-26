@@ -40,9 +40,6 @@
 
     }
 
-
-
-
     .main-menu > li > a {
         font-size: 15px;
     }
@@ -82,6 +79,10 @@
         min-height: inherit
     }
 
+    .t-pro-img{
+        display: block;
+        margin: auto auto 10px;
+    }
 }
 
 @media only screen and (max-width: 992px) {

@@ -29,5 +29,18 @@ return [
     'input_email'=>'please,input your email',
     'success_message'=>'Congratulation,Message has been sent',
     'message_mailinglist'=>'Congratulation,you are subscriptionin mailing list',
+    'remember_me'=>'Remember me',
+    'logout_n'=>'logout',
+    'categories'=>'categories',
+    'main_categories'=>'Main categories',
+    'index'=>'Home',
+    'hello_in'=>'Welcome to',
+    'name_en'=>'Name with english',
+    'date_created'=>'Date created',
+    'action_taken'=>'Action taken',
+    'add_category'=>'Add category',
+    'input_maincategory'=>'Enter main category with arabic',
+    'input_maincategoryEn'=>'Enter main category with english',
+    'save'=>'Save'
 ]
 ?>

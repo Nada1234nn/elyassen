@@ -45,6 +45,9 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+    public function showLoginAdmin(){
+        return view('auth.login');
+    }
     public function login(Request $request)
     {
         $this -> validate($request, ['email' => 'required|email', 'password' => 'required']);
@@ -54,6 +57,19 @@ class LoginController extends Controller
             return redirect() -> back() -> withErrors( 'لقد أدخلت بيانات غير صحيحة');
         }
         return redirect('/');
+    }
+
+    public function loginAdmin(Request $request){
+        $this -> validate($request, ['email' => 'required|email', 'password' => 'required']);
+        $email = $request -> input('email');
+        $password = $request -> input('password');
+        if (!Auth::attempt(['email' => $email, 'password' => $password], $request -> has('remember'))) {
+
+            return redirect() -> back() -> withErrors( 'لقد أدخلت بيانات غير صحيحة');
+        }
+        elseif (Auth::user()->hasRole('admin')) {
+            return redirect('/dashboard');
+        }
     }
 
     public function logout(Request $request){
