@@ -60,14 +60,15 @@
 <!--start pages-sec
           ================-->
 <section class="dash-sec">
+@include('admin.layouts.header')
 
     @include('admin.layouts.sidebar')
 
     <!--start left-tabs-grid-->
         <div class="dash-left-tabs">
-            @include('admin.layouts.header')
 
 @yield('content_dashboard')
+
         </div>
         <!--end left-tabs-grid-->
 

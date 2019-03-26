@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-//        $categories = Category::all()->where('parent_id', null);
+        $categories = Category::all()->where('parent_id', null);
             return view('admin.categories.index', compact('categories'));
 
     }
@@ -45,53 +46,20 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        dd('kk');
         $this->validate($request, [
             'name' => 'required|unique:categories',
+            'en_name' => 'unique:categories|max:100|min:3',
+
         ]);
 
-        $category= Category::create([
-            'ar_name' => $request->ar_name,
+         Category::create([
+            'name' => $request->name,
+            'en_name'=>$request->en_name,
             'type' =>1,
-            'pending_cat' => $request->pending_cat ? 1 : 0
         ]);
 
-        if ($request->en_name){
-            $this->validate($request, [
-                'en_name' => 'unique:categories|max:100|min:3',
-            ]);
-            $category->update([
-                'en_name'=>$request->en_name
-            ]);
-        }
-        if ($request->icon){
-            $category->update([
-                'image'=>$request->icon
-            ]);
 
-        }
-        $cities=$request->city;
-
-        if ($request->city[0]=='all')
-        {
-            $cities=City::where('type',1)->get();
-            foreach ($cities as $city){
-                $cat_city=new Category_city();
-                $cat_city->category_id=$category->id;
-                $cat_city->city_id=$city->id;
-                $cat_city->save();
-            }
-        }
-        else{
-
-            foreach ($cities as $city){
-                $cat_city=new Category_city();
-                $cat_city->category_id=$category->id;
-                $cat_city->city_id=$city;
-                $cat_city->save();
-            }
-        }
-        return redirect('/admin/categories/create')
+        return redirect('/categories')
             ->with('success', 'تم انشاء القسم بنجاح');
     }
 

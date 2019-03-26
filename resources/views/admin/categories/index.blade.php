@@ -10,6 +10,8 @@
             </div>
         </div>
     </div>
+    @include('admin.alert')
+
     <!--end dash-breadcrumbes-->
     <div class="container">
         <div class="row">
@@ -30,9 +32,10 @@
                     </thead>
                     <tbody>
                     {{$i=1}}
+                    @foreach($categories as $category)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td><a href="#">اسم القسم</a></td>
+                        <td><a href="#">{{$category->name}}</a></td>
                         <td>section name</td>
                         <td>19/9/2019</td>
                         <td>
@@ -41,7 +44,7 @@
                             <a  title="حذف القسم" onclick="return false;"  delete_url="/categories/" class="edit-btn-table remove-btn sweet_warning edit-data removed-data" href="#">
                                 <i class="fa fa-times"></i></a>                        </td>
                     </tr>
-
+@endforeach
 
 
                     </tbody>
