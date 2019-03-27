@@ -58,5 +58,16 @@ return [
     'permissions'=>'الصلاحيات',
     'dash'=>'لوحة التحكم',
     'suppliers' => 'الموردون',
+    'add_supplier' => 'اضف مورد',
+    'edit_supplier' => 'تعديل مورد',
+    'name_supplier' => 'اسم المورد',
+    'image_supplier' => 'شعار المورد',
+    'chooseName_supplier' => 'اختر اسم المورد',
+    'address' => 'العنوان',
+    'url_website' => 'الموقع الالكتروني',
+    'section' => 'التصنيف',
+    'distinctive' => 'التمييز',
+    'add_product' => 'إضافة منتج',
+    'edit_product' => 'تعديل منتج'
 ]
 ?>

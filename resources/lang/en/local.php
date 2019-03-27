@@ -58,5 +58,16 @@ return [
     'permissions'=>'Permissions',
     'dash'=>'Dashboard',
     'suppliers' => 'Suppliers',
+    'add_supplier' => 'Add supplier',
+    'edit_supplier' => 'Edit supplier',
+    'name_supplier' => 'Name supplier',
+    'image_supplier' => 'Logo supplier',
+    'chooseName_supplier' => 'Choose name supplier',
+    'address' => 'Address',
+    'url_website' => 'url website',
+    'section' => 'Section',
+    'distinctive' => 'Distinctive',
+    'add_product' => 'Add product',
+    'edit_product' => 'Edit product'
     ]
 ?>

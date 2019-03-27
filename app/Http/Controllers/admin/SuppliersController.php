@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Suppliers;
+use App\User;
 use Illuminate\Http\Request;
 
 class SuppliersController extends Controller
@@ -11,7 +12,9 @@ class SuppliersController extends Controller
     //
     public function index()
     {
-        $suppliers = Suppliers::all();
+
+        $suppliers = Suppliers::with('getUser')->get();
+
         return view('admin.suppliers.index', compact('suppliers'));
 
     }
@@ -24,7 +27,10 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.category');
+
+        $users = User::all()->where('role', '!=', 'admin');
+        return view('admin.suppliers.supplier', compact('users'));
+
     }
 
     /**
@@ -36,20 +42,28 @@ class SuppliersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:categories',
-            'en_name' => 'unique:categories|max:100|min:3',
+            'supplier_id' => 'required',
+            'address' => 'required|max:100|min:3',
+            'url_website' => 'unique:suppliers|max:100|min:3',
 
         ]);
 
-        Category::create([
-            'name' => $request->name,
-            'en_name' => $request->en_name,
-            'type' => 1,
-        ]);
 
+        $supplier = new Suppliers();
+        $supplier->user_id = $request->supplier_id;
+        $supplier->address = $request->address;
+        $supplier->url_website = $request->url_website;
+        $file = $request->file('image_supplier');
+        if ($request->hasFile('image_supplier')) {
+            $fileName = 'supplier-' . time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = 'uploads';
+            $request->file('image_supplier')->move($destinationPath, $fileName);
+            $supplier->image = $fileName;
+        }
+        $supplier->save();
 
-        return redirect('/categories')
-            ->with('success', 'تم انشاء القسم بنجاح');
+        return redirect('/suppliers')
+            ->with('success', 'تم اضافه مورد بنجاح');
     }
 
     /**
@@ -58,14 +72,6 @@ class SuppliersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
-    {
-        $category = Category::where('name', $name)->first();
-
-        $sub_categories = Category::where('parent_id', $category->id)->get();
-
-        return view('admin.categories.subcategory_index', compact('category', 'sub_categories'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -73,10 +79,13 @@ class SuppliersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($name)
     {
-        $category = Category::find($id);
-        return view('admin.categories.category', compact('category'));
+        $user_supplier = User::where('username', $name)->first();
+        $supplier = Suppliers::where('user_id', $user_supplier->id)->first();
+        $users = User::all()->where('role', '!=', 'admin');
+
+        return view('admin.suppliers.supplier', compact('supplier', 'users'));
     }
 
     /**
@@ -89,20 +98,30 @@ class SuppliersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'unique:categories',
-            'en_name' => 'unique:categories|max:100|min:3',
+            'supplier_id' => '',
+            'address' => 'max:100|min:3',
+            'url_website' => 'unique:suppliers|max:100|min:3',
 
         ]);
 
-        $category = Category::find($id);
-        $category->name = $request->name;
-        $category->en_name = $request->en_name;
-        $category->type = 1;
-        $category->save();
+        $supplier = Suppliers::find($id);
+        $supplier->user_id = $request->supplier_id;
+        $supplier->address = $request->address;
+        $supplier->url_website = $request->url_website;
+        $file = $request->file('image_supplier');
+        if ($request->hasFile('image_supplier')) {
+            $old_file = 'uploads/' . $supplier->image;
+            if (is_file($old_file)) unlink($old_file);
+            $fileName = 'supplier-' . time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = 'uploads';
+            $request->file('image_supplier')->move($destinationPath, $fileName);
+            $supplier->image = $fileName;
+        }
+        $supplier->save();
 
 
-        return redirect('/categories')
-            ->with('success', 'تم تعديل القسم بنجاح');
+        return redirect('/suppliers')
+            ->with('success', 'تم تعديل المورد بنجاح');
     }
 
     /**
@@ -113,7 +132,7 @@ class SuppliersController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);
+        Suppliers::destroy($id);
         return response()->json(['success' => 'true']);
     }
 }

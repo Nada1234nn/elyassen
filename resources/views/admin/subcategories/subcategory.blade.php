@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <a href=""><i class="fa fa-home"></i>{{trans('local.index')}}</a>
-                    <a href="">{{trans('local.categories')}}</a>
+                    <a href="{{route('dashboard')}}"><i class="fa fa-home"></i>{{trans('local.index')}}</a>
+                    <a href="{{route('categories.index')}}">{{trans('local.categories')}}</a>
                     {{isset($sub_category)?trans('local.edit_subcategory'):trans('local.add_subcategory')}}
                 </div>
             </div>

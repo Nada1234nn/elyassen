@@ -284,7 +284,8 @@ img,
     height: 38px;
     margin: 20px auto;
     display: inline-block;
-    text-align: center
+    text-align: center;
+    cursor: pointer;
 }
 
 .custom_btn::before,
@@ -395,7 +396,8 @@ img,
 }
 
 .owl-theme .owl-dots .owl-dot span {
-    background: #777c81
+    background: #777c81;
+    box-shadow: inset 0 0 4px #eee
 }
 
 .owl-theme .owl-dots .owl-dot.active span,
@@ -1172,23 +1174,17 @@ a.jp-disabled:hover:after {
 }
 
 
-.card:first-of-type .card-header .btn-link:after {
-    content: "\f147";
-}
 
-.card:first-of-type .card-header-active .btn-link:after {
-    content: "\f196";
-}
 
 .card-header .btn-link:after {
-    content: "\f196";
+    content: "\f147";
     position: absolute;
     top: calc(50% - 10px);
     font-family: fontAwesome;
 }
 
 .card-header-active .btn-link:after {
-    content: "\f147";
+    content: "\f196";
 
 }
 
@@ -1489,12 +1485,15 @@ a.jp-disabled:hover:after {
     vertical-align: text-top
 }
 
-.pro-gram span {
-    padding: 5px 10px;
+.pro-gram .form-control {
+    padding: 0 10px;
     border: 1px solid #2d2d2d;
     display: block;
-    margin-top: 10px;
+    margin-top: 5px;
     text-align: center;
+    border-radius: 0;
+    background: transparent;
+    color: #000;
 }
 
 .big-btn {
@@ -1677,6 +1676,9 @@ a.jp-disabled:hover:after {
     padding-bottom: 10px;
 }
 
+.invalid-feedback {
+    font-family: "light";
+}
 .main-form-icon {
     position: absolute;
     top: 10px;
@@ -1840,7 +1842,6 @@ a.jp-disabled:hover:after {
 
 .location-slider .full-width-img {
     height: 350px;
-    ;
 }
 
 .location-slider .owl-dots {
@@ -1886,14 +1887,18 @@ a.jp-disabled:hover:after {
 }
 
 .map-list li {
-    font-size: 14px;
+    font-size: 12px;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-family: "light"
 }
 
+.map-time {
+    display: block;
+}
+
 .H_ib_body {
-    background: rgba(44, 44, 44, .7) !important;
+    background: rgba(44, 44, 44, .8) !important;
     animation: bounceIn .5s 0s linear both;
     -webkit-animation: bounceIn .5s 0s linear both
 }
@@ -2208,6 +2213,25 @@ a.ui-button:active,
     display: inline-block
 }
 
+.news-carousel .owl-dots {
+    display: block
+}
+
+.news-carousel .full-width-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.news-caption-slider {
+    position: absolute;
+    top: 0;
+    background: rgba(0, 0, 0, .5);
+    width: 100%;
+    left: 0;
+    padding: 10px 10px 5px;
+    border-radius: 8px 8px 0 0;
+    color: #fff;
+}
 /*end news*/
 
 /*start kobs*/
@@ -3414,6 +3438,10 @@ box-shadow: none !important;
 .colored-title-pro{
     color: #167442;
     margin: 20px auto 30px;
+}
+
+.custom-repeat-btn .custom_btn {
+    margin-top: 0
 }
 /*end main-cat*/
 /*----------------------------------end pages----------------------------------*/

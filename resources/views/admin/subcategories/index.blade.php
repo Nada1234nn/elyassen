@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <a href=""><i class="fa fa-home"></i>{{trans('local.index')}}</a>
+                    <a href="{{route('dashboard')}}"><i class="fa fa-home"></i>{{trans('local.index')}}</a>
                     {{trans('local.subcategories')}}
                 </div>
             </div>

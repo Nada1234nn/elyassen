@@ -265,9 +265,9 @@ nav {
     position: absolute;
     background: #167442;
     width: 300px;
-    padding-top: 10px;
     right: 0;
     transform: translateY(20px);
+    -webkit-transform: translateY(20px);
     left: 0;
     margin: auto;
     z-index: 9;
@@ -301,7 +301,27 @@ nav {
 
 .divided-dropmenu {
     padding: 10px 0;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto
 }
+
+.divided-dropmenu::-webkit-scrollbar-track {
+    border: 1px solid #0e522f;
+    background-color: #0e522f;
+
+}
+
+.divided-dropmenu::-webkit-scrollbar {
+    width: 7px;
+    background-color: #1a824b;
+
+}
+
+.divided-dropmenu::-webkit-scrollbar-thumb {
+    background-color: #2125294a;
+}
+
 
 .dropmenu-list h3 {
     display: block;

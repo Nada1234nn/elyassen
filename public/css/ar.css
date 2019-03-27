@@ -358,6 +358,10 @@ i,
 .notify-num {
     right: -5px;
 }
+
+.map-time {
+    padding-right: 20px;
+}
 /*start responsive*/
 @media only screen and (max-width: 1200px) {
     .pro-soc {

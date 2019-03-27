@@ -103,12 +103,14 @@
 <script src="{{asset('js/owl.carousel.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/wow.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jPages.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/snake.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript" src="{{asset('js/html5lightbox.js')}}"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{asset('js/sweetalert.min.js')}}"></script>
 <script src="{{asset('js/custom-sweetalert.js')}}"></script>
 <script src="{{asset('js/custom.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/read_image.js')}}"></script>
 
 <script>
     $(document).ready(function() {

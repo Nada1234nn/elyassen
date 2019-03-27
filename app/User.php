@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Suppliers;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -64,5 +64,10 @@ if ($this->permissions->contains('name',$permission)){
     return true;
 }
 return false;
+    }
+
+    public function getsuppliers()
+    {
+        return $this->hasMany(Suppliers::class, 'user_id');
     }
 }
