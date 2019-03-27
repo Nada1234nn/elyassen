@@ -4,12 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <a href=""><i class="fa fa-home"></i>الرئيسية</a>
-                لوحة التحكم
+                <a href=""><i class="fa fa-home"></i>{{trans('local.index')}}</a>
+                {{trans('local.dash')}}
             </div>
         </div>
     </div>
 </div>
+
 <!--end dash-breadcrumbes-->
 <div class="container">
     <div class="row">

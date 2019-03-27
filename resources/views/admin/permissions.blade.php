@@ -32,33 +32,26 @@
                     </thead>
                     <tbody>
                     <?php $i=1?>
-                    @foreach($categories as $category)
-                    <tr>
-                        <td>{{$i++}}</td>
-                        <td><a href="{{route('category',$category->name)}}" style="color: blue;">{{$category->name}}</a></td>
-                        <td>{{$category->en_name}}</td>
-                        <td>{{$category->created_at->format("d/m/Y")}}</td>
-                        <td>
-                            <a href="{{route('categories.edit',$category->id)}}" class="edit-btn-table"><i class="fa fa-pencil"></i></a>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>{{$i++}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>
 
-
-                            {{--<button class="edit-btn-table remove-btn sweet-2" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-2']);"><i class="fa fa-times"></i> </button>--}}
-                            <a  title="حذف القسم" onclick="return false;" object_id="{{ $category->id }}"
-                                delete_url="/categories/" class="edit-btn-table remove-btn sweet_warning" href="#">
-                                <i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
-@endforeach
+                            </td>
+                        </tr>
+                    @endforeach
 
 
                     </tbody>
                 </table>
 
             </div>
-            <div class="col-12 left-btn">
-                <a href="{{route('categories.create')}}" class="custom_btn dark_btn">{{trans('local.add_category')}}</a>
-            </div>
+
 
         </div>
     </div>
+
+
     @endsection

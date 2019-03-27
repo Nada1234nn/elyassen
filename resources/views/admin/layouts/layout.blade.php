@@ -12,6 +12,8 @@
       Meta tags
       ================
     -->
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}" />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
@@ -22,11 +24,7 @@
       Style sheet
       ================
     -->
-    <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}" type="text/css" />
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css" />
     <!--for arabic only-->
     <link rel="stylesheet" href="{{asset('css/bootstrap-rtl.min.css')}}" type="text/css" />
@@ -49,10 +47,11 @@
     <link rel="stylesheet" href="{{asset('css/ar.css')}}" type="text/css" />
     @endif
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}" type="text/css" />
 
 
-
-
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" type="text/css" />--}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" type="text/css" />
 </head>
 
 <body>

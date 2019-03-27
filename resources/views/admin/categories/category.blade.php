@@ -24,7 +24,8 @@
     <div class="container">
         <div class="row">
 
-            <h3 class="dash-main-title col-12 wow fadeIn"><i class="fa fa-plus"></i>{{trans('local.hello_in')}} <span class="dash-title-span">{{trans('local.add_category')}}</span></h3>
+            <h3 class="dash-main-title col-12 wow fadeIn"><i class="fa fa-plus"></i>{{trans('local.hello_in')}} <span class="dash-title-span">{{isset($category)?trans('local.edit_category'):trans('local.add_category')}}
+</span></h3>
 
 
             <div class="about-text-div col-12 margin-div2">
@@ -37,7 +38,7 @@
 
                         <div class="form-group col-12">
                             <label>{{trans('local.input_maincategory')}}</label>
-                            <input type="text" class="form-control" name="name" required>
+                            <input type="text" class="form-control" value="{{isset($category)?$category->name:''}}" name="name" required>
                             <div class="invalid-feedback">
                                 من فضلك أدخل نص صحيح
                             </div>
@@ -45,7 +46,7 @@
 
                         <div class="form-group col-12">
                             <label>{{trans('local.input_maincategoryEn')}} </label>
-                            <input type="text" class="form-control" name="en_name" required>
+                            <input type="text" class="form-control" value="{{isset($category)?$category->en_name:''}}" name="en_name" required>
                             <div class="invalid-feedback">
                                 من فضلك أدخل نص صحيح
                             </div>
@@ -53,7 +54,7 @@
 
 
                         <div class="left-btn col-12">
-                            <button type="submit" class="custom_btn dark-btn"> {{trans('local.save')}}</button>
+                            <button type="submit" class="custom_btn dark-btn"> {{isset($category)?trans('local.edit'):trans('local.save')}}</button>
                         </div>
 
                     </form>

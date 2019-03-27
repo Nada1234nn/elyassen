@@ -44,7 +44,14 @@ Route::group(['middleware' => 'lang'], function () {
             "uses" => "admin\HomeController@index",
             "as" => "dashboard"
         ]);
-        Route::resource('categories','admin\CategoriesController');
+        Route::get('/category/{name}', [
+            "uses" => "admin\CategoriesController@show",
+            "as" => "category"
+        ]);
+        Route::resource('/categories','admin\CategoriesController');
+        Route::resource('/subcategories','admin\SubcategoriesController');
+        Route::resource('/products','admin\ProductsController');
+        Route::resource('/permissions','admin\PermissionsController');
 
     });
     Route::group(['middleware' => 'permission', 'permission' => ['visitor']], function () {

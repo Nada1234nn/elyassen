@@ -28,13 +28,20 @@
                         <div class="slide-dash-menu">
 {{--                            {{dd(Route::current()->getName()=='categories.index')}}--}}
                             <a href="{{route('categories.index')}}" class="{{ url()->current() == route('categories.index') ? 'active' : '' }}">{{trans('local.main_categories')}}</a>
-                            <a href="secondary-cat.html">أقسام فرعية</a>
+                            <a href="{{route('subcategories.index')}}">{{trans('local.subcategories')}}</a>
                         </div>
                     </li>
 
-                    <li class="list-item-has-child">
-                        <a href="dash-products.html"><i class="fa fa-pagelines"></i>
-                            المنتجات
+                    <li>
+                        <a href="{{route('products.index')}}"><i class="fa fa-pagelines"></i>
+                            {{trans('local.products')}}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('permissions.index')}}">
+                            <i class="fa fa-pagelines"></i>
+                            {{trans('local.permissions')}}
                         </a>
                     </li>
 
