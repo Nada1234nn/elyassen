@@ -57,5 +57,6 @@ return [
     'products'=>'المنتجات',
     'permissions'=>'الصلاحيات',
     'dash'=>'لوحة التحكم',
+    'suppliers' => 'الموردون',
 ]
 ?>

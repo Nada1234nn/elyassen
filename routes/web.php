@@ -52,6 +52,7 @@ Route::group(['middleware' => 'lang'], function () {
         Route::resource('/subcategories','admin\SubcategoriesController');
         Route::resource('/products','admin\ProductsController');
         Route::resource('/permissions','admin\PermissionsController');
+        Route::resource('/suppliers', 'admin\SuppliersController');
 
     });
     Route::group(['middleware' => 'permission', 'permission' => ['visitor']], function () {

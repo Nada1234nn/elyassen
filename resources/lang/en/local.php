@@ -57,5 +57,6 @@ return [
     'products'=>'The products',
     'permissions'=>'Permissions',
     'dash'=>'Dashboard',
+    'suppliers' => 'Suppliers',
     ]
 ?>

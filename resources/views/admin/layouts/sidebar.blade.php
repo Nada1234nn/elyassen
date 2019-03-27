@@ -31,6 +31,8 @@
                             <a href="{{route('subcategories.index')}}">{{trans('local.subcategories')}}</a>
                         </div>
                     </li>
+                    <li><a href="{{route('suppliers.index')}}"><i class="fa fa-male"></i>{{trans('local.suppliers')}}
+                        </a></li>
 
                     <li>
                         <a href="{{route('products.index')}}"><i class="fa fa-pagelines"></i>
@@ -59,7 +61,6 @@
                         <a href="#"><i class="fa fa-sitemap"></i> فروع الشركة </a>
                     </li>
 
-                    <li><a href="dash-suppliers.html"><i class="fa fa-male"></i>الموردون</a></li>
                     <li><a href="dash-jobs.html"><i class="fa fa-briefcase"></i>سياسة العمل بالشركة</a></li>
                     <li class="list-item-has-child">
                         <a href="#"><i class="fa fa-files-o"></i>
