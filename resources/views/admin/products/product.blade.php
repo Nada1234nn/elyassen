@@ -14,7 +14,8 @@
     <!--end dash-breadcrumbes-->
     <div class="container">
         <div class="row">
-            <h3 class="dash-main-title col-12 wow fadeIn"><i class="fa fa-plus"></i>إضافة منتج جديد<span
+            <h3 class="dash-main-title col-12 wow fadeIn"><i class="fa fa-plus"></i>{{trans('local.add_newproduct')}}
+                <span
                         class="dash-title-span">(شاشة إدخال/تعديل بيانات صنف)</span></h3>
         </div>
     </div>

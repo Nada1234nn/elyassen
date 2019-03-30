@@ -47,11 +47,14 @@
     <link rel="stylesheet" href="{{asset('css/ar.css')}}" type="text/css" />
     @endif
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}" type="text/css" />
 
 
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" type="text/css" />--}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}" type="text/css"/>
+    {{--    <link rel="stylesheet" href="{{asset('admin/bootstrap.css')}}" type="text/css" />--}}
+    {{--<link rel="stylesheet" href="{{asset('admin/components.css')}}" type="text/css" />--}}
+
 </head>
 
 <body>
@@ -111,8 +114,11 @@
 <script src="{{asset('js/custom-sweetalert.js')}}"></script>
 <script src="{{asset('js/custom.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/read_image.js')}}"></script>
+<script src="{{asset('js/main.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/categoryattribute.js')}}" type="text/javascript"></script>
 
 <script>
+
     $(document).ready(function() {
         $('#ex').DataTable();
     } );

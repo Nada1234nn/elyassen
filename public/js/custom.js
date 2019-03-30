@@ -412,8 +412,14 @@ $(function () {
     $(".custom-repeat-btn").on('click', function (e) {
         e.preventDefault();
         var $self2 = $(this);
-        $self2.before($self2.prev('.custom-repeat-div').clone());
+        var newaddress = $self2.before($self2.prev('.custom-repeat-div').clone());
         //$self.remove();
+        // var i=0;
+        // newaddress.find('input').each(function() {
+        //     this.name= this.name.replace('[0]', '['+i+']');
+        // });
+        // $('#address').append(newaddress);
+
     });
 });
 

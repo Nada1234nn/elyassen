@@ -68,6 +68,9 @@ return [
     'section' => 'Section',
     'distinctive' => 'Distinctive',
     'add_product' => 'Add product',
-    'edit_product' => 'Edit product'
+    'edit_product' => 'Edit product',
+    'add_newproduct' => 'Add new product',
+    'descr' => 'descriptions',
+    'descr_en' => 'Description with english'
     ]
 ?>

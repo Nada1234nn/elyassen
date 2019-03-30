@@ -49,6 +49,8 @@ Route::group(['middleware' => 'lang'], function () {
             "as" => "category"
         ]);
         Route::resource('/categories','admin\CategoriesController');
+        Route::post('/deleteGroup/{id}', 'admin\CategoriesController@deleteGroup');
+
         Route::resource('/subcategories','admin\SubcategoriesController');
         Route::resource('/products','admin\ProductsController');
         Route::resource('/permissions','admin\PermissionsController');

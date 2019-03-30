@@ -68,6 +68,9 @@ return [
     'section' => 'التصنيف',
     'distinctive' => 'التمييز',
     'add_product' => 'إضافة منتج',
-    'edit_product' => 'تعديل منتج'
+    'edit_product' => 'تعديل منتج',
+    'add_newproduct' => 'إضافة منتج جديد',
+    'descr' => 'المواصفات ',
+    'descr_en' => 'المواصفات الانجليزيه'
 ]
 ?>
