@@ -56,101 +56,130 @@
                         <div class="form-group">
                             <label class="control-label col-lg-3">{{trans('local.descr')}}</label>
                             @if(isset($category))
-                                <div class="descr itemsGroupsContainer">
+
                                     @if($category->attributes()->where('group_id', null)->count())
                                         @foreach($category->attributes()->where("group_id", null)->get() as $key => $group)
+                                        <div class="col-12 row form-group itemsGroupsContainer">
 
-                                            <div class="col-md-6 itemsContainer"
+                                            <div class="itemsContainer"
                                                  style="margin-top:5px; padding:5px; border:1px solid #eee">
-                                                <div class="col-md-6">
-                                                    <input type="hidden" name="group[{{ $key }}][attribute]"
-                                                           value="{{ $group->name }}" class="form-control"
-                                                           data-key="{{ $key }}" placeholder="المجموعه">
-                                                </div>
 
-                                                <div class="col-md-6 item hidden" style="margin-top:5px">
-                                                    <div class="col-md-6">
-                                                        <input type="text" name="" value="" class="form-control key"
-                                                               placeholder="المواصفات ">
-                                                    </div>
+                                                <div class=" form-group col-md-6">
+                                                    <input type="hidden" name="group[4][attribute]"
+                                                           value="{{ $group->name }}"
+                                                           class="form-control" data-key="{{ $key }}"
+                                                           placeholder="المجموعه">
                                                 </div>
 
                                                 @foreach($category->attributes->where("group_id", $group->id) as $attribute_key => $attribute_value)
-                                                    <div class="col-md-12 item" style="margin-top:5px">
-                                                        <div class="col-md-4">
+                                                    <div class=" form-group col-md-6">
+                                                        <input type="hidden" name="group[4][group_id]"
+                                                               value="{{ $group->id }}">
+
+                                                    </div>
+
+
+
+                                                    <div class="col-12 row form-group" style="margin-top:5px">
+                                                        <div class="form-group col-md-6">
+
                                                             <input type="text"
-                                                                   name="group[{{ $key }}][attribute_key][{{ $attribute_key }}]"
+                                                                   name="group[4][attribute_key][{{ $attribute_key+1 }}]"
                                                                    value="{{ $attribute_value->name }}"
-                                                                   class="form-control key"
-                                                                   placeholder="الوصف التفصيلي">
-                                                            <input type="hidden" name="group[{{ $key }}][group_id]"
-                                                                   value="{{ $group->id }}">
-                                                            {{--                                                                <input type="hidden" value="{{ $group->id }}" name="group[{{ $key }}][ID]">--}}
+                                                                   class="form-control text"
+                                                                   placeholder="{{trans('local.descr')}}">
                                                         </div>
-                                                        <a class="btn btn-danger btn-xs destroyItem"
-                                                           onclick="return false;"
-                                                           object_id="{{ $attribute_value->id }}"
-                                                           delete_url="/admin/deleteGroup/{{ $attribute_value->id }}"><i
-                                                                    class="fa fa-times"></i></a>
+                                                        <div class="form-group col-md-6">
+                                                            <input type="text"
+                                                                   name="group[4][attribute_key][{{ $attribute_key+2}}]"
+                                                                   value="{{ $attribute_value->en_name }}"
+                                                                   class="form-control key"
+                                                                   placeholder="{{trans('local.descr_en')}}">
+                                                        </div>
                                                     </div>
+
+                                                    <div class="col-md-4 col-md-offset-4" style="margin-top:5px">
+                                                        <div class="col-md-4">
+                                                            <a class="btn btn-danger btn-xs destroyItem"
+                                                               onclick="return false;"
+                                                               object_id="{{ $attribute_value->id }}"
+                                                               delete_url="/deleteGroup/{{ $attribute_value->id }}"><i
+                                                                        class="fa fa-times"></i></a>
+                                                        </div>
+                                                    </div>
+
                                                 @endforeach
-                                                <div class="col-md-4 col-md-offset-0" style="margin-top:5px">
-                                                    <div class="col-md-4">
-                                                        <span class="btn btn-info addItem_edit"><i
-                                                                    class="fa fa-plus"></i> أضف المزيد </span>
-                                                    </div>
+
+
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    <div class="col-12 row form-group itemsGroupsContainer">
+
+                                        <div class="itemsContainer">
+                                            <div class=" form-group col-md-6">
+                                                <input type="hidden" name="group[0][group_id]" class="group_id"
+                                                       value="{{ $group->id }}">
+                                                <input type="hidden" name="group[0][attribute]" value="edit"
+                                                       class="form-control attribute" data-key="0"
+                                                       placeholder="المجموعه">
+
+                                            </div>
+
+
+                                            <div class="col-lg-12 row form-group" style="margin-top:5px">
+                                                <div class="form-group col-md-6">
+                                                    <input type="text" name="group[0][attribute_key][0]" value=""
+                                                           class="form-control text"
+                                                           placeholder="{{trans('local.descr')}}">
                                                 </div>
-                                                <div class="col-md-4 col-md-offset-4" style="margin-top:5px">
-                                                    <div class="col-md-4">
-                                                        <a class="btn btn-danger btn-xs destroyItem"
-                                                           onclick="return false;"
-                                                           object_id="{{ $attribute_value->id }}"
-                                                           delete_url="/deleteGroup/{{ $attribute_value->id }}"><i
-                                                                    class="fa fa-times"></i></a>
-                                                    </div>
+                                                <div class="form-group col-md-6">
+                                                    <input type="text" name="group[0][attribute_key][1]" value=""
+                                                           class="form-control key"
+                                                           placeholder="{{trans('local.descr_en')}}">
                                                 </div>
                                             </div>
 
-                                        @endforeach
-                                        <div class="col-md-12">
-                                            <span class="btn btn-primary addItemsGroup_edit" style="margin-top:5px"><i
-                                                        class="fa fa-plus"></i> أضف المزيد </span>
+
                                         </div>
-                                    @endif
-                                </div>
+                                        <div class="form-group col-md-6 ">
+                                            <span class="custom_btn dark_btn addItemsGroup"><i class="fa fa-plus"></i>إضافة أخري</span>
+                                        </div>
+                                    </div>
+
+
+                                @endif
+
+
+
 
                             @else
+
                                 <div class="col-12 row form-group itemsGroupsContainer">
                                     <div class="itemsContainer">
                                         <div class=" form-group col-md-6">
                                             <input type="hidden" name="group[0][attribute]" value=""
                                                    class="form-control" data-key="0" placeholder="المجموعه">
                                         </div>
-                                        {{--<div class="col-12 row form-group" style="visibility: hidden;">--}}
-                                        {{--<div class="form-group col-md-6">--}}
-                                        {{--<input type="text" name="" value="" class="form-control key" placeholder="الوصف التفصيلي">--}}
-                                        {{--</div>--}}
-                                        {{--<div class="form-group col-md-6">--}}
-                                        {{--<input type="text" name="" value="" class="form-control key" placeholder="الوصف التفصيلي">--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
+
 
 
                                         <div class="col-12 row form-group" style="margin-top:5px">
                                             <div class="form-group col-md-6">
                                                 <input type="text" name="group[0][attribute_key][0]" value=""
-                                                       class="form-control key" placeholder="الوصف التفصيلي">
+                                                       class="form-control text" placeholder="{{trans('local.descr')}}">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <input type="text" name="group[0][attribute_key][0]" value=""
-                                                       class="form-control key" placeholder="الوصف التفصيلي">
+                                                <input type="text" name="group[0][attribute_key][1]" value=""
+                                                       class="form-control key"
+                                                       placeholder="{{trans('local.descr_en')}}">
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-6 ">
-                                            <span class="custom_btn dark_btn addItemsGroup"><i class="fa fa-plus"></i>إضافة أخري</span>
-                                        </div>
 
+                                    </div>
+                                    <div class="form-group col-md-6 ">
+                                        <span class="custom_btn dark_btn addItemsGroup"><i class="fa fa-plus"></i>إضافة أخري</span>
                                     </div>
                                 </div>
 
@@ -160,93 +189,6 @@
                             @endif
                         </div>
 
-                        @if(isset($category))
-                            @if($category->attributes()->where('group_id', null)->count())
-                                @foreach($category->attributes()->where("group_id", null)->get() as $key => $group)
-
-                                    <input type="hidden" name="group[{{$key}}][attribute]" value="{{ $group->name }}"
-                                           class="form-control" placeholder="المجموعه">
-
-
-
-                                    @foreach($category->attributes->where("group_id", $group->id) as $attribute_key => $attribute_value)
-
-                                        <div class="descr">
-                                            <div class="col-12 row">
-                                                <label class="col-12">{{trans('local.descr')}} </label>
-
-                                                <div class="form-group col-md-6">
-                                                    <input type="hidden" name="group[{{ $key }}][group_id]"
-                                                           value="{{ $group->id }}">
-
-                                                    <input type="text"
-                                                           name="group[{{ $key }}][attribute_key][{{ $attribute_key }}]"
-                                                           value="{{ $attribute_value->name }}" class="form-control key"
-                                                           placeholder="{{trans('local.descr')}}">
-                                                </div>
-                                                <hr>
-                                                <div class="form-group col-md-6">
-
-                                                    <input type="text"
-                                                           name="group[{{ $key }}][attribute_key][{{ $attribute_key }}]"
-                                                           value="{{ $attribute_value->en_name }}"
-                                                           class="form-control key"
-                                                           placeholder="{{trans('local.descr_en')}}">
-                                                    {{--<i class="fa fa-user main-form-icon"></i>--}}
-                                                    <span class="cu-lb"></span>
-                                                    <div class="invalid-feedback">
-                                                        من فضلك أدخل الوصف
-                                                    </div>
-                                                </div>
-                                                <a class="btn btn-danger btn-xs destroyItem"
-                                                   onclick="return false;" object_id="{{ $attribute_value->id }}"
-                                                   delete_url="/deleteGroup/{{ $attribute_value->id }}"><i
-                                                            class="fa fa-times"></i></a>
-                                            </div>
-
-                                        </div>
-
-
-                                    @endforeach
-
-
-                                @endforeach
-                                <div class="col-12 row form-group custom-repeat-div">
-                                    <label class="col-12">{{trans('local.descr')}} </label>
-
-                                    <div class="form-group col-md-6">
-
-                                        <input type="text" id="address" name="group[0][attribute_key][0]" value=""
-                                               class="form-control key" placeholder="{{trans('local.descr')}} ">
-                                    </div>
-                                    <div class="form-group col-md-6">
-
-
-                                        <input type="text" id="address" name="group[0][attribute_key][1]" value=""
-                                               class="form-control key" placeholder="{{trans('local.descr_en')}} ">
-                                        {{--<i class="fa fa-user main-form-icon"></i>--}}
-                                        <span class="cu-lb"></span>
-                                        <div class="invalid-feedback">
-                                            من فضلك أدخل الوصف
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-6 custom-repeat-btn">
-                                    <span class="custom_btn dark_btn"><i class="fa fa-plus"></i>إضافة أخري</span>
-                                </div>
-
-
-
-
-
-                            @endif
-
-
-
-                        @else
-
-                        @endif
 
 
 

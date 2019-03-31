@@ -16,7 +16,7 @@
         <div class="row">
             <h3 class="dash-main-title col-12 wow fadeIn"><i class="fa fa-plus"></i>{{trans('local.add_newproduct')}}
                 <span
-                        class="dash-title-span">(شاشة إدخال/تعديل بيانات صنف)</span></h3>
+                        class="dash-title-span">({{trans('local.screen_input')}})</span></h3>
         </div>
     </div>
     <div class="add-product-form margin-div2">
@@ -25,10 +25,10 @@
                 <!--start row-->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        العنوان
+                        {{trans('local.address')}}
                     </div>
                     <div class="form-group col-md-6">
-                        الصلاحيات
+                        {{trans('local.permissions')}}
                     </div>
                 </div>
                 <!--end row-->
@@ -36,8 +36,8 @@
                 <!--start row-->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>إسم المنتج</label>
-                        <input type="text" class="form-control" required>
+                        <label>إسم المنتج{{trans('local.')}}</label>
+                        <input type="text" name="name" class="form-control" required>
                         <div class="invalid-feedback">
                             من فضلك أدخل إسم المنتج
                         </div>

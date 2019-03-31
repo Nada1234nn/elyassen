@@ -71,6 +71,9 @@ return [
     'edit_product' => 'Edit product',
     'add_newproduct' => 'Add new product',
     'descr' => 'descriptions',
-    'descr_en' => 'Description with english'
+    'descr_en' => 'Description with english',
+    'screen_input' => 'Screen Enter / Modify Class Data',
+    'address' => 'Address',
+    'permissions' => 'permissions'
     ]
 ?>
