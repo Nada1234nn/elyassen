@@ -41,14 +41,14 @@ class HomeController extends Controller
 
     public function getSubcategories($category_id)
     {
-        echo "<label>" . trans('local.subcategory_choose') . " </label>";
-        echo '<select class="form-control category_id" name="subcategory_id" required >';
-        echo "<option value=''> " . trans('local.subcategory_choose') . "</option>";
-        foreach (Category::where('parent_id', $category_id)->get() as $subcategory) {
-            echo "<option value='" . $subcategory->id . "'>" . $subcategory->name . "</option>";
-        }
-        echo "</select>";
-
-
+//        $str= "<label>" . trans('local.subcategory_choose') . " </label>".
+//         '<select class="form-control category_id" name="subcategory_id" required >'.
+//         "<option value=''> " .  . "</option>".
+//        foreach (Category::where('parent_id', $category_id)->get() as $subcategory)
+//             ."<option value='" . $subcategory->id . "'>" . $subcategory->name . "</option>".
+//         "</select>";
+        $subcategory_choose = trans('local.subcategory_choose');
+        $category = Category::where('parent_id', $category_id)->get();
+        return response()->json([$subcategory_choose, $category]);
     }
 }

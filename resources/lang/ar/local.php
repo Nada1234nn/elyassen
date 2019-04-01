@@ -86,6 +86,20 @@ return [
     'insert_informationpro' => 'إضافة معلومات المنتج',
     'descriptions_pro' => 'مواصفات  المنتج',
     'weight_pro' => 'وزن المنتج',
-    'fill_pro' => 'تعبئة المنتج'
+    'fill_pro' => 'تعبئة المنتج',
+    'fill_pro_en' => ' تعبئة المنتج بالانجليزيه',
+    'color_pro' => 'لون المنتج',
+    'color_pro_en' => ' لون المنتج بالانجليزيه',
+    'organic' => 'عضوي',
+    'yes' => 'نعم',
+    'no' => 'لا',
+    'free_sugar' => 'خالي من السكر',
+    'free_lactose' => 'خالي من اللاكتوز',
+    'underexpire_pro' => 'يخضع لإنتهاء الصلاحية',
+    'insert_imagespro' => 'إضافة صور المنتج',
+    'attach_mainphoto' => 'اضف الصوره الرئيسيه للمنتج ',
+    'attach_photospro' => 'اضف الصور الفرعيه للمتج',
+    'attach_publications' => 'إرفاق النشرات الفنية',
+    'attach_publication' => 'إرفاق النشره الفنية'
 ]
 ?>

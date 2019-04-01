@@ -86,6 +86,20 @@ return [
     'insert_informationpro' => 'insert information product',
     'descriptions_pro' => 'descriptions product',
     'weight_pro' => 'weight product',
-    'fill_pro' => 'fill product'
+    'fill_pro' => 'fill product',
+    'fill_pro_en' => 'fill product with english',
+    'color_pro' => 'color product',
+    'color_pro_en' => 'color product with english',
+    'organic' => 'organic',
+    'yes' => 'yes',
+    'no' => 'No',
+    'free_sugar' => 'free sugar',
+    'free_lactose' => 'free lactose',
+    'underexpire_pro' => 'under expire',
+    'insert_imagespro' => 'insert images product',
+    'attach_mainphoto' => 'attach main photo product',
+    'attach_photospro' => 'attach sub photos for product',
+    'attach_publications' => 'attach technical publications',
+    'attach_publication' => 'attach technical publication',
     ]
 ?>
