@@ -73,7 +73,19 @@ return [
     'descr' => 'descriptions',
     'descr_en' => 'Description with english',
     'screen_input' => 'Screen Enter / Modify Class Data',
-    'address' => 'Address',
-    'permissions' => 'permissions'
+    'name_product' => 'name product',
+    'en_name_product' => 'Product name with english',
+    'chooseMain_categoryproduct' => 'choose main category for product',
+    'subcategory_choose' => 'choose subcategory',
+    'descr_pro' => 'product description',
+    'descr_en_pro' => 'description product with english',
+    'discrimintation_pro' => 'discrimintation product',
+    'choose_discrimintationpro' => 'choose discrimintation product',
+    'discrimintation_pro_1' => 'discrimintation product 1',
+    'discrimintation_pro_2' => 'discrimintation product 2',
+    'insert_informationpro' => 'insert information product',
+    'descriptions_pro' => 'descriptions product',
+    'weight_pro' => 'weight product',
+    'fill_pro' => 'fill product'
     ]
 ?>

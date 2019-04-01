@@ -21,7 +21,14 @@
     </div>
     <div class="add-product-form margin-div2">
         <div class="container">
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="post" enctype="multipart/form-data"
+                  action="{{ isset($product)? route('products.update',$product->id):route('products.store')}}"
+                  novalidate>
+                {!! csrf_field() !!}
+                @if(isset($product))
+                    <input type="hidden" name="_method" value="PATCH"/>
+            @endif
+
                 <!--start row-->
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -35,9 +42,19 @@
 
                 <!--start row-->
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label>إسم المنتج{{trans('local.')}}</label>
-                        <input type="text" name="name" class="form-control" required>
+                    <div class="form-group col-md-3">
+                        <label>{{trans('local.name_product')}}</label>
+                        <input type="text" name="name" value="{{isset($product)?$product->nane:''}}"
+                               class="form-control" required>
+                        <div class="invalid-feedback">
+                            من فضلك أدخل إسم المنتج
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label>{{trans('local.en_name_product')}}</label>
+                        <input type="text" name="en_name" value="{{isset($product)?$product->en_nane:''}}"
+                               class="form-control" required>
                         <div class="invalid-feedback">
                             من فضلك أدخل إسم المنتج
                         </div>
@@ -45,25 +62,29 @@
                     <div class="form-group col-md-6">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label custom-control-label" for="inlineRadio1">v</label>
+                                   id="name_v_pro" value="1" name="name_v_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="name_v_pro">v</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label custom-control-label" for="inlineRadio2">c</label>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                            <label class="form-check-label custom-control-label" for="inlineRadio3">s</label>
+                                   id="name_c_pro" value="1" name="name_c_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="name_c_pro">c</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio4" value="option4">
-                            <label class="form-check-label custom-control-label" for="inlineRadio4">e</label>
+                                   id="name_s_pro" value="1" name="name_s_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="name_s_pro">s</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input custom-control-input" type="checkbox"
+                                   id="name_e_pro" value="1" name="name_e_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="name_e_pro">e</label>
                         </div>
 
                     </div>
@@ -74,11 +95,14 @@
                 <!--start row-->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>إسم المورد</label>
-                        <select class="form-control" required>
-                            <option>إسم المورد</option>
-                            <option>إسم المورد</option>
-                            <option>إسم المورد</option>
+                        <label>{{trans('local.name_supplier')}}</label>
+                        <select class="form-control" name="supplier_id" required>
+                            <option>{{trans('local.chooseName_supplier')}} </option>
+
+                            @foreach($suppliers as $supplier)
+                                <option value="{{$supplier->id}}" {{isset($product)&&$product->supplier_id == $supplier->id?'selected':''}}>{{$supplier->getUser->username}} </option>
+
+                            @endforeach
                         </select>
                         <div class="invalid-feedback">
                             من فضلك إختر إسم المورد
@@ -87,25 +111,29 @@
                     <div class="form-group col-md-6">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio5" value="option5">
-                            <label class="form-check-label custom-control-label" for="inlineRadio5">v</label>
+                                   id="supplier_v_pro" value="1" name="supplier_v_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="supplier_v_pro">v</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio6" value="option6">
-                            <label class="form-check-label custom-control-label" for="inlineRadio6">c</label>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio7" value="option7">
-                            <label class="form-check-label custom-control-label" for="inlineRadio7">s</label>
+                                   id="supplier_c_pro" value="1" name="supplier_c_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="supplier_c_pro">c</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio8" value="option8">
-                            <label class="form-check-label custom-control-label" for="inlineRadio8">e</label>
+                                   id="supplier_s_pro" value="1" name="supplier_s_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="supplier_s_pro">s</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input custom-control-input" type="checkbox"
+                                   id="supplier_e_pro" value="1" name="supplier_e_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="supplier_e_pro">e</label>
                         </div>
 
                     </div>
@@ -114,42 +142,53 @@
 
                 <!--start row-->
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label>فئة المنتج</label>
-                        <select class="form-control" required>
-                            <option>فئة المنتج</option>
-                            <option>فئة المنتج</option>
-                            <option>فئة المنتج</option>
-
+                    <div class="form-group col-md-3">
+                        <label>{{trans('local.chooseMain_categoryproduct')}} </label>
+                        <select class="form-control category_id" name="category_id" required>
+                            <option>{{trans('local.chooseMain_categoryproduct')}} </option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}" {{isset($product)&&$product->category_id == $category->id?'selected':''}}>{{$category->name}} </option>
+                            @endforeach
                         </select>
                         <div class="invalid-feedback">
                             من فضلك إختر فئة المنتج
                         </div>
                     </div>
+                    <div class="form-group col-md-3 sub_category_id">
+
+                        <div class="invalid-feedback">
+                            من فضلك إختر فئة المنتج
+                        </div>
+                    </div>
+
+
                     <div class="form-group col-md-6">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio9" value="option1">
-                            <label class="form-check-label custom-control-label" for="inlineRadio9">v</label>
+                                   id="category_v_pro" value="1" name="category_v_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="category_v_pro">v</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio10" value="option2">
-                            <label class="form-check-label custom-control-label" for="inlineRadio10">c</label>
+                                   id="category_c_pro" value="1" name="category_c_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="category_c_pro">c</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio11" value="option3">
-                            <label class="form-check-label custom-control-label" for="inlineRadio11">s</label>
+                                   id="category_s_pro" value="1" name="category_s_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="category_s_pro">s</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio12" value="option4">
-                            <label class="form-check-label custom-control-label" for="inlineRadio12">e</label>
+                                   id="category_e_pro" value="1" name="category_e_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="category_e_pro">e</label>
                         </div>
-
                     </div>
                 </div>
                 <!--end row-->
@@ -157,51 +196,66 @@
                 <!--start row-->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>وصف المنتج</label>
-                        <textarea class="form-control" required></textarea>
+                        <label>{{trans('local.descr_pro')}}</label>
+                        <textarea class="form-control" name="descr"
+                                  required>{{isset($product)?$product->descr:''}}</textarea>
                         <div class="invalid-feedback">
                             من فضلك أدخل وصف المنتج
                         </div>
                     </div>
                     <div class="form-group col-md-6">
+
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label custom-control-label" for="inlineRadio1">v</label>
+                                   id="descr_v_pro" value="1" name="descr_v_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="descr_v_pro">v</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label custom-control-label" for="inlineRadio2">c</label>
+                                   id="descr_c_pro" value="1" name="descr_c_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="descr_c_pro">c</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                            <label class="form-check-label custom-control-label" for="inlineRadio3">s</label>
+                                   id="descr_s_pro" value="1" name="descr_s_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="descr_s_pro">s</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio4" value="option4">
-                            <label class="form-check-label custom-control-label" for="inlineRadio4">e</label>
+                                   id="descr_e_pro" value="1" name="descr_e_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="descr_e_pro">e</label>
                         </div>
-
                     </div>
                 </div>
                 <!--end row-->
 
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>{{trans('local.descr_en_pro')}}</label>
+                        <textarea class="form-control" name="descr_en"
+                                  required>{{isset($product)?$product->descr_en:''}}</textarea>
+                        <div class="invalid-feedback">
+                            من فضلك أدخل وصف المنتج
+                        </div>
+                    </div>
+                </div>
 
                 <!--end row-->
 
                 <!--start row-->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>تمييز المنتج</label>
-                        <select class="form-control" required>
-                            <option>تمييز المنتج</option>
-                            <option>تمييز المنتج</option>
-
+                        <label>{{trans('local.discrimintation_pro')}}</label>
+                        <select class="form-control" name="sorting" required>
+                            <option>{{trans('local.choose_discrimintationpro')}}</option>
+                            <option value="1" {{isset($product) && $product->sorting==1?'checked':''}}>{{trans('local.discrimintation_pro_1')}}</option>
+                            <option value="2" {{isset($product) && $product->sorting==2?'checked':''}}>{{trans('local.discrimintation_pro_2')}} </option>
                         </select>
                         <div class="invalid-feedback">
                             من فضلك إختر تمييز المنتج
@@ -210,25 +264,29 @@
                     <div class="form-group col-md-6">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio13" value="option13">
-                            <label class="form-check-label custom-control-label" for="inlineRadio3">v</label>
+                                   id="sorting_v_pro" value="1" name="sorting_v_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="sorting_v_pro">v</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio14" value="option14">
-                            <label class="form-check-label custom-control-label" for="inlineRadio14">c</label>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio15" value="option15">
-                            <label class="form-check-label custom-control-label" for="inlineRadio15">s</label>
+                                   id="sorting_c_pro" value="1" name="sorting_c_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="sorting_c_pro">c</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio16" value="option16">
-                            <label class="form-check-label custom-control-label" for="inlineRadio16">e</label>
+                                   id="sorting_s_pro" value="1" name="sorting_s_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="sorting_s_pro">s</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input custom-control-input" type="checkbox"
+                                   id="sorting_e_pro" value="1" name="sorting_e_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="sorting_e_pro">e</label>
                         </div>
 
                     </div>
@@ -236,15 +294,17 @@
                 <!--end row-->
 
                 <div class="row">
-                    <h3 class="dash-main-title colored-title-pro col-12 wow fadeIn"><i class="fa fa-plus"></i>إضافة
-                        معلومات المنتج<span class="dash-title-span">(مواصفات  المنتج)</span></h3>
+                    <h3 class="dash-main-title colored-title-pro col-12 wow fadeIn"><i class="fa fa-plus"></i>
+                        {{trans('local.insert_informationpro')}} <span
+                                class="dash-title-span">({{trans('local.descriptions_pro')}})</span></h3>
                 </div>
 
                 <!--start row-->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>وزن المنتج</label>
-                        <input type="number" class="form-control" required>
+                        <label>{{trans('local.weight_pro')}} </label>
+                        <input type="number" name="weight_product"
+                               value="{{isset($product)?$product->weight_product:''}}" class="form-control" required>
                         <div class="invalid-feedback">
                             من فضلك أدخل وزن المنتج
                         </div>
@@ -252,25 +312,29 @@
                     <div class="form-group col-md-6">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label custom-control-label" for="inlineRadio1">v</label>
+                                   id="weight_v_pro" value="1" name="weight_v_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="weight_v_pro">v</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label custom-control-label" for="inlineRadio2">c</label>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                            <label class="form-check-label custom-control-label" for="inlineRadio3">s</label>
+                                   id="weight_c_pro" value="1" name="weight_c_pro"
+                                   onchange="this.form.submit()" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="weight_c_pro">c</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio4" value="option4">
-                            <label class="form-check-label custom-control-label" for="inlineRadio4">e</label>
+                                   id="weight_s_pro" value="1"
+                                   name="weight_s_pro" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="weight_s_pro">s</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input custom-control-input" type="checkbox"
+                                   id="weight_e_pro" value="1"
+                                   name="weight_e_pro" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="weight_e_pro">e</label>
                         </div>
 
                     </div>
@@ -280,8 +344,9 @@
                 <!--start row-->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>تعبئة المنتج</label>
-                        <textarea class="form-control" placeholder="وصف العبوة" required></textarea>
+                        <label>{{trans('local.fill_pro')}}</label>
+                        <textarea class="form-control" name="fill_product"
+                                  required>{{isset($product)?$product->fill_product:''}}</textarea>
                         <div class="invalid-feedback">
                             من فضلك أدخل تعبئة المنتج
                         </div>
@@ -289,27 +354,26 @@
                     <div class="form-group col-md-6">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label custom-control-label" for="inlineRadio1">v</label>
+                                   id="fill_v_pro" value="1" name="fill_v_pro" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="fill_v_pro">v</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label custom-control-label" for="inlineRadio2">c</label>
+                                   id="fill_c_pro" value="1" name="fill_c_pro" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="fill_c_pro">c</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                            <label class="form-check-label custom-control-label" for="inlineRadio3">s</label>
+                                   id="fill_s_pro" value="1" name="fill_s_pro" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="fill_s_pro">s</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input custom-control-input" type="checkbox"
-                                   name="inlineRadioOptions" id="inlineRadio4" value="option4">
-                            <label class="form-check-label custom-control-label" for="inlineRadio4">e</label>
+                                   id="fill_e_pro" value="1" name="fill_e_pro" {{isset($product_role)?'checked':''}}>
+                            <label class="form-check-label custom-control-label" for="fill_e_pro">e</label>
                         </div>
-
                     </div>
                 </div>
                 <!--end row-->

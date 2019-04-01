@@ -34,6 +34,8 @@ return [
     'categories'=>'الأقسام ',
     'main_categories'=>'الأقسام الرئيسية',
     'chooseMain_category'=>'اختر القسم الرئيسي',
+    'chooseMain_categoryproduct' => 'اختر القسم الرئيسي للمنتج',
+    'subcategory_choose' => 'إختر القسم التابع له ',
     'index'=>'الرئيسية',
     'hello_in'=>'مرحبا بك في ',
     'category_en'=>'اسم القسم  بالانجليزيه',
@@ -60,7 +62,7 @@ return [
     'suppliers' => 'الموردون',
     'add_supplier' => 'اضف مورد',
     'edit_supplier' => 'تعديل مورد',
-    'name_supplier' => 'اسم المورد',
+    'name_supplier' => 'إسم المورد ',
     'image_supplier' => 'شعار المورد',
     'chooseName_supplier' => 'اختر اسم المورد',
     'address' => 'العنوان',
@@ -73,7 +75,17 @@ return [
     'descr' => 'المواصفات ',
     'descr_en' => 'المواصفات الانجليزيه',
     'screen_input' => 'شاشة إدخال/تعديل بيانات صنف',
-    'address' => 'العنوان',
-    'permissions' => 'الصلاحيات'
+    'name_product' => 'إسم المنتج',
+    'en_name_product' => 'إسم المنتج بالانجليزيه',
+    'descr_pro' => 'وصف المنتج',
+    'descr_en_pro' => 'وصف المنتج بالانجليزيه',
+    'discrimintation_pro' => 'تمييز المنتج',
+    'choose_discrimintationpro' => 'اختر تمييز المنتج',
+    'discrimintation_pro_1' => 'تمييز برقم 1',
+    'discrimintation_pro_2' => 'تمييز برقم 2',
+    'insert_informationpro' => 'إضافة معلومات المنتج',
+    'descriptions_pro' => 'مواصفات  المنتج',
+    'weight_pro' => 'وزن المنتج',
+    'fill_pro' => 'تعبئة المنتج'
 ]
 ?>

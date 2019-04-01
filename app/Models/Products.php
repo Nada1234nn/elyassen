@@ -11,6 +11,11 @@ class Products extends Model
 
     public function getSupplier()
     {
-        $this->belongsTo(Suppliers::class, 'supplier_id', 'id');
+        return $this->belongsTo(Suppliers::class, 'supplier_id', 'id');
+    }
+
+    public function getCategories()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

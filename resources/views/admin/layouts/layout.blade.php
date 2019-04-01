@@ -116,6 +116,7 @@
 <script src="{{asset('js/read_image.js')}}"></script>
 <script src="{{asset('js/main.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/categoryattribute.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/index_admin.js')}}" type="text/javascript"></script>
 
 <script>
 

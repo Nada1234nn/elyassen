@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Suppliers;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -59,13 +60,27 @@ class User extends Authenticatable
     }
 
     public function hasRole($permission){
-//        dd($this->permissions->contains('name',$permission));
 if ($this->permissions->contains('name',$permission)){
     return true;
 }
 return false;
     }
 
+    public function hasAccess($access)
+    {
+        if (Auth::user()) {
+            if ((Auth::user()->permissions->contains('name', 'suppliers') || Auth::user()->permissions->contains('name', 'customer') || Auth::user()->permissions->contains('name', 'employees')) && (Auth::user()->permissions->contains($access, 1))) {
+                return true;
+            }
+        } else {
+            if (($this->permissions->contains('name', 'visitor')) && ($this->permissions->contains($access, 1))) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
     public function getsuppliers()
     {
         return $this->hasMany(Suppliers::class, 'user_id');

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Contact_us;
 use App\Emails;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -65,5 +65,11 @@ return response()->json(['success'=>'true']);
         $email->emails=$request->email;
         $email->save();
         return response()->json(['success','true']);
+    }
+
+    public function getProduct()
+    {
+        $products = User::all();
+        return view('website.products', compact('products'));
     }
 }

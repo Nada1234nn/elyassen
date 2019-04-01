@@ -26,4 +26,9 @@ class Category extends Model
     {
         return $this->hasMany(Attribute::class, 'category_id', 'id');
     }
+
+    public function getProduct()
+    {
+        return $this->hasMany(Products::class, 'category_id', 'id');
+    }
 }

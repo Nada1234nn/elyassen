@@ -23,6 +23,7 @@ Route::group(['middleware' => 'lang'], function () {
     Route::group(['middleware' => 'web', 'guest'], function () {
 
         Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/getSubcategories/{category_id}', 'admin\HomeController@getSubcategories');
         Route::get('/admin/login', 'Auth\LoginController@showLoginAdmin');
 
         Route::post('/loginAdmin', 'Auth\LoginController@loginAdmin');
@@ -31,6 +32,11 @@ Route::group(['middleware' => 'lang'], function () {
         Route::get('/contact', [
             "uses" => "HomeController@contact",
             "as" => "website.contact"
+        ]);
+
+        Route::get('/product', [
+            "uses" => "HomeController@getProduct",
+            "as" => "website.product"
         ]);
     });
 
