@@ -23,28 +23,28 @@ To change this license header, choose License Headers in Project Properties.  To
       ================
     -->
 
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('/public/css/bootstrap.min.css')}}" type="text/css"/>
     <!--for arabic only-->
-    <link rel="stylesheet" href="{{asset('css/bootstrap-rtl.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('/public/css/bootstrap-rtl.min.css')}}" type="text/css"/>
     <!--end-->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}" type="text/css" />
-    <link href="{{asset('css/jPages.min.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/intlTelInput.min.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/keyframes.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/header.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/footer.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('/public/css/font-awesome.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/public/css/owl.carousel.min.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('/public/css/owl.theme.default.min.css')}}" type="text/css"/>
+    <link href="{{asset('/public/css/jPages.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('/public/css/intlTelInput.min.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('/public/css/animate.min.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('/public/css/keyframes.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('/public/css/header.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('/public/css/footer.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}" type="text/css"/>
     @if(session()->get('lang')=='en')
 
-        <link rel="stylesheet" href="{{asset('css/en.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{asset('/public/css/en.css')}}" type="text/css"/>
     @else
     <!--arabic-style only-->
-        <link rel="stylesheet" href="{{asset('css/ar.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{asset('/public/css/ar.css')}}" type="text/css"/>
     @endif
-    <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('/public/css/responsive.css')}}" type="text/css"/>
 
 </head>
 
@@ -78,10 +78,11 @@ To change this license header, choose License Headers in Project Properties.  To
                     <!--start language-->
                     <div class="lang-div wow fadeIn">
                         @if(session()->get('lang')=='en')
-                            <a href="/lang/ar" style="color: white;">عربي<i class="fa fa-globe"></i></a>
+                            <a href="{{route('website.lang','ar')}}" style="color: white;">عربي<i
+                                        class="fa fa-globe"></i></a>
 
                         @else
-                            <a href="/lang/en" style="color: white;">En<i class="fa fa-globe"></i></a>
+                            <a href="{{route('website.lang','en')}}" style="color: white;">En<i class="fa fa-globe"></i></a>
 
 
                         @endif
@@ -101,7 +102,7 @@ To change this license header, choose License Headers in Project Properties.  To
     <!--start logo-->
     <div class="logo-grid wow fadeIn col-xl-2 col-lg-2  col-sm-5 col-6">
         <a href="/" class="logo">
-            <img src="{{asset('images/main/logo.png')}}" alt="logo" />
+            <img src="{{asset('/public/images/main/logo.png')}}" alt="logo"/>
         </a>
     </div>
     <!--end logo-->
@@ -155,7 +156,8 @@ To change this license header, choose License Headers in Project Properties.  To
             <!--start left-consult-->
             <div class="col-lg-6  about-descripe wow fadeIn">
                 <div class="left-consult wow fadeIn">
-                    <form class="needs-validation icons-form row" method="post" action="/loginAdmin" novalidate>
+                    <form class="needs-validation icons-form row" method="post" action="{{route('loginAdmin')}}"
+                          novalidate>
                         @csrf
                         <div class="form-group col-12">
                             <input type="text" class="form-control" name="email" placeholder=" {{trans('local.username')}} \ {{trans('local.email')}}" required>
@@ -216,7 +218,7 @@ To change this license header, choose License Headers in Project Properties.  To
             </div>
 
             <div class="col-3 copy-left wow fadeIn">
-                <a href="https://jaadara.com/"> <img src="{{asset('images/main/gdara.png')}}" alt="img"> </a>
+                <a href="https://jaadara.com/"> <img src="{{asset('/public/images/main/gdara.png')}}" alt="img"> </a>
             </div>
         </div>
     </div>
@@ -234,18 +236,18 @@ To change this license header, choose License Headers in Project Properties.  To
 <!--Scripts
      ================-->
 
-<script type="text/javascript" src="{{asset('local.js/html5shiv.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/respond.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
-<script src="{{asset('js/owl.carousel.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/wow.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/jPages.min.js')}}" type="text/javascript"></script>
-<script type="text/javascript" src="{{asset('js/html5lightbox.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/snake.min.js')}}"></script>
-<script src="{{asset('js/intlTelInput.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/custom.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset('/public/js/html5shiv.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('/public/js/respond.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('/public/js/jquery-3.2.1.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('/public/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('/public/js/popper.min.js')}}"></script>
+<script src="{{asset('/public/js/owl.carousel.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/wow.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/jPages.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset('/public/js/html5lightbox.js')}}"></script>
+<script type="text/javascript" src="{{asset('/public/js/snake.min.js')}}"></script>
+<script src="{{asset('/public/js/intlTelInput.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/custom.js')}}" type="text/javascript"></script>
 
 
 

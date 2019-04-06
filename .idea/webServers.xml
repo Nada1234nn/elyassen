@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="54809140-8281-466e-8805-cc67a4a57e33" name="elyaseen" url="http://edu.jaadara.com/elyassen/">
+        <fileTransfer host="173.212.194.200" port="21" rootFolder="/public_html/elyassen">
+          <advancedOptions>
+            <advancedOptions compatibilityMode="true" dataProtectionLevel="Private" passiveMode="true" showHiddenFiles="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

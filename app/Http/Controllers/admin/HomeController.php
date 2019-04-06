@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Schooltrainning;
@@ -41,14 +42,9 @@ class HomeController extends Controller
 
     public function getSubcategories($category_id)
     {
-//        $str= "<label>" . trans('local.subcategory_choose') . " </label>".
-//         '<select class="form-control category_id" name="subcategory_id" required >'.
-//         "<option value=''> " .  . "</option>".
-//        foreach (Category::where('parent_id', $category_id)->get() as $subcategory)
-//             ."<option value='" . $subcategory->id . "'>" . $subcategory->name . "</option>".
-//         "</select>";
         $subcategory_choose = trans('local.subcategory_choose');
         $category = Category::where('parent_id', $category_id)->get();
-        return response()->json([$subcategory_choose, $category]);
+        $attributes = Attribute::where('category_id', $category_id)->where('group_id', '!=', null)->get();
+        return response()->json([$subcategory_choose, $category, $attributes]);
     }
 }

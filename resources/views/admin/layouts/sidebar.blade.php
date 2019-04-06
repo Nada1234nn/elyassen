@@ -6,7 +6,7 @@
         <!--start dash-side-->
         <div class="dash-side">
             <div class="user-div">
-                <a href="profile.html"><img src="images/main/man.png" alt="user" /></a>
+                <a href="profile.html"><img src="{{asset('/public/images/main/man.png')}}" alt="user"/></a>
                 <div class="user-side">
                     <h3>إســــــم المستخدم</h3>
                     <ul class="list-inline">
@@ -34,10 +34,25 @@
                     <li><a href="{{route('suppliers.index')}}"><i class="fa fa-male"></i>{{trans('local.suppliers')}}
                         </a></li>
 
+                    <li class="list-item-has-child">
+                        <a href="#"><i class="fa fa-files-o"></i>
+                            {{trans('local.users')}}
+                        </a>
+                        <div class="slide-dash-menu">
+                            {{--                            {{dd(Route::current()->getName()=='categories.index')}}--}}
+                            <a href="{{route('users.index')}}">{{trans('local.list_users')}}</a>
+                            <a href="{{route('admins')}}">{{trans('local.list_admins')}}</a>
+                            <a href="{{route('blocked')}}">{{trans('local.list_blocked')}}</a>
+                        </div>
+                    </li>
+
+
                     <li>
                         <a href="{{route('products.index')}}"><i class="fa fa-pagelines"></i>
                             {{trans('local.products')}}
                         </a>
+                    </li>
+                    <li><a href="{{route('systems.index')}}"><i class="fa fa-cog"></i> {{trans('local.systems')}}</a>
                     </li>
 
                     <li>
@@ -74,11 +89,10 @@
 
                         </div>
                     </li>
-                    <li><a href="systems.html"><i class="fa fa-cog"></i> الأنظمة</a></li>
-                    <li><a href="users.html"><i class="fa fa-users"></i> المستخدمين</a></li>
                     <li><a href="edit-site.html"><i class="fa fa-edit"></i> تعديل محتوي الموقع</a></li>
 
-                    <li><a href="/logout"><i class="fa fa-power-off"></i> {{trans('local.logout_n')}}</a></li>
+                    <li><a href="{{route('logout')}}"><i class="fa fa-power-off"></i> {{trans('local.logout_n')}}</a>
+                    </li>
 
 
 

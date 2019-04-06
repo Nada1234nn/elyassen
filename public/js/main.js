@@ -34,7 +34,7 @@ $(document).on("click", ".destroyItemGroup", function () {
     console.log(id);
     var d_url = $(this).attr('delete_url');
     var elem = $(this).parent('div').parent('div').parent('.itemsContainer');
-    // console.log($(this),elem);
+    console.log(elem);
 
     var token = $('meta[name="_token"]').attr('content');
     swal({
@@ -97,10 +97,8 @@ $(document).on("click", ".destroyItem", function () {
     })
 
     var id = $(this).attr('object_id');
-    console.log(id);
     var d_url = $(this).attr('delete_url');
-    var elem = $(this).parent('div');
-    // console.log($(this),elem);
+    var elem = $(this).parent('div').parent('div');
 
     var token = $('meta[name="_token"]').attr('content');
     swal({
@@ -131,7 +129,7 @@ $(document).on("click", ".destroyItem", function () {
                     },
 
                     success: function (result) {
-                        // console.log(result);
+                        elem.hide(100);
 
 
                     }

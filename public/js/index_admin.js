@@ -7,7 +7,7 @@ $(document).ready(function (e) {
                 document.getElementById('sub_category_id').innerHTML = '';
                 var str = '';
                 str += '<label>' + data[0] + '</label>' +
-                    '      <select class="form-control category_id" name="subcategory_id" required >' +
+                    '      <select class="form-control category_id" name="subcategory_id">' +
                     '         <option >' + data[0] + '</option>';
                 for (i = 0; i < data[1].length; i++) {
                     str += '<option value=' + data[1][i].id + '>' + data[1][i].name + '</option>'
@@ -17,19 +17,21 @@ $(document).ready(function (e) {
 
                 document.getElementById('attribute_category').innerHTML = '';
                 var str_attribute = '';
-                for (i = 0; i < data[1].length; i++) {
+                for (i = 0; i < data[2].length; i++) {
 
                     str_attribute += '<div class="form-group col-md-3">\n' +
-                        ' <label>' + data[1][i].name + '</label>\n' +
-                        '                        <input type="text" class="form-control" name="' + data[1][i].name + '" value="" required>\n' +
+                        ' <label for="" >' + data[2][i].name + '</label>\n' +
+                        '                        <input type="text" class="form-control" name="values[]" value="" >\n' +
+                        '<input type="hidden" name="IDs[]" value="">' +
                         '                        <div class="invalid-feedback">' +
                         '                            من فضلك أدخل لون المنتج\n' +
                         '                        </div>' +
                         '                    </div>\n' +
                         '<div class="form-group col-md-3">\n' +
-                        ' <label>' + data[1][i].en_name + '</label>\n' +
-                        '                        <input type="text" class="form-control" name="' + data[1][i].en_name + '" value="" required>\n' +
-                        '                        <div class="invalid-feedback">\n' +
+                        ' <label for="">' + data[2][i].en_name + '</label>\n' +
+                        '                        <input type="text" class="form-control" name="values_en[]" value="" >\n' +
+                        '<input type="hidden" name="IDs[]" value="' + data[2][i].id + '">' +
+                        '                        <div class="invalid-feedback">' +
                         '                            من فضلك أدخل لون المنتج\n' +
                         '                        </div>' +
                         '                    </div>\n'
@@ -65,4 +67,13 @@ $(document).ready(function (e) {
 
     });
 
+    $('.admin_user').on('click', function () {
+        var user_id = $(this).attr('user_id');
+        $.ajax({
+            url: '/admin_user/' + user_id,
+            success: function (data) {
+
+            }
+        });
+    });
 })

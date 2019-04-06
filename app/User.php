@@ -2,15 +2,18 @@
 
 namespace App;
 
+use App\Models\Likes;
+use App\Models\products_permissions;
+use App\Models\SharedProduct;
 use App\Models\Suppliers;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use EntrustUserTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -42,47 +45,68 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Permissions','users_permissions','user_id','permission_id');
     }
 
-    //check role in route
-    public function hasAnyRole($permissions){
-//        can be variable or array
-        if (is_array($permissions)){
-
-            foreach ($permissions as $permission){
-                if ($this->hasRole($permission)){
-                    return true;
-                }
-            }
-        }else{
-            if ($this->hasRole($permissions)){
-                return true;
-            }
-        }
-    }
-
-    public function hasRole($permission){
-if ($this->permissions->contains('name',$permission)){
-    return true;
-}
-return false;
-    }
-
-    public function hasAccess($access)
+    public function gepermissionsproduct()
     {
-        if (Auth::user()) {
-            if ((Auth::user()->permissions->contains('name', 'suppliers') || Auth::user()->permissions->contains('name', 'customer') || Auth::user()->permissions->contains('name', 'employees')) && (Auth::user()->permissions->contains($access, 1))) {
-                return true;
-            }
-        } else {
-            if (($this->permissions->contains('name', 'visitor')) && ($this->permissions->contains($access, 1))) {
-                return true;
-            }
-        }
-
-        return false;
-
+        return $this->belongsToMany('App\Models\Permissions', 'products_permissions', 'user_id', 'permission_id');
     }
+
+    public function product_permission()
+    {
+        return $this->hasMany(products_permissions::class, 'user_id', 'id');
+    }
+//    //check role in route
+//    public function hasAnyRole($permissions){
+////        can be variable or array
+//        if (is_array($permissions)){
+//
+//            foreach ($permissions as $permission){
+//                if ($this->hasRole($permission)){
+//                    return true;
+//                }
+//            }
+//        }else{
+//            if ($this->hasRole($permissions)){
+//                return true;
+//            }
+//        }
+//    }
+//
+//    public function hasRole($permission){
+//if ($this->permissions->contains('name',$permission)){
+//    return true;
+//}
+//return false;
+//    }
+//
+//    public function hasAccess($access)
+//    {
+//        if (Auth::user()) {
+//            if ((Auth::user()->permissions->contains('name', 'suppliers') || Auth::user()->permissions->contains('name', 'customer') || Auth::user()->permissions->contains('name', 'employees')) && (Auth::user()->permissions->contains($access, 1))) {
+//                return true;
+//            }
+//        } else {
+//            if (($this->permissions->contains('name', 'visitor')) && ($this->permissions->contains($access, 1))) {
+//                return true;
+//            }
+//        }
+//
+//        return false;
+//
+//    }
     public function getsuppliers()
     {
         return $this->hasMany(Suppliers::class, 'user_id');
     }
+
+    public function getShareProduct()
+    {
+        return $this->hasMany(SharedProduct::class, 'user_id');
+    }
+
+    public function getLikes()
+    {
+        return $this->hasMany(Likes::class, 'user_id');
+    }
+
+
 }

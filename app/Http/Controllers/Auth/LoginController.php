@@ -53,6 +53,13 @@ class LoginController extends Controller
         $this -> validate($request, ['email' => 'required|email', 'password' => 'required']);
         $email = $request -> input('email');
         $password = $request -> input('password');
+        $user = User::where('email', $request->email)->first();
+
+        if ($user && $user->role == 'block') {
+            return redirect('/')->with(
+                'error', 'لايمكنك الدخول للموقع الى ان يتم فك حظرك.'
+            );
+        }
         if (!Auth::attempt(['email' => $email, 'password' => $password])) {
             return redirect() -> back() -> withErrors( 'لقد أدخلت بيانات غير صحيحة');
         }
@@ -66,9 +73,10 @@ class LoginController extends Controller
         if (!Auth::attempt(['email' => $email, 'password' => $password], $request -> has('remember'))) {
 
             return redirect() -> back() -> withErrors( 'لقد أدخلت بيانات غير صحيحة');
-        }
-        elseif (Auth::user()->hasRole('admin')) {
-            return redirect('/dashboard');
+        } else {
+            if (Auth::user()->hasRole('admin')) {
+                return redirect('/dashboard');
+            }
         }
     }
 

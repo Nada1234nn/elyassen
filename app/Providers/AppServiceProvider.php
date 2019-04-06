@@ -32,7 +32,13 @@ class AppServiceProvider extends ServiceProvider
                 return 'ar';
             }
         });
+        view()->composer('website.layouts.layout', 'App\Http\ViewComposers\HeaderComposer');
+
         //
+        view()->composer(
+            '*', 'App\Http\ViewComposers\MasterComposer'
+        );
+
         Schema::defaultStringLength(191);
 
     }

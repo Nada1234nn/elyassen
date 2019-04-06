@@ -42,7 +42,7 @@
                             <label>{{trans('local.image_supplier')}}</label>
                             <input type="file" name="image_supplier" id="chooseFile"
                                    value="{{isset($supplier)?$supplier->image:''}}" onchange="readURL(this);"
-                                   class="form-control" required>
+                                   class="form-control" {{isset($supplier)?:'required'}}>
                             <div class="invalid-feedback">
                                 من فضلك أدخل ملف صحيح
                             </div>
@@ -75,6 +75,34 @@
                             <label>{{trans('local.address')}} </label>
                             <input type="text" class="form-control" value="{{isset($supplier)?$supplier->address:''}}"
                                    name="address" required>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل نص صحيح
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label>{{trans('local.nationality')}} </label>
+                            <input type="text" class="form-control" value="{{isset($supplier)?$supplier->national:''}}"
+                                   name="national" required>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل نص صحيح
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label>{{trans('local.word_specialsup')}} </label>
+                            <textarea type="text" class="form-control" name="word_supplier" required>
+                                {{isset($supplier)?$supplier->word_supplier:''}}
+                            </textarea>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل نص صحيح
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label>{{trans('local.word_specialsup_en')}} </label>
+                            <textarea type="text" class="form-control" name="word_supplier_en" required>{{isset($supplier)?$supplier->word_supplier_en:''}}
+                            </textarea>
                             <div class="invalid-feedback">
                                 من فضلك أدخل نص صحيح
                             </div>

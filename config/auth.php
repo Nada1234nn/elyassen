@@ -70,10 +70,13 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+//        'providers' => [
+//            'users' => [
+//                'driver' => 'eloquent',
+//                'model' => Namespace\Of\Your\User\Model\User::class,
+//                'table' => 'users',
+//            ],
+//        ],
     ],
 
     /*

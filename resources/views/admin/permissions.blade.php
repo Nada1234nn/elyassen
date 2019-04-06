@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <a href=""><i class="fa fa-home"></i>{{trans('local.index')}}</a>
+                    <a href="{{route('dashboard')}}"><i class="fa fa-home"></i>{{trans('local.index')}}</a>
                     {{trans('local.permissions')}}
                 </div>
             </div>
@@ -44,6 +44,7 @@
                                 <td>{{$user->username}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>
+
                                     {{--<div class="form-group col-md-6">--}}
                                     <div class="form-check form-check-inline">
                                         <input type="checkbox" name="admin"
@@ -67,7 +68,7 @@
 
                                     <div class="form-check form-check-inline">
                                         <input type="checkbox" name="employees"
-                                               onchange="this.form.submit()" {{$user->hasRole('employees')?'checked':''}}>
+                                               onchange="this.form.submit()" {{$user->hasRole('employee')?'checked':''}}>
                                         &nbsp
                                         <label>e</label>
                                     </div>

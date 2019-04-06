@@ -64,41 +64,45 @@
                                             <div class="itemsContainer"
                                                  style="margin-top:5px; padding:5px; border:1px solid #eee">
 
-                                                <div class=" form-group col-md-6">
-                                                    <input type="hidden" name="group[4][attribute]"
-                                                           value="{{ $group->name }}"
-                                                           class="form-control" data-key="{{ $key }}"
-                                                           placeholder="المجموعه">
-                                                </div>
+                                                {{--<div class=" form-group col-md-6">--}}
+                                                {{--<input type="hidden" name="group[4][attribute]"--}}
+                                                {{--value="{{ $group->name }}"--}}
+                                                {{--class="form-control" data-key="{{ $key }}"--}}
+                                                {{--placeholder="المجموعه">--}}
+                                                {{--</div>--}}
+
+                                                {{--<div class=" form-group col-md-6">--}}
+                                                {{--<input type="hidden" name="group[4][attribute_key]"--}}
+                                                {{--value="[]"--}}
+                                                {{--class="form-control" data-key="{{ $key }}"--}}
+                                                {{--placeholder="المجموعه">--}}
+                                                {{--</div>--}}
+                                                {{--<div class=" form-group col-md-6">--}}
+                                                {{--<input type="hidden" name="group[4][group_id]"--}}
+                                                {{--value="{{4}}">--}}
+
+                                                {{--</div>--}}
 
                                                 @foreach($category->attributes->where("group_id", $group->id) as $attribute_key => $attribute_value)
-                                                    <div class=" form-group col-md-6">
-                                                        <input type="hidden" name="group[4][group_id]"
-                                                               value="{{ $group->id }}">
-
-                                                    </div>
 
 
-
-                                                    <div class="col-12 row form-group" style="margin-top:5px">
+                                                    <div class="col-12 row form-group" id="itemsContainer"
+                                                         style="margin-top:5px">
                                                         <div class="form-group col-md-6">
 
                                                             <input type="text"
                                                                    name="group[4][attribute_key][{{ $attribute_key+1 }}]"
                                                                    value="{{ $attribute_value->name }}"
                                                                    class="form-control text"
-                                                                   placeholder="{{trans('local.descr')}}">
+                                                                   placeholder="{{trans('local.descr')}}" disabled>
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <input type="text"
                                                                    name="group[4][attribute_key][{{ $attribute_key+2}}]"
                                                                    value="{{ $attribute_value->en_name }}"
                                                                    class="form-control key"
-                                                                   placeholder="{{trans('local.descr_en')}}">
+                                                                   placeholder="{{trans('local.descr_en')}}" disabled>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="col-md-4 col-md-offset-4" style="margin-top:5px">
                                                         <div class="col-md-4">
                                                             <a class="btn btn-danger btn-xs destroyItem"
                                                                onclick="return false;"
@@ -106,7 +110,9 @@
                                                                delete_url="/deleteGroup/{{ $attribute_value->id }}"><i
                                                                         class="fa fa-times"></i></a>
                                                         </div>
+
                                                     </div>
+
 
                                                 @endforeach
 

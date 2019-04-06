@@ -29,6 +29,67 @@ To change this license header, choose License Headers in Project Properties.  To
 
 <body>
 
+
+<!--start login-model -->
+<div class="modal fade" id="success-share-product-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="login-form">
+                    <div class="inner-modal">
+                        {{trans('local.share_success')}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--start login-model -->
+<div class="modal fade" id="must-loginshare-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="login-form">
+                    <div class="inner-modal">
+                        {{trans('local.must_loginshare')}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--start login-model -->
+<div class="modal fade" id="product-found-before-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="login-form">
+                    <div class="inner-modal">
+                        {{trans('local.product_found_before')}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 @if(!Auth::User())
 <!--start login-popup-->
 <div class="login-popup">
@@ -45,7 +106,8 @@ To change this license header, choose License Headers in Project Properties.  To
                     <div class="login-form">
                         <h4 class="modal-title">{{trans('local.login')}}</h4>
                         <div class="inner-modal">
-                            <div class="form-logo"><img src="images/main/logo.png" alt="logo" /></div>
+                            <div class="form-logo"><img src="{{asset('/public/images/main/logo.png')}}" alt="logo"/>
+                            </div>
                             <h3 class="sign-note">{{trans('local.login_now')}} </h3>
                             <p class="sign-prg">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى </p>
 
@@ -282,13 +344,18 @@ To change this license header, choose License Headers in Project Properties.  To
                             </div>
                         </div>
                         <!--end caret-div-->
-
+                        @if(Auth::User()->hasRole('employee') || Auth::User()->hasRole('suppliers'))
+                        <a href="{{route('website.documentaion_center')}}" class="document-link"><i
+                                    class="fa fa-users"></i>{{trans('local.staff_portal')}}</a>
+                        @endif
                             <div class="login-div">
                                 <div class="login-head"><i class="fa fa-user"></i> {{Auth::User()->username}}</div>
                                 <ul class="list-unstyled animation_menu">
                                     @if(Auth::User()->hasRole('admin'))
                                     <li>
-                                        <a href="/dashboard" style="color:white;"><i class="fa fa-user-o main-login-icon"></i>{{trans('local.dashboard')}} </a>
+                                        <a href="{{route('dashboard')}}" style="color:white;"><i
+                                                    class="fa fa-user-o main-login-icon"></i>{{trans('local.dashboard')}}
+                                        </a>
                                     </li>
 @endif
                                     <li>
@@ -324,8 +391,8 @@ To change this license header, choose License Headers in Project Properties.  To
 
                     <!--start logo-->
                     <div class="logo-grid wow fadeIn col-xl-2 col-lg-2  col-sm-5 col-6">
-                        <a href="index.html" class="logo">
-                            <img src="images/main/logo.png" alt="logo" />
+                        <a href="{{route('home')}}" class="logo">
+                            <img src="{{asset('images/main/logo.png')}}" alt="logo"/>
                         </a>
                     </div>
                     <!--end logo-->
@@ -350,19 +417,27 @@ To change this license header, choose License Headers in Project Properties.  To
                                 </li>
 
                                 <li class="list-item-has-child">
-                                    <a href="products.html">
-                                        المنتجات
+                                    <a href="{{route('website.product')}}">
+                                        {{trans('local.products')}}
                                     </a>
                                     <div class="dropmenu-list">
                                         <div class="divided-dropmenu">
-                                            <a href="product-details.html"><img src="images/products/1.png" alt="">اسم المنتج</a>
-                                            <a href="product-details.html"><img src="images/products/1.png" alt="">اسم المنتج</a>
-                                            <a href="product-details.html"><img src="images/products/1.png" alt="">اسم المنتج</a>
-                                            <a href="product-details.html"><img src="images/products/1.png" alt="">اسم المنتج</a>
+                                            @foreach($products as $product)
+                                                @if(session()->get('lang')=='en')
+                                                    <a href="{{route('website.detail_product',$product->en_name)}}"><img
+                                                                src="{{asset('uploads/'.$product->image)}}"
+                                                                alt="">{{$product->en_name}}</a>
+                                                @else
+                                                    <a href="{{route('website.detail_product',$product->name)}}"><img
+                                                                src="{{asset('uploads/'.$product->image)}}"
+                                                                alt="">{{$product->name}}</a>
+                                                @endif
+                                            @endforeach
                                         </div>
 
                                         <div class="dropmenu-more">
-                                            <a href="products.html" class="custom_btn green_btn">عرض الكل</a>
+                                            <a href="{{route('website.product')}}"
+                                               class="custom_btn green_btn">{{trans('local.show_all')}}</a>
                                         </div>
                                     </div>
                                 </li>

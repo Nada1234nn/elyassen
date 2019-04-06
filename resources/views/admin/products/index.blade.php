@@ -38,17 +38,20 @@
                     @foreach($products as $product)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td><img src="images/products/1.png" class="t-pro-img" alt="img"/> اسم المنتج (product name)
+                            <td><img src="{{asset('uploads/'.$product->image)}}" class="t-pro-img"
+                                     alt="img"/> {{$product->name}} ({{$product->en_name}})
                             </td>
-                            <td>أسمدة</td>
-                            <td>اسم المورد</td>
-                            <td>مميز</td>
-                            <td>19/9/2019</td>
+                            <td>{{$product->getCategories->name}}</td>
+                            <td> {{$product->getSupplier->getUser->username}}</td>
+                            <td>{{$product->sorting==1?trans('local.discrimintation_pro_1'):trans('local.discrimintation_pro_2')}}</td>
+                            <td>{{$product->created_at->format("d/m/Y")}}</td>
                             <td>
-                                <a href="edit-cat.html" class="edit-btn-table"><i class="fa fa-pencil"></i></a>
-                                <button class="edit-btn-table remove-btn sweet-2"
-                                        onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-2']);"><i
-                                            class="fa fa-times"></i></button>
+                                <a href="{{route('products.edit',$product->name)}}" class="edit-btn-table"><i
+                                            class="fa fa-pencil"></i></a>
+                                <a title="حذف المنتج" onclick="return false;" object_id="{{ $product->id }}"
+                                   delete_url="/products/" class="edit-btn-table remove-btn sweet_warning" href="#">
+                                    <i class="fa fa-times"></i></a>
+
                             </td>
                         </tr>
                     @endforeach

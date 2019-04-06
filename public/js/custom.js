@@ -135,9 +135,10 @@ $(".card-header h2").click(function () {
 });
 
 //fav
-$(".fav-icon").click(function () {
-    $(this).toggleClass("red-fav");
-});
+// $(".fav-icon").click(function () {
+//     $(this).toggleClass("red-fav");
+// });
+
 
 //soc
 

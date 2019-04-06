@@ -60,13 +60,16 @@ class Kernel extends HttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'permission' => \App\Http\Middleware\CheckPermission::class,
+//        'permission' => \App\Http\Middleware\CheckPermission::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'lang'=>\App\Http\Middleware\lang::class,
-        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-        'permissions' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+//        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+//        'permissions' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
     ];
 
     /**

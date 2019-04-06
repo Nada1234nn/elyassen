@@ -1,42 +1,49 @@
-window.onload = function () {
-    //Check File API support
-    if (window.File && window.FileList && window.FileReader) {
-        var filesInput = document.getElementById('files');
-        ;
-        filesInput.addEventListener('change',
+$(function () {
 
-            function (event) {
-                var files = event.target.files; //FileList object
-                var output = document.getElementById('result')
-                ;
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    //Only pics
-                    if (!file.type.match('image'))
-                        continue;
-                    var picReader = new FileReader();
-                    picReader.addEventListener('load',
+    var files = {};
 
-                        function (event) {
-                            var picFile = event.target;
-                            var div = document.createElement('div')
-                            ;
-                            div.innerHTML = '<img class="thumbnail" src =' + picFile.result + '> &nbsp';
-                            output.insertBefore(div, null);
-                        }
-                    )
-                    ;
-                    //Read the image
-                    picReader.readAsDataURL(file);
-                }
+    $(document).on('change', '#file', function () {
+
+        var index = $('.file-wrapper').length ? $('.file-wrapper:last-child').data('index') + 1 : 1;
+
+        if (this.files && this.files[0]) {
+
+            files[index] = this.files[0];
+
+            var template =
+                "<div id='file-wrapper-%d' class='file-wrapper' data-index='%d'>" +
+                "<div class='image-wrapper'>" +
+                "<a href='#' data-index='%d' title=' delete ' class='delete-image'>" +
+                "<img src='https://cdn4.iconfinder.com/data/icons/simplicio/32x32/notification_error.png' alt=''/>" +
+                "</a>" +
+                "<img class='image-preview' alt='' src='%s' />" +
+                "</div>" +
+                "</div>";
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+
+                $('#files-wrapper').append(template.replace(/(%d)/g, index).replace(/(%s)/g, reader.result));
+                $("#file-wrapper-" + index).fadeIn(200);
             }
-        )
-        ;
-    }
-    else {
-        console.log('Your browser does not support File API');
-    }
-}
+
+            reader.readAsDataURL(this.files[0]);
+
+        }
+    });
+
+    $(document).on('click', '.delete-image', function (e) {
+        e.preventDefault();
+        var index = $(this).data('index');
+        $('#file-wrapper-' + index).fadeOut(200, function () {
+            $(this).remove();
+            delete files[index];
+        });
+    });
+
+    // see the demo for more code ....
+});
 
 // $(document).ready(function (e) {
     function readURL(input) {
@@ -54,3 +61,7 @@ window.onload = function () {
         }
     }
 
+$(document).on('click', '.delete-img', function (e) {
+    e.preventDefault();
+    document.getElementById('img').remove();
+});

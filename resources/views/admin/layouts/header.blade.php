@@ -8,7 +8,8 @@
 
             <div class="dash-details-grid col-sm-9">
 
-                <a href="/" class="visit-sitelink wow fadeIn"><i class="fa fa-globe"></i>زياره الموقع</a>
+                <a href="/" class="visit-sitelink wow fadeIn"><i
+                            class="fa fa-globe"></i>{{trans('local.visit_website')}}</a>
 
                 <div class="dash-messages">
                     <span class="ms-text wow fadeIn" data-wow-delay=".3s"><i class="fa fa-envelope"></i> الرسائل <span class="notify-num">3</span></span>
