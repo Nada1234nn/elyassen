@@ -248,7 +248,7 @@
                             <h3 class="pro-title wow fadeIn">{{session()->get('lang')=='en'?$product->en_name:$product->name}}
                                 <span></span></h3>
 
-                            @elseif(!Auth::user() &&\App\Role::where('name','visitor')->hasRole('pro_name_'.$product->id))
+                            @elseif(Auth::user() &&Auth::User()->hasRole('admin'))
                                 <h3 class="pro-title wow fadeIn">{{session()->get('lang')=='en'?$product->en_name:$product->name}}
                                     <span></span></h3>
 
