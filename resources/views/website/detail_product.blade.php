@@ -239,7 +239,6 @@
                 <div class="col-xl-9 col-lg-8 col-md-7 products-pg product-details">
                     <div class="row">
                         <div class="col-lg-6 pro-head">
-                            @php $visitor = \App\Role::where('name','visitor')->first(); @endphp
 
                             @if( Auth::user() && Auth::user()->can('pro_name_'.$product->id))
                                 <h3 class="pro-title wow fadeIn">{{session()->get('lang')=='en'?$product->en_name:$product->name}}
@@ -248,17 +247,22 @@
                             <h3 class="pro-title wow fadeIn">{{session()->get('lang')=='en'?$product->en_name:$product->name}}
                                 <span></span></h3>
 
-                            @elseif(Auth::user() &&Auth::User()->hasRole('admin'))
+                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
                                 <h3 class="pro-title wow fadeIn">{{session()->get('lang')=='en'?$product->en_name:$product->name}}
                                     <span></span></h3>
 
                             @endif
-                            {{--<h3 class="pro-title wow fadeIn">{{session()->get('lang')=='en'?$product->en_name:$product->name}} <span></span></h3>--}}
-                            {{--@if( Auth::user() && Auth::user()->can('supplier_pro_'.$product->id))--}}
 
-                            {{--<span class="pro-price wow fadeIn">{{trans('local.with').' '.$product->getSupplier->getUser->username}} </span>--}}
-                            {{--@endif--}}
+                            @if( Auth::user() && Auth::user()->can('supplier_pro_'.$product->id))
+                                <span class="pro-price wow fadeIn">{{trans('local.with').' '.$product->getSupplier->getUser->username}} </span>
+
+                            @elseif( !Auth::user() && $visitor->hasPermission('supplier_pro_'.$product->id)))
                             <span class="pro-price wow fadeIn">{{trans('local.with').' '.$product->getSupplier->getUser->username}} </span>
+
+                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                <span class="pro-price wow fadeIn">{{trans('local.with').' '.$product->getSupplier->getUser->username}} </span>
+
+                            @endif
                         </div>
 
                         <div class="col-lg-6 pro-soc wow fadeIn">
@@ -293,7 +297,56 @@
 
                     <div class="row border-div">
                     @if( Auth::user() && Auth::user()->can('subphotos_pro_'.$product->id))
+                        <!--start product-owl-->
+                            <div class="col-lg-6 no-padd wow fadeIn">
+                                <div id="owl-demo"
+                                     class="text-center owl-carousel owl-theme first-owl product-carousel">
+                                @foreach($images as $image)
+                                    <!-- start owl-item -->
+                                        <div class="item">
+                                            <a href="{{asset('uploads/'.$image->image)}}"
+                                               class="html5lightbox  pro-plus"><i class="fa fa-search-plus"></i></a>
 
+                                            <div class="pro-div">
+                                                <div class="pro-img">
+                                                    <a href="{{asset('uploads/'.$image->image)}}" class="html5lightbox"><img
+                                                                src="{{asset('uploads/'.$image->image)}}" alt="product"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end owl-item -->
+                                    @endforeach
+
+
+                                </div>
+                            </div>
+                            <!--end product-owl-->
+                        @elseif( !Auth::user() && $visitor->hasPermission('subphotos_pro_'.$product->id)))
+                        <!--start product-owl-->
+                        <div class="col-lg-6 no-padd wow fadeIn">
+                            <div id="owl-demo"
+                                 class="text-center owl-carousel owl-theme first-owl product-carousel">
+                            @foreach($images as $image)
+                                <!-- start owl-item -->
+                                    <div class="item">
+                                        <a href="{{asset('uploads/'.$image->image)}}"
+                                           class="html5lightbox  pro-plus"><i class="fa fa-search-plus"></i></a>
+
+                                        <div class="pro-div">
+                                            <div class="pro-img">
+                                                <a href="{{asset('uploads/'.$image->image)}}" class="html5lightbox"><img
+                                                            src="{{asset('uploads/'.$image->image)}}" alt="product"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end owl-item -->
+                                @endforeach
+
+
+                            </div>
+                        </div>
+                        <!--end product-owl-->
+                    @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
                         <!--start product-owl-->
                             <div class="col-lg-6 no-padd wow fadeIn">
                                 <div id="owl-demo"
@@ -319,6 +372,9 @@
                             </div>
                             <!--end product-owl-->
                     @endif
+
+
+
                     <!--start left-product-details-->
                         <div class="col-lg-6 no-padd">
                             <div class="left-product-details wow fadeIn">
@@ -342,7 +398,27 @@
                                     <div class="text-center">
                                         <ul class="list-unstyled products-btns">
                                             @if( Auth::user() && Auth::user()->can('attach_pro_'.$product->id))
+                                                @foreach($products_publication as$product_publication)
+                                                    <li>
+                                                        <span> {{trans('local.technical_sheet')}} : </span>
+                                                        <a href="{{route('website.viewAttach',$product_publication->attachment)}}"
+                                                           class="dark_btn custom_btn"><i class="fa  fa-file-pdf-o"></i>
+                                                            النشرة الفنية</a>
+                                                    </li>
+                                                @endforeach
 
+                                            @elseif( !Auth::user() && $visitor->hasPermission('attach_pro_'.$product->id))
+                                                )
+                                                @foreach($products_publication as$product_publication)
+                                                    <li>
+                                                        <span> {{trans('local.technical_sheet')}} : </span>
+                                                        <a href="{{route('website.viewAttach',$product_publication->attachment)}}"
+                                                           class="dark_btn custom_btn"><i class="fa  fa-file-pdf-o"></i>
+                                                            النشرة الفنية</a>
+                                                    </li>
+                                                @endforeach
+
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
                                                 @foreach($products_publication as$product_publication)
                                                     <li>
                                                         <span> {{trans('local.technical_sheet')}} : </span>
@@ -353,6 +429,9 @@
                                                 @endforeach
 
                                             @endif
+
+
+
                                             {{--<li>--}}
                                             {{--<span>  technical sheet : </span>--}}
                                             {{--<a href="http://sunny.freeservers.com/fun/flowers.pdf" class="dark_btn custom_btn"><i class="fa  fa-file-pdf-o"></i> technical sheet</a>--}}
@@ -402,15 +481,37 @@
                                     <div class="col-lg-7">
                                         <h4>{{trans('local.description')}}</h4>
                                         @if( Auth::user() && Auth::user()->can('descr_pro_'.$product->id))
-
                                             <p>{{session()->get('lang')=='en'?$product->descr_en:$product->descr}} </p>
+
+                                        @elseif( !Auth::user() && $visitor->hasPermission('descr_pro_'.$product->id)))
+                                        <p>{{session()->get('lang')=='en'?$product->descr_en:$product->descr}} </p>
+
+                                        @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                            <p>{{session()->get('lang')=='en'?$product->descr_en:$product->descr}} </p>
+
                                         @endif
+
+
                                         <h4>{{trans('local.descriptions_pro')}}</h4>
 
 
                                         <ul class="list-unstyled pro-list wow fadeIn">
                                             @if( Auth::user() && Auth::user()->can('attribute_category_pro_'.$product->id))
-
+                                                @foreach($attribures_product as $attribure_product)
+                                                    <li class="wow fadeInUp">
+                                                        <span class="main-right-desc">{{$attribure_product["name"]}}</span>
+                                                        <span class="main-left-desc">{{session()->get('lang')=='en'?$attribure_product["pivot"]["attribute_value_en"]:$attribure_product["pivot"]["attribute_value"]}}</span>
+                                                    </li>
+                                                @endforeach
+                                            @elseif( !Auth::user() && $visitor->hasPermission('attribute_category_pro_'.$product->id))
+                                                )
+                                                @foreach($attribures_product as $attribure_product)
+                                                    <li class="wow fadeInUp">
+                                                        <span class="main-right-desc">{{$attribure_product["name"]}}</span>
+                                                        <span class="main-left-desc">{{session()->get('lang')=='en'?$attribure_product["pivot"]["attribute_value_en"]:$attribure_product["pivot"]["attribute_value"]}}</span>
+                                                    </li>
+                                                @endforeach
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
                                                 @foreach($attribures_product as $attribure_product)
                                                     <li class="wow fadeInUp">
                                                         <span class="main-right-desc">{{$attribure_product["name"]}}</span>
@@ -418,6 +519,8 @@
                                                     </li>
                                                 @endforeach
                                             @endif
+
+
                                             {{--<li class="wow fadeInUp">--}}
                                             {{--<span class="main-right-desc">UPC - A</span>--}}
                                             {{--<span class="main-left-desc">6788558908</span>--}}
@@ -428,54 +531,155 @@
                                             {{--<span class="main-left-desc">6788558908</span>--}}
                                             {{--</li>--}}
                                             @if( Auth::user() && Auth::user()->can('supplier_pro_'.$product->id))
-
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.trade_mark')}}</span>
                                                     <span class="main-left-desc">{{$product->getSupplier->getUser->username}}</span>
                                                 </li>
-                                            @endif
-                                            @if( Auth::user() && Auth::user()->can('cat_pro_'.$product->id))
 
+                                            @elseif( !Auth::user() && $visitor->hasPermission('supplier_pro_'.$product->id))
+                                                )
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.trade_mark')}}</span>
+                                                    <span class="main-left-desc">{{$product->getSupplier->getUser->username}}</span>
+                                                </li>
+
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.trade_mark')}}</span>
+                                                    <span class="main-left-desc">{{$product->getSupplier->getUser->username}}</span>
+                                                </li>
+
+                                            @endif
+
+                                            @if( Auth::user() && Auth::user()->can('cat_pro_'.$product->id))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.type')}}</span>
                                                     <span class="main-left-desc">{{session()->get('lang')=='en'?$product->getCategories->en_name:$product->getCategories->name}}</span>
                                                 </li>
-                                            @endif
-                                            @if( Auth::user() && Auth::user()->can('weight_pro_'.$product->id))
 
+                                            @elseif( !Auth::user() && $visitor->hasPermission('cat_pro_'.$product->id)))
+                                            <li class="wow fadeInUp">
+                                                <span class="main-right-desc">{{trans('local.type')}}</span>
+                                                <span class="main-left-desc">{{session()->get('lang')=='en'?$product->getCategories->en_name:$product->getCategories->name}}</span>
+                                            </li>
+
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.type')}}</span>
+                                                    <span class="main-left-desc">{{session()->get('lang')=='en'?$product->getCategories->en_name:$product->getCategories->name}}</span>
+                                                </li>
+
+                                            @endif
+
+                                            @if( Auth::user() && Auth::user()->can('weight_pro_'.$product->id))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.total_size')}}</span>
                                                     <span class="main-left-desc">{{$product->weight_product}}</span>
                                                 </li>
-                                            @endif
-                                            @if( Auth::user() && Auth::user()->can('fill_pro_'.$product->id))
 
+                                            @elseif( !Auth::user() && $visitor->hasPermission('weight_pro_'.$product->id))
+                                                )
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.total_size')}}</span>
+                                                    <span class="main-left-desc">{{$product->weight_product}}</span>
+                                                </li>
+
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.total_size')}}</span>
+                                                    <span class="main-left-desc">{{$product->weight_product}}</span>
+                                                </li>
+
+                                            @endif
+
+                                            @if( Auth::user() && Auth::user()->can('fill_pro_'.$product->id))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.fill_product')}}</span>
+                                                    <span class="main-left-desc">{{session()->get('lang')=='en'?$product->fill_product_en:$product->fill_product}}</span>
+                                                </li>
+                                            @elseif( !Auth::user() && $visitor->hasPermission('fill_pro_'.$product->id))
+                                                )
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.fill_product')}}</span>
+                                                    <span class="main-left-desc">{{session()->get('lang')=='en'?$product->fill_product_en:$product->fill_product}}</span>
+                                                </li>
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.fill_product')}}</span>
                                                     <span class="main-left-desc">{{session()->get('lang')=='en'?$product->fill_product_en:$product->fill_product}}</span>
                                                 </li>
                                             @endif
-                                            @if( Auth::user() && Auth::user()->can('organic_pro_'.$product->id))
 
+
+                                            @if( Auth::user() && Auth::user()->can('organic_pro_'.$product->id))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.organic')}}</span>
                                                     <span class="main-left-desc">{{isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
                                                 </li>
-                                            @endif
-                                            @if( Auth::user() && Auth::user()->can('freesugar_'.$product->id))
 
+                                            @elseif( !Auth::user() && $visitor->hasPermission('organic_pro_'.$product->id))
+                                                )
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.organic')}}</span>
+                                                    <span class="main-left-desc">{{isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                </li>
+
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.organic')}}</span>
+                                                    <span class="main-left-desc">{{isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                </li>
+
+                                            @endif
+
+
+                                            @if( Auth::user() && Auth::user()->can('freesugar_'.$product->id))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.free_sugar')}}</span>
                                                     <span class="main-left-desc">{{isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
                                                 </li>
+
+
+                                            @elseif( !Auth::user() && $visitor->hasPermission('freesugar_'.$product->id))
+                                                )
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.free_sugar')}}</span>
+                                                    <span class="main-left-desc">{{isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                </li>
+
+
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.free_sugar')}}</span>
+                                                    <span class="main-left-desc">{{isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                </li>
+
+
                                             @endif
+
                                             @if( Auth::user() && Auth::user()->can('freelactose_pro_'.$product->id))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.free_lactose')}}</span>
                                                     <span class="main-left-desc">
                                                     {{isset($product)&&$product->free_lactose==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
                                                 </li>
+
+                                            @elseif( !Auth::user() && $visitor->hasPermission('freelactose_pro_'.$product->id))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.free_lactose')}}</span>
+                                                    <span class="main-left-desc">
+                                                    {!! isset($product)&&$product->free_lactose==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>' !!}</span>
+                                                </li>
+
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.free_lactose')}}</span>
+                                                    <span class="main-left-desc">
+                                                    {{isset($product)&&$product->free_lactose==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                </li>
+
                                             @endif
+
 
                                             @if( Auth::user() && Auth::user()->can('underexpire_pro_'.$product->id))
                                                 <li class="wow fadeInUp">
@@ -483,7 +687,24 @@
                                                     <span class="main-left-desc">
                                                     {{isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
                                                 </li>
+
+                                            @elseif( !Auth::user() && $visitor->hasPermission('underexpire_pro_'.$product->id))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.underexpire_pro')}}</span>
+                                                    <span class="main-left-desc">
+                                                    {{isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                </li>
+
+                                            @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
+                                                <li class="wow fadeInUp">
+                                                    <span class="main-right-desc">{{trans('local.underexpire_pro')}}</span>
+                                                    <span class="main-left-desc">
+                                                    {{isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                </li>
+
                                             @endif
+
+
                                             {{--<li class="wow fadeInUp">--}}
                                             {{--<span class="main-right-desc">الرقم اللميز للسلعة</span>--}}
                                             {{--<span class="main-left-desc">6788558908</span>--}}

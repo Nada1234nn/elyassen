@@ -303,7 +303,8 @@ return response()->json(['success'=>'true']);
         $weight_pro = Products::where('name', $name)->pluck('weight_product')->toArray();
         $products_publication = Products_publication::where('product_id', $product->id)->get();
         $attribures_product = $product->attributes()->get()->toArray();
-        return view('website.detail_product', compact('product', 'like_product', 'images', 'attribures_product', 'weight_pro', 'products_publication'));
+        $visitor = \App\Role::where('name', 'visitor')->first();
+        return view('website.detail_product', compact('product', 'like_product', 'visitor', 'images', 'attribures_product', 'weight_pro', 'products_publication'));
     }
 
     public function download($attachment_pro)
