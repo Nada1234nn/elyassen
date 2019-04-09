@@ -56,13 +56,11 @@ $(document).ready(function (e) {
                     // console.log(clicked);
                     $('.fav-icon').removeClass('red-fav');
 
-                    console.log('dd');
                 }
                 else {
                     // $(this).color('#c5140f');
                     // $('.like_product i').css('Color','#c5140f');
                     $('.fav-icon').addClass('red-fav');
-                    console.log('ss');
 
                     // clicked.style.backgroundColor = '#c5140f';
                     // console.log(clicked);

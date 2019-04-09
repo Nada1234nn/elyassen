@@ -641,7 +641,7 @@
 
 
                                             @elseif( !Auth::user() && $visitor->hasPermission('freesugar_'.$product->id))
-                                                )
+
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.free_sugar')}}</span>
                                                     <span class="main-left-desc">{{isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
@@ -651,7 +651,7 @@
                                             @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.free_sugar')}}</span>
-                                                    <span class="main-left-desc">{{isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                    <span class="main-left-desc">{!! isset($product)&&$product->free_sugar==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'!!}</span>
                                                 </li>
 
 
@@ -661,7 +661,7 @@
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.free_lactose')}}</span>
                                                     <span class="main-left-desc">
-                                                    {{isset($product)&&$product->free_lactose==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                    {!! isset($product)&&$product->free_lactose==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'!!}</span>
                                                 </li>
 
                                             @elseif( !Auth::user() && $visitor->hasPermission('freelactose_pro_'.$product->id))
@@ -675,7 +675,7 @@
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.free_lactose')}}</span>
                                                     <span class="main-left-desc">
-                                                    {{isset($product)&&$product->free_lactose==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                    {!!isset($product)&&$product->free_lactose==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'!!}</span>
                                                 </li>
 
                                             @endif
@@ -685,21 +685,21 @@
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.underexpire_pro')}}</span>
                                                     <span class="main-left-desc">
-                                                    {{isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                    {!!isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'!!}</span>
                                                 </li>
 
                                             @elseif( !Auth::user() && $visitor->hasPermission('underexpire_pro_'.$product->id))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.underexpire_pro')}}</span>
                                                     <span class="main-left-desc">
-                                                    {{isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                    {!!isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'!!}</span>
                                                 </li>
 
                                             @elseif(Auth::user() && Auth::user()->role=='admin' &&Auth::User()->hasRole('admin'))
                                                 <li class="wow fadeInUp">
                                                     <span class="main-right-desc">{{trans('local.underexpire_pro')}}</span>
                                                     <span class="main-left-desc">
-                                                    {{isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>'}}</span>
+                                                    {!! isset($product)&&$product->under_expire==2?'<i class="fa fa-times"></i>':'<i class="fa fa-check"></i>' !!}</span>
                                                 </li>
 
                                             @endif
