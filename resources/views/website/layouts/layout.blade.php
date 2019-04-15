@@ -89,6 +89,24 @@ To change this license header, choose License Headers in Project Properties.  To
         </div>
     </div>
 </div>
+<div class="modal fade" id="orderpro-success-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="login-form">
+                    <div class="inner-modal">
+                        {{trans('local.orderpro_success')}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 @if(!Auth::User())
 <!--start login-popup-->
@@ -314,32 +332,34 @@ To change this license header, choose License Headers in Project Properties.  To
 
                     <!--start caret-div-->
                         <div class="caret-div wow fadeIn">
-                            <div class="crt-icon"><i class="fa fa-shopping-cart"> </i> سلة المشتريات<span class="cart-num">55</span></div>
+                            <div class="crt-icon"><i
+                                        class="fa fa-shopping-cart"> </i> {{trans('local.shopping_basket')}}
+                                {!! count($orders)>0?'<span class="cart-num" id="cart_num">'.count($orders).'</span>':'' !!}
+                            </div>
                             <div class="caret-list">
+                                @if(count($orders))
+                                    @foreach($orders as $order)
                                 <div class="caret-item">
-                                    <a href="product-details.html">
-                                        <img src="images/products/4.png" alt="product">
+                                    <a href="{{route('website.detail_product',$order->getProduct->name)}}">
+                                        <img src="{{asset('uploads/'.$order->getProduct->image)}}" alt="product">
                                         <div class="side-cart">
-                                            <span class="cart-pro"> بذور الكتان الذهبية</span>
-                                            <span class="quantity">1 * 750 ريال</span>
+                                            <span class="cart-pro">{{session()->get('lang')=='en'?$order->getProduct->en_name:$order->getProduct->name}}</span>
+                                            <span class="quantity"> {{$order->qty.'*'.$order->getProduct->price.trans('local.riyal')}} </span>
                                         </div>
                                     </a>
-                                    <i class="fa fa-times remove-icon"></i>
+                                    <i class="fa fa-times remove-icon remove_order"
+                                       product_id="{{$order->getProduct->id}}"></i>
                                 </div>
+                                    @endforeach
+                                    <div class="total"
+                                         id="total">{{trans('local.total').':'.$totalPriceOrder.trans('local.riyal')}}</div>
+                                    <a href="{{route('website.order_product')}}" class="custom_btn dark_btn"
+                                       id="remove_button">{{trans('local.request_products')}}</a>
+                                @else
+                                    <div class="total"
+                                         id="total">{{trans('local.total').':0'.trans('local.riyal')}}</div>
 
-                                <div class="caret-item">
-                                    <a href="product-details.html">
-                                        <img src="images/products/5.png" alt="product">
-                                        <div class="side-cart">
-                                            <span class="cart-pro"> بذور الكتان الذهبية</span>
-                                            <span class="quantity">1 * 750 ريال</span>
-                                        </div>
-                                    </a>
-                                    <i class="fa fa-times remove-icon"></i>
-                                </div>
-                                <div class="total">الإجمالي : 576 ريال</div>
-                                <a href="material-request.html" class="custom_btn dark_btn">طلب المنتجات</a>
-
+                                @endif
 
                             </div>
                         </div>
@@ -407,7 +427,7 @@ To change this license header, choose License Headers in Project Properties.  To
                         </div>
                         <div class="nav-content">
                             <ul class="list-inline main-menu wow fadeIn">
-                                <li><a href="news.html">الأخبار</a></li>
+                                <li><a href="{{route('website.news')}}">{{trans('local.news')}}</a></li>
                                 <li><a href="services.html">الخدمات</a></li>
 
                                 <li>
@@ -458,7 +478,7 @@ To change this license header, choose License Headers in Project Properties.  To
                                     </div>
                                 </li>
 
-                                <li><a href="suppliers.html">الموردون</a></li>
+                                <li><a href="{{route('website.suppliers')}}">{{trans('local.suppliers')}}</a></li>
                                 <li><a href="jobs.html">التوظيف</a></li>
                                 <li><a href="about.html">من نحن</a></li>
 

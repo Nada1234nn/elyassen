@@ -93,6 +93,96 @@
                 </div>
                 <!--end row-->
 
+                <!--start row-->
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>{{trans('local.price_product')}}</label>
+                        <input type="text" name="price" value="{{isset($product)?$product->price:''}}"
+                               class="form-control" required>
+                        <div class="invalid-feedback">
+                            من فضلك أدخل إسم المنتج
+                        </div>
+                    </div>
+
+                    {{--<div class="form-group col-md-6">--}}
+                    {{--<div class="form-check form-check-inline">--}}
+                    {{--<input class="form-check-input custom-control-input" type="checkbox"--}}
+                    {{--id="price_v_pro" value="1" name="price_v_pro" onchange=""--}}
+                    {{--{{isset($role_per_price)&&$role_per_price->role_id==$product_role_v->id?'checked':''}}>--}}
+
+                    {{--<label class="form-check-label custom-control-label" for="price_v_pro">v</label>--}}
+                    {{--</div>--}}
+
+                    {{--<div class="form-check form-check-inline">--}}
+                    {{--<input class="form-check-input custom-control-input" type="checkbox"--}}
+                    {{--id="price_c_pro" value="1" name="price_c_pro"--}}
+                    {{--{{isset($role_per_price)&&$role_per_price->role_id==$product_role_c->id?'checked':''}}>--}}
+                    {{--<label class="form-check-label custom-control-label" for="price_c_pro">c</label>--}}
+                    {{--</div>--}}
+
+                    {{--<div class="form-check form-check-inline">--}}
+                    {{--<input class="form-check-input custom-control-input" type="checkbox"--}}
+                    {{--id="price_s_pro" value="1" name="price_s_pro"--}}
+                    {{--{{isset($role_per_price)&&$role_per_price->role_id==$product_role_s->id?'checked':''}}>--}}
+                    {{--<label class="form-check-label custom-control-label" for="price_s_pro">s</label>--}}
+                    {{--</div>--}}
+
+                    {{--<div class="form-check form-check-inline">--}}
+                    {{--<input class="form-check-input custom-control-input" type="checkbox"--}}
+                    {{--id="price_e_pro" value="1" name="price_e_pro"--}}
+                    {{--{{isset($role_per_price)&&$role_per_price->role_id==$product_role_e->id?'checked':''}}>--}}
+                    {{--<label class="form-check-label custom-control-label" for="price_e_pro">e</label>--}}
+                    {{--</div>--}}
+
+                    {{--</div>--}}
+                </div>
+                <!--end row-->
+
+                <!--start row-->
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>{{trans('local.quantity')}}</label>
+                        <input type="number" name="quantity" value="{{isset($product)?$product->quantity:''}}"
+                               class="form-control" required>
+                        <div class="invalid-feedback">
+                            من فضلك أدخل إسم المنتج
+                        </div>
+                    </div>
+
+                    {{--<div class="form-group col-md-6">--}}
+                    {{--<div class="form-check form-check-inline">--}}
+                    {{--<input class="form-check-input custom-control-input" type="checkbox"--}}
+                    {{--id="quantity_v_pro" value="1" name="quantity_v_pro" onchange=""--}}
+                    {{--{{isset($role_per_quantity)&&$role_per_quantity->role_id==$product_role_v->id?'checked':''}}>--}}
+
+                    {{--<label class="form-check-label custom-control-label" for="quantity_v_pro">v</label>--}}
+                    {{--</div>--}}
+
+                    {{--<div class="form-check form-check-inline">--}}
+                    {{--<input class="form-check-input custom-control-input" type="checkbox"--}}
+                    {{--id="quantity_c_pro" value="1" name="quantity_c_pro"--}}
+                    {{--{{isset($role_per_quantity)&&$role_per_quantity->role_id==$product_role_c->id?'checked':''}}>--}}
+                    {{--<label class="form-check-label custom-control-label" for="quantity_c_pro">c</label>--}}
+                    {{--</div>--}}
+
+                    {{--<div class="form-check form-check-inline">--}}
+                    {{--<input class="form-check-input custom-control-input" type="checkbox"--}}
+                    {{--id="quantity_s_pro" value="1" name="quantity_s_pro"--}}
+                    {{--{{isset($role_per_quantity)&&$role_per_quantity->role_id==$product_role_s->id?'checked':''}}>--}}
+                    {{--<label class="form-check-label custom-control-label" for="quantity_s_pro">s</label>--}}
+                    {{--</div>--}}
+
+                    {{--<div class="form-check form-check-inline">--}}
+                    {{--<input class="form-check-input custom-control-input" type="checkbox"--}}
+                    {{--id="quantity_e_pro" value="1" name="quantity_e_pro"--}}
+                    {{--{{isset($role_per_quantity)&&$role_per_quantity->role_id==$product_role_e->id?'checked':''}}>--}}
+                    {{--<label class="form-check-label custom-control-label" for="quantity_e_pro">e</label>--}}
+                    {{--</div>--}}
+
+                    {{--</div>--}}
+                </div>
+                <!--end row-->
+
 
                 <!--start row-->
                 <div class="row">
@@ -645,21 +735,21 @@
 
                 <div class="row attribute_category" id="attribute_category">
                     <?php $i = 0?>
-                    @if($product_attributes)
-                        @foreach($product_attributes as $product_attribute)
+                    @if($attribures_product)
+                        @foreach($attribures_product as $attribure_pro)
                             <div class="form-group col-md-3">
-                                <label for="">{{$product_attribute->attribute->name}}</label>
+                                <label for="">{{$attribure_pro["name"]}}</label>
                                 <input type="text" class="form-control" name="values[]"
-                                       value="{{$product_attribute->attribute_value}}">
+                                       value="{{$attribure_pro["pivot"]["attribute_value"]}}">
                                 <input type="hidden" name="IDs[]" value="">
                                 <div class="invalid-feedback">
                                     من فضلك أدخل لون المنتج
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="">{{$product_attribute->attribute->en_name}}</label>
+                                <label for="">{{$attribure_pro["en_name"]}}</label>
                                 <input type="text" class="form-control" name="values_en[]"
-                                       value="{{$product_attribute->attribute_value_en}}">
+                                       value="{{$attribure_pro["pivot"]["attribute_value_en"]}}">
                                 <input type="hidden" name="IDs[]" value="{{$i++}}">
                                 <div class="invalid-feedback">
                                     من فضلك أدخل لون المنتج

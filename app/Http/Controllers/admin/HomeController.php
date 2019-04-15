@@ -47,4 +47,9 @@ class HomeController extends Controller
         $attributes = Attribute::where('category_id', $category_id)->where('group_id', '!=', null)->get();
         return response()->json([$subcategory_choose, $category, $attributes]);
     }
+
+    public function aboutEditContent()
+    {
+        return view('admin.edit_content');
+    }
 }

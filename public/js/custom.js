@@ -366,23 +366,33 @@ $(".third-owl").owlCarousel({
 $(document).ready(function () {
     var thisrowfield;
     $('.qtyplus').click(function (e) {
+
         e.preventDefault();
+        var qty = $('.qty').val();
+        var main_qty = $('.main_qty').val();
+
         thisrowfield = $(this).parent().parent().parent().find('.qty');
         var currentVal = parseInt(thisrowfield.val());
         if (!isNaN(currentVal)) {
             thisrowfield.val(currentVal + 1);
         } else {
             thisrowfield.val(1);
+
         }
     });
+
     $(".qtyminus").click(function (e) {
         e.preventDefault();
+        var qty = $('.qty').val();
+        var main_qty = $('.main_qty').val();
         thisrowfield = $(this).parent().parent().parent().find('.qty');
         var currentVal = parseInt(thisrowfield.val());
         if (!isNaN(currentVal) && currentVal > 1) {
             thisrowfield.val(currentVal - 1);
         } else {
             thisrowfield.val(1);
+
+
         }
     });
 });

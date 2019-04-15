@@ -2,7 +2,11 @@
 
 namespace App;
 
+use App\Models\Employees;
 use App\Models\Likes;
+use App\Models\MembersManagement;
+use App\Models\Orders;
+use App\Models\Products_order;
 use App\Models\products_permissions;
 use App\Models\SharedProduct;
 use App\Models\Suppliers;
@@ -108,5 +112,23 @@ class User extends Authenticatable
         return $this->hasMany(Likes::class, 'user_id');
     }
 
+    public function getProductOrders()
+    {
+        return $this->hasMany(Products_order::class, 'user_id');
+    }
 
+    public function getOrders()
+    {
+        return $this->hasMany(Orders::class, 'user_id');
+    }
+
+    public function getMembersManagement()
+    {
+        return $this->hasMany(MembersManagement::class, 'user_id', 'id');
+    }
+
+    public function getEmployees()
+    {
+        return $this->hasMany(Employees::class, 'user_id');
+    }
 }

@@ -46,6 +46,19 @@
                         </div>
                     </li>
 
+                    <li class="list-item-has-child">
+                        <a href="#"><i class="fa fa-files-o"></i>
+                            {{trans('local.employees')}}
+                        </a>
+                        <div class="slide-dash-menu">
+                            <a href="{{route('employees.index')}}">{{trans('local.employees')}}</a>
+                            <a href="{{route('efollow_work')}}">{{trans('local.efollow_work')}}</a>
+                            <a href="{{route('econtrol_supplier')}}">{{trans('local.econtrol_supplier')}}</a>
+                            <a href="{{route('eorderproduct')}}"> {{trans('local.eorderproduct')}}</a>
+
+                        </div>
+                    </li>
+
 
                     <li>
                         <a href="{{route('products.index')}}"><i class="fa fa-pagelines"></i>
@@ -62,7 +75,22 @@
                         </a>
                     </li>
 
-                    <li><a href="dash-news.html"><i class="fa fa-file-text-o"></i>الأخبار</a></li>
+                    <li><a href="{{route('news.index')}}"><i class="fa fa-file-text-o"></i>{{trans('local.news')}}</a>
+                    </li>
+
+                    <li class="list-item-has-child">
+                        <a href="#"><i class="fa fa-files-o"></i>
+                            من نحن
+                        </a>
+                        <div class="slide-dash-menu">
+                            <a href="{{route('about_editcontent.index')}}">{{trans('local.edit_content')}}</a>
+                            <a href="{{route('about_images.index')}}">{{trans('local.insert_photos')}}</a>
+                            <a href="{{route('prize.index')}}">{{trans('local.company_awards')}}</a>
+                            <a href="{{route('dash_team.index')}}"> {{trans('local.board_members')}}</a>
+
+                        </div>
+                    </li>
+
                     <li><a href="dash-services.html"><i class="fa fa-cog"></i>الخدمات</a></li>
 
                     <li>
@@ -77,18 +105,7 @@
                     </li>
 
                     <li><a href="dash-jobs.html"><i class="fa fa-briefcase"></i>سياسة العمل بالشركة</a></li>
-                    <li class="list-item-has-child">
-                        <a href="#"><i class="fa fa-files-o"></i>
-                            من نحن
-                        </a>
-                        <div class="slide-dash-menu">
-                            <a href="about-edit.html">تعديل المحتوي</a>
-                            <a href="about-images.html">إضافة صور</a>
-                            <a href="prize.html"> الجوائز الخاصة بالشركة</a>
-                            <a href="dash-team.html"> أعضاء مجلس الإدارة وكبار الموظفين</a>
 
-                        </div>
-                    </li>
                     <li><a href="edit-site.html"><i class="fa fa-edit"></i> تعديل محتوي الموقع</a></li>
 
                     <li><a href="{{route('logout')}}"><i class="fa fa-power-off"></i> {{trans('local.logout_n')}}</a>

@@ -53,6 +53,24 @@
                         </div>
 
 
+                        <div class="form-group col-12">
+                            <label>{{trans('local.icon_cat')}}</label>
+                            <input type="file" name="icon_cat" id="chooseFile"
+                                   value="{{isset($category)?$category->icon_cat:''}}" onchange="readURL(this);"
+                                   class="form-control" {{isset($category)?:'required'}}>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل ملف صحيح
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="form-group col-12">
+                            <img width="150" height="100px" class="thumb-preview" id="blah" style="margin: auto auto 10px;
+                    display: block;" align="center" src="{{isset($category)?asset('/uploads/'.$category->icon_cat):''}}"
+                                 alt=""/>
+
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-lg-3">{{trans('local.descr')}}</label>
                             @if(isset($category))

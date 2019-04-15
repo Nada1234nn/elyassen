@@ -55,4 +55,14 @@ class Products extends Model
     {
         return $this->hasMany(Likes::class, 'product_id');
     }
+
+    public function getProductOrders()
+    {
+        return $this->hasMany(Products_order::class, 'product_id');
+    }
+
+    public function getOrders()
+    {
+        return $this->hasMany(Orders::class, 'product_id');
+    }
 }

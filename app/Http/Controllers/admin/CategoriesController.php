@@ -85,6 +85,13 @@ class CategoriesController extends Controller
         $category->name = $request->name;
         $category->en_name = $request->en_name;
         $category->type = 1;
+        $file = $request->file('icon_cat');
+        if ($request->hasFile('icon_cat')) {
+            $fileName = 'icon_cat-' . time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = 'uploads';
+            $request->file('icon_cat')->move($destinationPath, $fileName);
+            $category->icon_cat = $fileName;
+        }
         $category->save();
 
 
@@ -170,6 +177,15 @@ class CategoriesController extends Controller
         $category->name = $request->name;
         $category->en_name = $request->en_name;
         $category->type = 1;
+        $file = $request->file('icon_cat');
+        if ($request->hasFile('icon_cat')) {
+            $old_file = 'uploads/' . $category->image;
+            if (is_file($old_file)) unlink($old_file);
+            $fileName = 'icon_cat-' . time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = 'uploads';
+            $request->file('icon_cat')->move($destinationPath, $fileName);
+            $category->icon_cat = $fileName;
+        }
         $category->save();
 
 

@@ -8,50 +8,25 @@
     <div class="container-fluid">
         <div class="row">
             <div id="owl-demo" class="owl-carousel owl-theme first-owl">
+            @if(count($sliders_news) > 0)
+                @foreach($sliders_news as $slider_news)
                 <!-- start owl-item -->
                 <div class="item">
                     <div class="slider-img full-width-img">
-                        <img src="images/slider/1.png" alt="img" class="converted-img" />
+                        <img src="{{asset('uploads/'.$slider_news->image)}}" alt="img" class="converted-img"/>
                     </div>
                     <div class="slider-caption">
                         <div class="container">
-                            <h3 class="dark-title border-title">الياسين الزراعية</h3>
-                            <p class="dark-prg">نحن شركة ذات دوافع تسويقية ، حيث نبذل جهود كبيرة لدراسة السوق الزراعية السعودية وتحديد مستويتها لتلبيه جميع طلبات عملائنا بما يرضيهم من مدخلات زراعيه مميزه الجودة والسعر</p>
-                            <a href="single.html" class="custom_btn green_btn">اقرا المزيد</a>
+                            <h3 class="dark-title border-title">{{session()->get('lang')=='en'?$slider_news->en_title:$slider_news->title}}</h3>
+                            <p class="dark-prg">{{session()->get('lang')=='en'?$slider_news->en_descr:$slider_news->descr}}</p>
+                            <a href="{{route('website.detail_news',$slider_news->title)}}"
+                               class="custom_btn green_btn">{{trans('local.read_more')}}</a>
                         </div>
                     </div>
                 </div>
                 <!-- end owl-item -->
-
-                <!-- start owl-item -->
-                <div class="item">
-                    <div class="slider-img full-width-img">
-                        <img src="images/slider/2.jpg" alt="img" class="converted-img" />
-                    </div>
-                    <div class="slider-caption">
-                        <div class="container">
-                            <h3 class="dark-title border-title">الياسين الزراعية</h3>
-                            <p class="dark-prg">نحن شركة ذات دوافع تسويقية ، حيث نبذل جهود كبيرة لدراسة السوق الزراعية السعودية وتحديد مستويتها لتلبيه جميع طلبات عملائنا بما يرضيهم من مدخلات زراعيه مميزه الجودة والسعر</p>
-                            <a href="single.html" class="custom_btn green_btn">اقرا المزيد</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- end owl-item -->
-
-                <!-- start owl-item -->
-                <div class="item">
-                    <div class="slider-img full-width-img">
-                        <img src="images/slider/3.jpg" alt="img" class="converted-img" />
-                    </div>
-                    <div class="slider-caption">
-                        <div class="container">
-                            <h3 class="dark-title border-title">الياسين الزراعية</h3>
-                            <p class="dark-prg">نحن شركة ذات دوافع تسويقية ، حيث نبذل جهود كبيرة لدراسة السوق الزراعية السعودية وتحديد مستويتها لتلبيه جميع طلبات عملائنا بما يرضيهم من مدخلات زراعيه مميزه الجودة والسعر</p>
-                            <a href="single.html" class="custom_btn green_btn">اقرا المزيد</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- end owl-item -->
+                    @endforeach
+                @endif
             </div>
         </div>
 
@@ -69,28 +44,16 @@
             <!--start side-tabs-->
             <div class="col-lg-3 col-md-5 side-tabs-grid res-marg">
                 <div class="side-tabs wow fadeIn">
-                    <h2 class="tab-title dark-title"><i class="fa fa-pagelines"></i> منتجاتنا </h2>
+                    <h2 class="tab-title dark-title"><i class="fa fa-pagelines"></i> {{trans('local.our_pro')}} </h2>
                     <ul class="list-unstyled">
+                        @foreach($categories as $category)
                         <li>
-                            <a href="products.html"><img src="images/icons/1.png" alt="icon" /> الأسمدة</a>
+                            <a href="{{route('website.search_pro',$category->name)}}"><img
+                                        src="{{asset('uploads/'.$category->icon_cat)}}" alt="icon"/>
+                                {{session()->get('lang')=='en'?$category->en_name:$category->name}}</a>
                         </li>
 
-                        <li>
-                            <a href="products.html"><img src="images/icons/2.png" alt="icon" /> البذور</a>
-                        </li>
-
-                        <li>
-                            <a href="products.html"><img src="images/icons/3.png" alt="icon" /> المكافحة المتكاملة</a>
-                        </li>
-
-                        <li>
-                            <a href="products.html"><img src="images/icons/4.png" alt="icon" /> أدوات زراعية</a>
-                        </li>
-
-                        <li>
-                            <a href="products.html"><img src="images/icons/5.png" alt="icon" /> الصحة العامة</a>
-                        </li>
-
+                        @endforeach
                     </ul>
 
                 </div>
@@ -102,280 +65,46 @@
             <!--start news-->
             <div class="col-lg-9 col-md-7 news">
                 <div class="new-content">
-                    <h2 class="sec-title green_title"><i class="fa fa-users"></i> أخرالأخبار</h2>
+                    <h2 class="sec-title green_title"><i class="fa fa-users"></i> {{trans('local.lastest_news')}}</h2>
                     <div class="scrollbar news-scroll">
+                    @foreach($lastest_news as $last_news)
                         <!--start news-div-->
                         <div class="news-div">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
+                                    <h3 class="news-title dark-title">{{session()->get('lang')=='en'?$last_news->en_title:$last_news->title}}</h3>
+                                    <span class="news-date"><i
+                                                class="fa fa-calendar"></i>{{$last_news->created_at->formatLocalized('%d %B %Y')}}
+
+                                    </span>
+
+                                    <p class="dark-prg"> {{session()->get('lang')=='en'?$last_news->en_descr:$last_news->descr}}</p>
+                                    <a href="{{route('website.detail_news',$last_news->title)}}"
+                                       class="more_btn">{{trans('local.read_more')}}<i class="fa fa-plus"></i></a>
                                 </div>
+
                                 <div class="col-md-5">
+
                                     <div class="news-img-grid">
-                                        <a href="images/products/1.png" class="html5lightbox" data-group="set-1">
+                                        <a href="{{asset('uploads/'.$last_news->image)}}" class="html5lightbox"
+                                           data-group="set-1">
                                             <div class="news-img full-width-img">
-                                                <img src="images/products/1.png" alt="img" class="converted-img" />
+                                                <img src="{{asset('uploads/'.$last_news->image)}}" alt="img"
+                                                     class="converted-img"/>
                                             </div>
                                         </a>
                                     </div>
+
                                 </div>
 
                             </div>
                         </div>
                         <!--end news-div-->
+                        @endforeach
 
 
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="https://www.youtube.com/watch?v=IkVM9eLEuXM" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img news-vedio full-width-img">
-                                                <img src="images/products/2.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="images/products/3.png" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img full-width-img">
-                                                <img src="images/products/3.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="images/products/1.png" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img full-width-img">
-                                                <img src="images/products/1.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="images/products/2.png" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img full-width-img">
-                                                <img src="images/products/2.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="images/products/3.png" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img full-width-img">
-                                                <img src="images/products/3.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="images/products/1.png" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img full-width-img">
-                                                <img src="images/products/1.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="https://www.youtube.com/watch?v=IkVM9eLEuXM" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img news-vedio full-width-img">
-                                                <img src="images/products/2.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="images/products/3.png" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img full-width-img">
-                                                <img src="images/products/3.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="images/products/1.png" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img full-width-img">
-                                                <img src="images/products/1.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-
-                        <!--start news-div-->
-                        <div class="news-div">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <h3 class="news-title dark-title">هنا يكتب عنوان الخبر </h3>
-                                    <span class="news-date"><i class="fa fa-calendar"></i> 23 اكتوبر 2018</span>
-                                    <p class="dark-prg">هذا النص هو مثال لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد لنص يمكن أن في نفس يستبدل في نفس المساحة، لقد </p>
-                                    <a href="news-details.html" class="more_btn">اقرأ المزيد<i class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="news-img-grid">
-                                        <a href="images/products/2.png" class="html5lightbox" data-group="set-1">
-                                            <div class="news-img full-width-img">
-                                                <img src="images/products/2.png" alt="img" class="converted-img" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end news-div-->
-
-
-                        <div class="text-center"><a href="news.html" class="custom_btn green_btn"> المزيد من الأخبار</a></div>
+                        <div class="text-center"><a href="{{route('website.news')}}"
+                                                    class="custom_btn green_btn">{{trans('local.more_news')}}</a></div>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ class PermissionsController extends Controller
     //
     public function index()
     {
-        $users = User::all();
+        $users = User::all()->where('id', '!=', 2);
         return view('admin.permissions', compact('users'));
     }
 

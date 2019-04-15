@@ -35,8 +35,8 @@
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                                      data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <form class="needs-validation search_supplier" action="/search_supplier"
-                                              method="post" novalidate>
+                                        <form class="needs-validation search_supplier" action="#"
+                                              method="post" onsubmit="return false;" novalidate>
                                             <input type="hidden" name="_token" value="{{ csrf_token()}}">
                                             <div class="form-group filter-search">
                                                 <input type="text" name="supplier_id" class="form-control"
@@ -232,7 +232,8 @@
                 <!--start products-pg-->
                 <div class="col-xl-9 col-lg-8 col-md-7 products-pg text-center">
                     <div class="news-search col-lg-8">
-                        <form class="needs-validation search-form3 form-inline" onsubmit="return false;" novalidate>
+                        <form class="needs-validation search-form3 form-inline search_product" onsubmit="return false;"
+                              novalidate>
                             <div class="form-group">
                                 <label> {{trans('local.search')}} :</label>
                                 <input type="text" class="form-control"
@@ -246,7 +247,8 @@
                         </form>
                     </div>
                     <div class="products-pg-div row" id="itemContainer">
-                    {{--@if($products)--}}
+                    @if(isset($products))
+                        @if(count($products)>0)
                     @foreach($products as $product)
                         <!--start pro-div-->
                             <div class="col-lg-4 col-sm-6 col-6 wow fadeIn">
@@ -280,9 +282,45 @@
                                 @endif                        </div>
                             <!--end pro-div-->
 @endforeach
-                        {{--@else--}}
-                        {{--<h1>{{trans('local.no_resultsearch')}}</h1>--}}
-                        {{--@endif--}}
+                        @endif
+                    @elseif(count($search_products)>0)
+                        @foreach($search_products as $product)
+                            <!--start pro-div-->
+                                <div class="col-lg-4 col-sm-6 col-6 wow fadeIn">
+                                    @if(session()->get('lang')=='en')
+                                        <a href="{{route('website.detail_product',$product->en_name)}}">
+                                            @else
+                                                <a href="{{route('website.detail_product',$product->name)}}">
+                                                    @endif
+                                                    <div class="pro-div">
+                                                        <div class="pro-img">
+                                                            <img src="{{asset('uploads/'.$product->image)}}"
+                                                                 alt="product">
+                                                            <span class="more-pro"> {{trans('local.descr_prod')}}</span>
+                                                        </div>
+                                                        @if(session()->get('lang')=='en')
+                                                            <h3 class="pro-title">{{$product->en_name}} </h3>
+                                                        @else
+                                                            <h3 class="pro-title">{{$product->name}} </h3>
+                                                        @endif
+
+                                                        <a href="{{route('website.detail_supplier',$product->getSupplier->getUser->username)}}"
+                                                           class="pro-price">{{trans('local.name_supplier')}}
+                                                            :{{$product->getSupplier->getUser->username}} </a>
+                                                        <span class="pro-price pro-made">{{trans('local.nationality')}}
+                                                            :{{$product->getSupplier->national}}</span>
+
+                                                    </div>
+                                                    @if(session()->get('lang')=='en')
+
+                                                </a>
+                                                @else</a>
+                                    @endif                        </div>
+                                <!--end pro-div-->
+                            @endforeach
+                        @else
+                            <h1>{{trans('local.no_resultsearch')}}</h1>
+                        @endif
 
 
                     </div>

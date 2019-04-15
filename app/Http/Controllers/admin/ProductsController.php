@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Images;
 use App\Models\Product_attribute;
@@ -64,10 +63,13 @@ class ProductsController extends Controller
             'free_sugar' => 'required',
             'free_lactose' => 'required',
             'under_expire' => 'required',
+            'price' => 'required',
         ]);
         $product = new Products();
         $product->name = $request->name;
         $product->en_name = $request->en_name;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
         $product->supplier_id = $request->supplier_id;
         $product->category_id = $request->category_id;
         $product->subcategory_id = $request->subcategory_id;
@@ -151,6 +153,13 @@ class ProductsController extends Controller
 // Allow a user to...
         $name_pro->description = 'create pro_name'; // optional
         $name_pro->save();
+
+        $price_pro = new Permission();
+        $price_pro->name = 'pro_price_' . $product->id;
+        $price_pro->display_name = 'Create pro_price'; // optional
+// Allow a user to...
+        $price_pro->description = 'create pro_price'; // optional
+        $price_pro->save();
 
         $supplier_pro = new Permission();
         $supplier_pro->name = 'supplier_pro_' . $product->id;
@@ -262,6 +271,11 @@ class ProductsController extends Controller
             $role_v_n->attachPermission($name_pro);
 
         }
+        if ($request->price_v_pro == 1) {
+            $role_v_n = Role::where('name', 'visitor')->first();
+            $role_v_n->attachPermission($price_pro);
+
+        }
         if ($request->supplier_v_pro == 1) {
             $role_v_s = Role::where('name', 'visitor')->first();
             $role_v_s->attachPermission($supplier_pro);
@@ -338,6 +352,10 @@ class ProductsController extends Controller
             $role_c_name = Role::where('name', 'customer')->first();
             $role_c_name->attachPermission($name_pro);
         }
+        if ($request->price_c_pro == 1) {
+            $role_c_name = Role::where('name', 'customer')->first();
+            $role_c_name->attachPermission($price_pro);
+        }
         if ($request->supplier_c_pro == 1) {
             $role_c_supplier = Role::where('name', 'customer')->first();
             $role_c_supplier->attachPermission($supplier_pro);
@@ -404,6 +422,10 @@ class ProductsController extends Controller
             $role_s_name = Role::where('name', 'suppliers')->first();
             $role_s_name->attachPermission($name_pro);
         }
+        if ($request->price_s_pro == 1) {
+            $role_s_name = Role::where('name', 'suppliers')->first();
+            $role_s_name->attachPermission($price_pro);
+        }
         if ($request->supplier_s_pro == 1) {
             $role_s_supplier = Role::where('name', 'suppliers')->first();
             $role_s_supplier->attachPermission($supplier_pro);
@@ -469,6 +491,10 @@ class ProductsController extends Controller
         if ($request->name_e_pro == 1) {
             $role_e_name = Role::where('name', 'employee')->first();
             $role_e_name->attachPermission($name_pro);
+        }
+        if ($request->price_e_pro == 1) {
+            $role_e_name = Role::where('name', 'employee')->first();
+            $role_e_name->attachPermission($price_pro);
         }
         if ($request->supplier_e_pro == 1) {
             $role_e_supplier = Role::where('name', 'employee')->first();
@@ -573,6 +599,7 @@ class ProductsController extends Controller
         $freelactose_prod = Permission::where('name', 'freelactose_pro_' . $product->id)->first();
         $underexpire_prod = Permission::where('name', 'underexpire_pro_' . $product->id)->first();
         $attributecat_prod = Permission::where('name', 'attribute_category_pro_' . $product->id)->first();
+        $price_prod = Permission::where('name', 'pro_price_' . $product->id)->first();
 
 
         $product_role_v = Role::where('name', 'visitor')->first();
@@ -581,6 +608,7 @@ class ProductsController extends Controller
         $product_role_e = Role::where('name', 'employee')->first();
 
         $role_per_name = Permission_role::where('permission_id', $name_prod->id)->first();
+        $role_per_price = Permission_role::where('permission_id', $price_prod->id)->first();
         $role_per_v_supplier = Permission_role::where('permission_id', $supplier_prod->id)->first();
         $role_attach = Permission_role::where('permission_id', $attach_prod->id)->first();
         $role_per_cat = Permission_role::where('permission_id', $cat_prod->id)->first();
@@ -597,21 +625,22 @@ class ProductsController extends Controller
         $role_underexpire = Permission_role::where('permission_id', $underexpire_prod->id)->first();
         $role_attributecat = Permission_role::where('permission_id', $attributecat_prod->id)->first();
 
-        $attributes = Attribute::where('category_id', $product->category_id)->get();
-        foreach ($attributes as $attribute) {
-            $product_attributes = Product_attribute::where('product_id', $product->id)->with(['attribute' => function ($q) use ($attribute) {
-                $q->where('id', $attribute->id);
-                $q->where('group_id', 'null');
-            }, 'attribute'])->get();
-        }
+//        $attributes = Attribute::where('category_id', $product->category_id)->get();
+//        foreach ($attributes as $attribute) {
+//            $product_attributes = Product_attribute::where('product_id', $product->id)->with(['attribute' => function ($q) use ($attribute) {
+//                $q->where('id', $attribute->id);
+//                $q->where('group_id', 'null');
+//            }, 'attribute'])->get();
+//        }
 
+        $attribures_product = $product->attributes()->get()->toArray();
         $images_product = Images::where('product_id', $product->id)->get();
 
         $publications_product = Products_publication::where('product_id', $product->id)->get();
 
-        return view('admin.products.product', compact('product', 'suppliers', 'categories',
+        return view('admin.products.product', compact('product', 'attribures_product', 'suppliers', 'categories',
             'role_per_v_supplier', 'role_per_cat', 'role_weight', 'role_organic', 'role_freesugar', 'role_freelactose', 'role_underexpire',
-            'role_attributecat', 'role_subphotos', 'role_attach', 'publications_product', 'role_color', 'role_mainphoto', 'images_product', 'role_fill', 'role_per_v_descr', 'role_sort', 'product_attributes', 'product_role_s', 'subcategories', 'product_role_c', 'product_role_e', 'role_per_name', 'product_role_v'));
+            'role_attributecat', 'role_subphotos', 'role_attach', 'role_per_price', 'publications_product', 'role_color', 'role_mainphoto', 'images_product', 'role_fill', 'role_per_v_descr', 'role_sort', 'product_attributes', 'product_role_s', 'subcategories', 'product_role_c', 'product_role_e', 'role_per_name', 'product_role_v'));
     }
 
     /**
@@ -628,6 +657,8 @@ class ProductsController extends Controller
         $product = Products::find($id);
         $product->name = $request->name;
         $product->en_name = $request->en_name;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
         $product->supplier_id = $request->supplier_id;
         $product->category_id = $request->category_id;
         $product->subcategory_id = $request->subcategory_id;
@@ -663,7 +694,9 @@ class ProductsController extends Controller
             $result = array_filter($attributesIDs, function ($v) {
                 return trim($v);
             });
-            for ($i = 1; $i <= count($result) + 2; $i += 2) {
+//            dd($result);
+
+            for ($i = 3; $i <= count($result) + 2; $i += 2) {
                 $updatedData[$result[$i]] = ['attribute_value' => $attributesValues[0], 'attribute_value_en' => $attributesValues_en[1]];
 
             }
@@ -721,6 +754,7 @@ class ProductsController extends Controller
 
 
         $name_product = Permission::where('name', 'pro_name_' . $product->id)->first();
+        $price_product = Permission::where('name', 'pro_price_' . $product->id)->first();
         $supplier_product = Permission::where('name', 'supplier_pro_' . $product->id)->first();
         $attach_product = Permission::where('name', 'attach_pro_' . $product->id)->first();
         $cat_product = Permission::where('name', 'cat_pro_' . $product->id)->first();
@@ -737,22 +771,7 @@ class ProductsController extends Controller
         $underexpire_product = Permission::where('name', 'underexpire_pro_' . $product->id)->first();
         $attributecat_product = Permission::where('name', 'attribute_category_pro_' . $product->id)->first();
 
-//        $role_per_name=Permission_role::where('permission_id',$name_product->id)->first();
-//        $role_per_v_supplier=Permission_role::where('permission_id',$supplier_product->id)->first();
-//        $role_attach=Permission_role::where('permission_id',$attach_product->id)->first();
-//        $role_per_cat=Permission_role::where('permission_id',$cat_product->id)->first();
-//        $role_subphotos=Permission_role::where('permission_id',$subphotos_product->id)->first();
-//        $role_mainphoto=Permission_role::where('permission_id','=',$mainphoto_product->id)->first();
-//        $role_per_v_descr=Permission_role::where('permission_id',$descr_product->id)->first();
-//        $role_sort=Permission_role::where('permission_id',$sort_product->id)->first();
-//        $role_weight=Permission_role::where('permission_id',$weight_product->id)->first();
-//        $role_fill=Permission_role::where('permission_id',$fill_product->id)->first();
-//        $role_color=Permission_role::where('permission_id',$color_product->id)->first();
-//        $role_organic=Permission_role::where('permission_id',$organic_product->id)->first();
-//        $role_freesugar=Permission_role::where('permission_id',$freesugar_product->id)->first();
-//        $role_freelactose=Permission_role::where('permission_id',$freelactose_product->id)->first();
-//        $role_underexpire=Permission_role::where('permission_id',$underexpire_product->id)->first();
-//        $role_attributecat=Permission_role::where('permission_id',$attributecat_product->id)->first();
+
 
         if ($request->name_v_pro == 1) {
             $role_v_n = Role::where('name', 'visitor')->first();
@@ -760,6 +779,14 @@ class ProductsController extends Controller
             $role_v_n->perms()->detach($name_product);
 //            }
             $role_v_n->attachPermission($name_product);
+
+        }
+        if ($request->price_v_pro == 1) {
+            $role_v_n = Role::where('name', 'visitor')->first();
+//            if ($role_per_name->role_id==$role_v_n->id){
+            $role_v_n->perms()->detach($price_product);
+//            }
+            $role_v_n->attachPermission($price_product);
 
         }
         if ($request->supplier_v_pro == 1) {
@@ -885,6 +912,13 @@ class ProductsController extends Controller
 //            }
             $role_c_name->attachPermission($name_product);
         }
+        if ($request->price_c_pro == 1) {
+            $role_c_name = Role::where('name', 'customer')->first();
+//            if ($role_per_name->role_id==$role_c_name->id){
+            $role_c_name->perms()->detach($price_product);
+//            }
+            $role_c_name->attachPermission($price_product);
+        }
         if ($request->supplier_c_pro == 1) {
             $role_c_supplier = Role::where('name', 'customer')->first();
 //            if ($role_per_v_supplier->role_id==$role_c_supplier->id){
@@ -1001,6 +1035,13 @@ class ProductsController extends Controller
 //            }
             $role_s_name->attachPermission($name_product);
         }
+        if ($request->price_s_pro == 1) {
+            $role_s_name = Role::where('name', 'suppliers')->first();
+//            if ($role_per_name->role_id==$role_s_name->id){
+            $role_s_name->perms()->detach($price_product);
+//            }
+            $role_s_name->attachPermission($price_product);
+        }
         if ($request->supplier_s_pro == 1) {
             $role_s_supplier = Role::where('name', 'suppliers')->first();
 //            if ($role_per_v_supplier->role_id==$role_s_supplier->id){
@@ -1114,6 +1155,13 @@ class ProductsController extends Controller
             $role_e_name->perms()->detach($name_product);
 //            }
             $role_e_name->attachPermission($name_product);
+        }
+        if ($request->price_e_pro == 1) {
+            $role_e_name = Role::where('name', 'employee')->first();
+//            if ($role_per_name->role_id==$role_e_name->id){
+            $role_e_name->perms()->detach($price_product);
+//            }
+            $role_e_name->attachPermission($price_product);
         }
         if ($request->supplier_e_pro == 1) {
             $role_e_supplier = Role::where('name', 'employee')->first();
@@ -1275,6 +1323,22 @@ class ProductsController extends Controller
             $product_role_e->perms()->detach($name_pro_d);
         }
         $name_pro_d->delete();
+
+        $price_pro_d = Permission::where('name', 'pro_price_' . $id)->first();
+        $role_pro_price = Permission_role::where('permission_id', $price_pro_d->id)->first();
+        if ($role_pro_price->role_id == $product_role_v->id) {
+            $product_role_v->perms()->detach($price_pro_d);
+        }
+        if ($role_pro_price->role_id == $product_role_c->id) {
+            $product_role_c->perms()->detach($price_pro_d);
+        }
+        if ($role_pro_price->role_id == $product_role_s->id) {
+            $product_role_s->perms()->detach($price_pro_d);
+        }
+        if ($role_pro_price->role_id == $product_role_e->id) {
+            $product_role_e->perms()->detach($price_pro_d);
+        }
+        $price_pro_d->delete();
 
         $supplier_pro_d = Permission::where('name', 'supplier_pro_' . $id)->first();
         $role_pro_supplier = Permission_role::where('permission_id', $supplier_pro_d->id)->first();

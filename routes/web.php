@@ -41,11 +41,25 @@ Route::group(['middleware' => 'lang'], function () {
             "as" => "loginAdmin"
         ]);
         Route::post('/search_supplier', 'HomeController@search_supplier');
+        Route::post('/search_prosupplier', 'HomeController@search_prosupplier');
         Route::post('/search_category', 'HomeController@search_category');
+        Route::post('/searchpro_categories', 'HomeController@searchpro_categories');
         Route::post('/search_subcategory', 'HomeController@search_subcategory');
+        Route::post('/search_prosubcategories', 'HomeController@search_prosubcategories');
         Route::post('/search_product', 'HomeController@search_product');
         Route::post('/share_product', 'HomeController@share_product');
         Route::post('/like_product', 'HomeController@like_product');
+        Route::post('/remove_order', 'HomeController@remove_order');
+        Route::post('/save_order', 'HomeController@save_order')->name('save_order');
+        Route::post('/order_pro', 'HomeController@order_pro');
+//tasira
+        Route::post('/update_orders', 'HomeController@update_orders')->name('update_orders');
+        Route::get('/detail_news/{title}', 'HomeController@detail_news')->name('website.detail_news');
+        Route::get('/nnews', 'HomeController@news')->name('website.news');
+        Route::get('/search_pro/{name}', 'HomeController@search_pro')->name('website.search_pro');
+        Route::post('/search_news', 'HomeController@search_news');
+        Route::post('/search_title', 'HomeController@search_title');
+        Route::get('/supplier', 'HomeController@suppliers')->name('website.suppliers');
 
         Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social', 'twitter|facebook|google');
         Route::get('/login/{social/callback}', 'Auth\LoginController@handleprovidercallback')->where('social', 'twitter|facebook|google');
@@ -56,6 +70,16 @@ Route::group(['middleware' => 'lang'], function () {
         Route::get('/view_attach/{attachment_pro}', [
             "uses" => "HomeController@download",
             "as" => "website.viewAttach"
+        ]);
+
+        Route::get('/order_product', [
+            "uses" => "HomeController@order_product",
+            "as" => "website.order_product"
+        ]);
+
+        Route::get('/shopping_cart/{name}', [
+            "uses" => "HomeController@shopping_cart",
+            "as" => "website.shopping_cart"
         ]);
 
         Route::get('/product', [
@@ -114,6 +138,18 @@ Route::group(['middleware' => 'lang'], function () {
         Route::resource('/suppliers', 'admin\SuppliersController');
         Route::resource('/systems', 'admin\SystemsController');
         Route::resource('/users', 'admin\UsersController');
+        Route::resource('/news', 'admin\NewsController');
+        Route::resource('/about_editcontent', 'admin\AboutEditContentController');
+        Route::resource('/about_images', 'admin\AboutImagesController');
+        Route::resource('/prize', 'admin\PrizeController');
+        Route::resource('/dash_team', 'admin\DashTeamController');
+        Route::resource('/employees', 'admin\EmployeesController');
+        Route::get('/employeeFollowWork', 'admin\EmployeesController@efollow_work')->name('efollow_work');
+        Route::get('/employeeControlSupplier', 'admin\EmployeesController@econtrol_supplier')->name('econtrol_supplier');
+        Route::get('/employeeOrderProduct', 'admin\EmployeesController@eorderproduct')->name('eorderproduct');
+        Route::get('/followWork/{id}', 'admin\EmployeesController@follow_work')->name('follow_work');
+        Route::get('/controlSupplier/{id}', 'admin\EmployeesController@control_supplier')->name('control_supplier');
+        Route::get('/receiveOrdersPro/{id}', 'admin\EmployeesController@receive_ordersPro')->name('receive_ordersPro');
 
     });
     Route::group(['middleware' => 'permission', 'permission' => ['visitor']], function () {

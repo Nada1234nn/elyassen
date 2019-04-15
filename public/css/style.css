@@ -3213,6 +3213,19 @@ display: none;
     max-height: 25px;
 }
 
+.no-mar-btn {
+    margin: auto;
+    vertical-align: middle;
+    min-width: inherit;
+    font-size: 12px;
+    padding: 5px 10px 1px;
+    height: 29px;
+
+}
+
+table.table-bordered.dataTable tbody td .no-mar-btn, table.table-bordered.dataTable tbody td .no-mar-btn:hover {
+    color: #fff;
+}
 /*end dashboard*/
 
 /*start main-cat*/
