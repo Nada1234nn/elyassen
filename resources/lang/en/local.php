@@ -222,6 +222,8 @@ return [
     'receive_ordersPro' => 'receive product orders',
     'efollowing_work' => 'employee following work',
     'econtrol_suppliers' => 'employee control suppliers',
-    'receive_ordersProduct' => 'employee receive orders product'
+    'receive_ordersProduct' => 'employee receive orders product',
+    'about' => 'about',
+    'prize_certificatescompany' => 'Awards and certificates for company'
     ]
 ?>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Images;
+use App\Models\Employees;
 use App\Models\MembersManagement;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,65 +14,66 @@ class DashTeamController extends Controller
 
     public function index()
     {
-        $senior_members = MembersManagement::all();
+        $senior_members = MembersManagement::with(['getEmployee', 'getEmployee.getUser'])->get();
+//        dd($senior_members);
         return view('admin.members_management.index', compact('senior_members'));
     }
 
     public function create()
     {
-        $users = User::all()->where('role', 'e');
+        $users = Employees::all();
         return view('admin.members_management.member_management', compact('users'));
     }
 
     public function store(Request $request)
     {
 
-        $photo = new Images();
-        $photo->title = $request->title;
-        $photo->en_title = $request->en_title;
-        $photo->staticPage_id = 1;
-        $file = $request->file('image');
-        if ($request->hasFile('image')) {
-            $fileName = 'image-' . time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = 'uploads';
-            $request->file('image')->move($destinationPath, $fileName);
-            $photo->image = $fileName;
-        }
-        $photo->save();
-        return redirect('/about_images')->with('success', 'تم  انشاء الصوره بنجاح .');
+        $this->validate($request, [
+            'title' => 'required',
+            'en_title' => 'required|max:100|min:3',
+            'descr' => 'required',
+            'en_descr' => 'required',
+
+
+        ]);
+
+        $member_management = new MembersManagement();
+        $member_management->employee_id = $request->membermanagement_id;
+        $member_management->title = $request->title;
+        $member_management->en_title = $request->en_title;
+        $member_management->descr = $request->descr;
+        $member_management->en_descr = $request->en_descr;
+        $member_management->save();
+        return redirect('/dash_team')->with('success', 'تم  انشاء العضو بنجاح .');
 
     }
 
-    public function edit($id)
+    public function edit($name)
     {
-        $about_image = Images::where('staticPage_id', 1)->where('id', $id)->first();
-        return view('admin.about_images.about_images', compact('about_image'));
+        $user = User::where('username', $name)->first();
+        $employee = Employees::where('user_id', $user->id)->first();
+        $member = MembersManagement::where('employee_id', $employee->id)->with(['getEmployee', 'getEmployee.getUser'])->first();
+        $users = Employees::all();
+
+        return view('admin.members_management.member_management', compact('users', 'member'));
     }
 
     public function update(Request $request, $id)
     {
-        $photo = Images::where('staticPage_id', 1)->where('id', $id)->first();
-        $photo->title = $request->title;
-        $photo->en_title = $request->en_title;
-        $photo->staticPage_id = 1;
-        $file = $request->file('image');
-        if ($request->hasFile('image')) {
-            $old_file = 'uploads/' . $photo->image;
-            if (is_file($old_file)) unlink($old_file);
-            $fileName = 'image-' . time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = 'uploads';
-            $request->file('image')->move($destinationPath, $fileName);
-            $photo->image = $fileName;
-        }
-        $photo->save();
-        return redirect('/about_images')->with('success', 'تم  تعديل الصوره بنجاح .');
-
+        $member_management = MembersManagement::find($id);
+        $member_management->employee_id = $request->membermanagement_id;
+        $member_management->title = $request->title;
+        $member_management->en_title = $request->en_title;
+        $member_management->descr = $request->descr;
+        $member_management->en_descr = $request->en_descr;
+        $member_management->save();
+        return redirect('/dash_team')->with('success', 'تم  تعديل العضو بنجاح .');
     }
 
     public function destroy($id)
     {
-        $photo = Images::find($id);
-        $photo->delete();
+        $member = MembersManagement::find($id);
+        $member->delete();
         return response()->json(['success' => 'true']);
     }
 }

@@ -39,6 +39,7 @@
                         @endif
 
 
+
                         <div class="form-group col-12">
                             <label>{{trans('local.add_photo')}}</label>
                             <input type="file" name="image" id="chooseFile"

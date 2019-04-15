@@ -25,7 +25,6 @@
                     <tr>
                         <th>#{{trans('local.ID')}}</th>
                         <th>{{trans('local.name_member')}}</th>
-                        <th> {{trans('local.about_image')}}</th>
                         <th>{{trans('local.date_created')}} </th>
                         <th> {{trans('local.action_taken')}}</th>
 
@@ -36,16 +35,13 @@
                     @foreach($senior_members as $senior_member)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td>{{$senior_member->getUser->username}}</td>
-                            <td><img src="{{asset('/uploads/'.$senior_member->image)}}" class="t-pro-img" alt="img">
-                            </td>
+                            <td>{{$senior_member->getEmployee->getUser->username}}</td>
                             <td>{{$senior_member->created_at->format("d/m/Y")}}</td>
                             <td>
-                                <a href="{{route('dash_team.edit',$senior_member->getUser->username)}}"
+                                <a href="{{route('dash_team.edit',$senior_member->getEmployee->getUser->username)}}"
                                    class="edit-btn-table"><i class="fa fa-pencil"></i></a>
 
 
-                                {{--<button class="edit-btn-table remove-btn sweet-2" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-2']);"><i class="fa fa-times"></i> </button>--}}
                                 <a title="حذف العضو" onclick="return false;" object_id="{{ $senior_member->id }}"
                                    delete_url="/dash_team/" class="edit-btn-table remove-btn sweet_warning" href="#">
                                     <i class="fa fa-times"></i></a>

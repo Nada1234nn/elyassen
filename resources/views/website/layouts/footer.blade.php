@@ -19,6 +19,8 @@
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDaFbSOerPJ0NF5IArDBvQ_dX3ODWnln5c&language=ar"></script>
 <script src="{{ asset("js/search_address.js") }}"></script>
+<script src="{{asset('js/intlTelInput.min.js')}}" type="text/javascript"></script>
+
 <script type="text/javascript">
     $('.search_supplier').on('submit', function (e) {
         e.preventDefault();
@@ -1325,3 +1327,4 @@
     });
 
 </script>
+@yield('script')

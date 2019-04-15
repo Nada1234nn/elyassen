@@ -96,6 +96,7 @@
                             </div>
 
 
+
                             <div class="form-group col-12">
                                 <input type="email" class="form-control" aria-describedby="emailHelp" name="email"
                                        id="email" placeholder="{{trans('local.email')}} " required>
@@ -105,6 +106,7 @@
                                     من فضلك أدخل بريد الكتروني صحيح
                                 </div>
                             </div>
+
 
 
                             <div class="form-group col-12">

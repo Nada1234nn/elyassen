@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Models\Employees;
 use App\Models\Likes;
 use App\Models\MembersManagement;
 use App\Models\Orders;
@@ -127,8 +126,5 @@ class User extends Authenticatable
         return $this->hasMany(MembersManagement::class, 'user_id', 'id');
     }
 
-    public function getEmployees()
-    {
-        return $this->hasMany(Employees::class, 'user_id');
-    }
+
 }

@@ -428,7 +428,7 @@ To change this license header, choose License Headers in Project Properties.  To
                         <div class="nav-content">
                             <ul class="list-inline main-menu wow fadeIn">
                                 <li><a href="{{route('website.news')}}">{{trans('local.news')}}</a></li>
-                                <li><a href="services.html">الخدمات</a></li>
+                                <li><a href="{{route('services')}}">الخدمات</a></li>
 
                                 <li>
                                     <a href="gallery.html">
@@ -480,7 +480,7 @@ To change this license header, choose License Headers in Project Properties.  To
 
                                 <li><a href="{{route('website.suppliers')}}">{{trans('local.suppliers')}}</a></li>
                                 <li><a href="jobs.html">التوظيف</a></li>
-                                <li><a href="about.html">من نحن</a></li>
+                                <li><a href="{{route('website.about')}}">{{trans('local.about')}}</a></li>
 
                                 <li><a href="{{route('website.contact')}}">{{trans('local.contact_us')}}</a></li>
 

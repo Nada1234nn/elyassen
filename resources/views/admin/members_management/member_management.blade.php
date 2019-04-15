@@ -45,7 +45,7 @@
                                 <option>{{trans('local.chooseName_employee')}}</option>
 
                                 @foreach($users as $user)
-                                    <option value="{{$user->id}}"{{isset($member)&&$member->getUser->username == $user->username?'selected':''}}>{{$user->username}}</option>
+                                    <option value="{{$user->id}}"{{isset($member)&&$member->getEmployee->getUser->username == $user->getUser->username?'selected':''}}>{{$user->getUser->username}}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
@@ -74,7 +74,7 @@
 
 
                         <div class="form-group col-12">
-                            <label>{{trans('local.descr')}} </label>
+                            <label>{{trans('local.description')}} </label>
                             <textarea type="text" class="form-control" name="descr" required>
                                 {{isset($member)?$member->descr:''}}
                             </textarea>
@@ -84,7 +84,7 @@
                         </div>
 
                         <div class="form-group col-12">
-                            <label>{{trans('local.en_descr')}} </label>
+                            <label>{{trans('local.description_en')}} </label>
                             <textarea type="text" class="form-control" name="en_descr" required>
                                 {{isset($member)?$member->en_descr:''}}
                             </textarea>

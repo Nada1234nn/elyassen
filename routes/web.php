@@ -31,6 +31,11 @@ Route::group(['middleware' => 'lang'], function () {
 
 
     Route::group(['middleware' => 'web', 'guest'], function () {
+        //services
+        Route::get('/services', 'HomeController@services')->name('services');
+//        Route::get('/consult-request', 'HomeController@consult_request')->name('consult_request');
+        Route::view('/consult-request', 'website.consult_request')->name('consult_request');
+
 
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('/getSubcategories/{category_id}', 'admin\HomeController@getSubcategories');
@@ -60,6 +65,7 @@ Route::group(['middleware' => 'lang'], function () {
         Route::post('/search_news', 'HomeController@search_news');
         Route::post('/search_title', 'HomeController@search_title');
         Route::get('/supplier', 'HomeController@suppliers')->name('website.suppliers');
+        Route::get('/about', 'HomeController@getAbout')->name('website.about');
 
         Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social', 'twitter|facebook|google');
         Route::get('/login/{social/callback}', 'Auth\LoginController@handleprovidercallback')->where('social', 'twitter|facebook|google');
